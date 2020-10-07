@@ -7,13 +7,13 @@ namespace ExpressionEngine
 {
     public class Variables
     {
-        private Dictionary<string, double> _lookupTable = new Dictionary<string, double>
+        private readonly Dictionary<string, double> _lookupTable = new Dictionary<string, double>
         {
             { "pi", Math.PI },
             { "e", Math.E }
         };
 
-        private HashSet<string> ProtectedNames = new HashSet<string>
+        private readonly HashSet<string> _protectedNames = new HashSet<string>
         {
             "pi",
             "e",
@@ -22,7 +22,7 @@ namespace ExpressionEngine
         public bool IsConstant(string variable)
         {
             return _lookupTable.ContainsKey(variable) 
-                && ProtectedNames.Contains(variable);
+                && _protectedNames.Contains(variable);
         }
 
         public double GetValue(string variable)
@@ -36,7 +36,7 @@ namespace ExpressionEngine
 
         public void Register(string variable, double value)
         {
-            if (ProtectedNames.Contains(variable))
+            if (_protectedNames.Contains(variable))
             {
                 ExceptionHelper.ThrowException(Resources.ConstantCantReassign, variable);
                 return;

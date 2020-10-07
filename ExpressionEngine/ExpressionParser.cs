@@ -3,6 +3,7 @@ using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.FunctionExpressions;
 using ExpressionEngine.Properties;
 using System;
+using System.Globalization;
 using System.Text;
 
 namespace ExpressionEngine
@@ -190,7 +191,7 @@ namespace ExpressionEngine
             IExpression? exp = null;
             if (_currentToken.Type == TokenType.Constant)
             {
-                exp = new ConstantExpression(Convert.ToDouble(_currentToken.Value));
+                exp = new ConstantExpression(Convert.ToDouble(_currentToken.Value, CultureInfo.InvariantCulture));
                 Eat(TokenType.Constant);
             }
 
