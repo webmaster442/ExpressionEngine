@@ -14,7 +14,7 @@ namespace ExpressionEngine.Maths
         /// <returns>angle in radians</returns>
         public static double DegToRad(double deg)
         {
-            return Math.PI * ((deg % 360) / 180.0);
+            return Math.PI * (deg / 180.0);
         }
 
         /// <summary>

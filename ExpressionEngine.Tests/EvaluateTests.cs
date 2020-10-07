@@ -36,7 +36,7 @@ namespace ExpressionEngine.Tests
         [TestCase("ctg(90)", 0)]
         [TestCase("ctg(180)", double.NegativeInfinity)]
         [TestCase("ctg(270)", 0)]
-        [TestCase("ctg(360)", double.PositiveInfinity)]
+        [TestCase("ctg(360)", double.NegativeInfinity)]
         [TestCase("root(2, 2)", 1.4142135623730950488)]
         [TestCase("ln(e)", 1)]
         [TestCase("ln(100)", 4.6051701859880913680359829093687)]
