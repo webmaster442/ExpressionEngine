@@ -24,11 +24,12 @@ namespace ExpressionEngine.Base
         {
             while (_index < _function.Length)
             {
-                if (char.IsNumber(_function[_index]))
+                if (char.IsNumber(_function[_index]) || _function[_index] == '.')
                 {
                     var number = new StringBuilder();
                     number.Append(_function[_index++]);
-                    while (_index < _function.Length && char.IsNumber(_function[_index]))
+                    while (_index < _function.Length &&
+                        char.IsNumber(_function[_index]))
                     {
                         number.Append(_function[_index++]);
                     }
@@ -45,9 +46,13 @@ namespace ExpressionEngine.Base
 
                     string variable = var.ToString().ToLower(CultureInfo.InvariantCulture);
 
-                    if (FunctionFactory.IsFunction(variable))
+                    if (FunctionFactory.IsSignleParamFunction(variable))
                     {
-                        return new Token(variable, TokenType.Function);
+                        return new Token(variable, TokenType.Function1);
+                    }
+                    else if (FunctionFactory.IsTwoParamFunction(variable))
+                    {
+                        return new Token(variable, TokenType.Function2);
                     }
                     else
                     {
@@ -76,6 +81,8 @@ namespace ExpressionEngine.Base
                         return new Token("(", TokenType.OpenParen);
                     case ')':
                         return new Token(")", TokenType.CloseParen);
+                    case ',':
+                        return new Token(",", TokenType.ArgumentDivider);
                     default:
                         ExceptionHelper.ThrowException(Resources.InvalidToken, _function[_index - 1], _function);
                         break;

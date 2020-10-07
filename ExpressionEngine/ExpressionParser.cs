@@ -19,7 +19,7 @@ namespace ExpressionEngine
 
         public ExpressionParser()
         {
-            var firstFunction = new TokenSet(TokenType.Function);
+            var firstFunction = new TokenSet(TokenType.Function1, TokenType.Function2);
             FirstFactor = firstFunction + new TokenSet(TokenType.Variable, TokenType.OpenParen);
             FirstFactorPrefix = FirstFactor + TokenType.Constant;
             FirstUnaryExp = FirstFactorPrefix + TokenType.Minus;
@@ -226,8 +226,11 @@ namespace ExpressionEngine
                         Eat(TokenType.Variable);
                         break;
 
-                    case TokenType.Function:
+                    case TokenType.Function1:
                         right = ParseFunction(variables);
+                        break;
+                    case TokenType.Function2:
+                        right = ParseFunction2(variables);
                         break;
 
                     case TokenType.OpenParen:
@@ -256,10 +259,33 @@ namespace ExpressionEngine
             var exp = ParseAddExpression(variables);
             Eat(TokenType.CloseParen);
 
-            if (opType == TokenType.Function
-                && FunctionFactory.IsFunction(function))
+            if (opType == TokenType.Function1
+                && FunctionFactory.IsSignleParamFunction(function))
             {
                 return FunctionFactory.Create(function, exp);
+            }
+            else
+            {
+                ExceptionHelper.ThrowException(Resources.UnknownFuction, function);
+                return null;
+            }
+        }
+
+        private IExpression? ParseFunction2(Variables variables)
+        {
+            var opType = _currentToken.Type;
+            var function = _currentToken.Value;
+            Eat(opType);
+            Eat(TokenType.OpenParen);
+            var exp1 = ParseAddExpression(variables);
+            Eat(TokenType.ArgumentDivider);
+            var exp2 = ParseAddExpression(variables);
+            Eat(TokenType.CloseParen);
+
+            if (opType == TokenType.Function2
+                && FunctionFactory.IsTwoParamFunction(function))
+            {
+                return FunctionFactory.Create(function, exp1, exp2);
             }
             else
             {

@@ -6,7 +6,7 @@ namespace ExpressionEngine.FunctionExpressions
 {
     internal static class FunctionFactory
     {
-        private static readonly Dictionary<string, Func<IExpression?, IExpression>> Functions 
+        private static readonly Dictionary<string, Func<IExpression?, IExpression>> SingleParamFunctions 
             = new Dictionary<string, Func<IExpression?, IExpression>>
         {
                 { "sin", (child) => new SinExpression(child) },
@@ -26,14 +26,30 @@ namespace ExpressionEngine.FunctionExpressions
 
         };
 
-        public static bool IsFunction(string identifier)
+        private static readonly Dictionary<string, Func<IExpression?, IExpression?, IExpression>> TwoParamFunctions
+            = new Dictionary<string, Func<IExpression?, IExpression?, IExpression>>
+            {
+                { "root", (child1, child2) => new RootExpression(child1, child2) },
+            };
+
+        public static bool IsSignleParamFunction(string identifier)
         {
-            return Functions.ContainsKey(identifier);
+            return SingleParamFunctions.ContainsKey(identifier);
+        }
+
+        public static bool IsTwoParamFunction(string identifier)
+        {
+            return TwoParamFunctions.ContainsKey(identifier);
         }
 
         internal static IExpression Create(string function, IExpression? exp)
         {
-            return Functions[function](exp);
+            return SingleParamFunctions[function](exp);
+        }
+
+        internal static IExpression Create(string function, IExpression? exp1, IExpression? exp2)
+        {
+            return TwoParamFunctions[function](exp1, exp2);
         }
     }
 }

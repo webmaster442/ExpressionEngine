@@ -10,7 +10,9 @@
         Multiply = 0x10,
         Divide = 0x20,
         Exponent = 0x40,
-        Function = 0x80,
+        Function1 = 0x80,
+        Function2 = 0x100,
+        ArgumentDivider = 0x200,
 
         OpenParen = 0x400,
         CloseParen = 0x800,

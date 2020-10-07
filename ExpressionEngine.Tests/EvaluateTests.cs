@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace ExpressionEngine.Tests
 {
@@ -37,6 +38,7 @@ namespace ExpressionEngine.Tests
         [TestCase("ctg(180)", double.NegativeInfinity)]
         [TestCase("ctg(270)", 0)]
         [TestCase("ctg(360)", double.PositiveInfinity)]
+        [TestCase("root(2, 2)", 1.4142135623730950488)]
         public void TestEvaluator(string expression, double expected)
         {
             IExpression parsed = _sut.Parse(expression, _variables);

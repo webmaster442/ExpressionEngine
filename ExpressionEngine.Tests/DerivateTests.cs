@@ -37,6 +37,7 @@ namespace ExpressionEngine.Tests
         [TestCase("cos(x)", "(-sin(x))")]
         [TestCase("tan(x)", "(cos(x) ^ -2)")]
         [TestCase("ctg(x)", "(-(sin(x) ^ -2))")]
+        [TestCase("root(x,2)", "(0,5 * (x ^ -0,5))")]
         public void TestDerivatives(string expression, string expected)
         {
 
