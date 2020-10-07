@@ -12,7 +12,7 @@ namespace ExpressionEngine.FunctionExpressions
 
         public override IExpression? Differentiate(string byVariable)
         {
-            return new DivideExpression(new ConstantExpression(1), Child?.Differentiate(byVariable));
+            return new DivideExpression(new ConstantExpression(1), Child);
         }
 
         public override IExpression? Simplify()
@@ -23,7 +23,7 @@ namespace ExpressionEngine.FunctionExpressions
                 // child is constant
                 return new ConstantExpression(Evaluate(childConst.Value));
             }
-            return new CosExpression(newChild);
+            return new LnExpression(newChild);
         }
 
         public override string ToString(string format, IFormatProvider formatProvider)

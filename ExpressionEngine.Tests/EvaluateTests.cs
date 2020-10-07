@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 
 namespace ExpressionEngine.Tests
 {
@@ -39,12 +38,14 @@ namespace ExpressionEngine.Tests
         [TestCase("ctg(270)", 0)]
         [TestCase("ctg(360)", double.PositiveInfinity)]
         [TestCase("root(2, 2)", 1.4142135623730950488)]
+        [TestCase("ln(e)", 1)]
+        [TestCase("ln(100)", 4.6051701859880913680359829093687)]
+        [TestCase("log(1024,2)", 10)]
         public void TestEvaluator(string expression, double expected)
         {
             IExpression parsed = _sut.Parse(expression, _variables);
 
             double result = parsed.Evaluate();
-
 
             Assert.AreEqual(expected, result, 1E-15);
         }
@@ -60,6 +61,9 @@ namespace ExpressionEngine.Tests
         [TestCase("\r\n")]
         [TestCase("\r")]
         [TestCase("\n")]
+        [TestCase("sin(99ö)")]
+        [TestCase("root(99,)")]
+        [TestCase("root(,99)")]
         public void TestInvalidTokens(string expression)
         {
             Assert.Throws<ExpressionEngineException>(() =>

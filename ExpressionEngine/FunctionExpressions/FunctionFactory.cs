@@ -31,6 +31,7 @@ namespace ExpressionEngine.FunctionExpressions
             = new Dictionary<string, Func<IExpression?, IExpression?, IExpression>>
             {
                 { "root", (child1, child2) => new RootExpression(child1, child2) },
+                { "log", (child1, child2) => new LogExpression(child1, child2) },
             };
 
         public static bool IsSignleParamFunction(string identifier)

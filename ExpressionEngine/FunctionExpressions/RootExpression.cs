@@ -24,14 +24,6 @@ namespace ExpressionEngine.FunctionExpressions
                     new MultiplyExpression(new MultiplyExpression(newRight, Left?.Differentiate(byVariable)),
                                            new ExponentExpression(Left, new SubtractExpression(newRight, new ConstantExpression(1))));
             }
-            var simple = Left?.Simplify();
-            if (simple is ConstantExpression constant)
-            {
-                // f(x) = a^g(x)
-                // f'(x) = (ln a) * g'(x) * a^g(x)
-                var a = constant.Value;
-                return new MultiplyExpression(new MultiplyExpression(new ConstantExpression(Math.Log(a)), Right?.Differentiate(byVariable)), new ExponentExpression(simple, Right));
-            }
             throw new CannotDifferentiateException(Resources.CanotDifferentiate);
         }
 
