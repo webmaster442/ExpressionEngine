@@ -2,8 +2,11 @@
 
 namespace ExpressionEngine
 {
-    public interface IExpression: IFormattable
+    public interface IExpression
     {
+        /// <summary>
+        /// Variables availabe for Expression
+        /// </summary>
         Variables? Variables { get; }
 
         /// <summary>
@@ -22,5 +25,11 @@ namespace ExpressionEngine
         /// </summary>
         /// <returns></returns>
         IExpression? Simplify();
+        /// <summary>
+        /// Converts expression to string
+        /// </summary>
+        /// <param name="formatProvider">format provider</param>
+        /// <returns>string representation of expression</returns>
+        string ToString(IFormatProvider formatProvider);
     }
 }

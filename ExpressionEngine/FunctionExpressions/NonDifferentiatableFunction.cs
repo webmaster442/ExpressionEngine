@@ -32,7 +32,7 @@ namespace ExpressionEngine.FunctionExpressions
             return new NonDifferentiatableFunction(newChild, _function, _name);
         }
 
-        public override string ToString(string format, IFormatProvider formatProvider)
+        public override string ToString(IFormatProvider formatProvider)
         {
             return $"{_name}({Child})";
         }

@@ -27,11 +27,11 @@ namespace ExpressionEngine.Base
 
         public abstract IExpression? Differentiate(string byVariable);
 
-        public abstract string ToString(string format, IFormatProvider formatProvider);
+        public abstract string ToString(IFormatProvider formatProvider);
 
         public override string ToString()
         {
-            return ToString(string.Empty, CultureInfo.CurrentCulture);
+            return ToString(CultureInfo.InvariantCulture);
         }
     }
 }

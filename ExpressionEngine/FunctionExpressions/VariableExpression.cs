@@ -1,6 +1,7 @@
 ﻿using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.Properties;
 using System;
+using System.Globalization;
 
 namespace ExpressionEngine.FunctionExpressions
 {
@@ -54,9 +55,14 @@ namespace ExpressionEngine.FunctionExpressions
             return new VariableExpression(Identifier, Variables);
         }
 
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(IFormatProvider formatProvider)
         {
             return Identifier.ToString(formatProvider);
+        }
+
+        public override string ToString()
+        {
+            return ToString(CultureInfo.InvariantCulture);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace ExpressionEngine.FunctionExpressions
             return new LnExpression(newChild);
         }
 
-        public override string ToString(string format, IFormatProvider formatProvider)
+        public override string ToString(IFormatProvider formatProvider)
         {
             return $"ln({Child})";
         }

@@ -57,7 +57,7 @@ namespace ExpressionEngine.BaseExpressions
             return new SubtractExpression(newLeft, newRight);
         }
 
-        public override string ToString(string format, IFormatProvider formatProvider)
+        public override string ToString(IFormatProvider formatProvider)
         {
             return $"({Left} - {Right})";
         }

@@ -31,18 +31,18 @@ namespace ExpressionEngine.Tests
         //inverse
         [TestCase("1/x", "(-1 / (x ^ 2))")]
         //exponent
-        [TestCase("2^x", "(0,6931471805599453 * (2 ^ x))")]
+        [TestCase("2^x", "(0.6931471805599453 * (2 ^ x))")]
         //trigonometry
         [TestCase("sin(x)", "cos(x)")]
         [TestCase("cos(x)", "(-sin(x))")]
         [TestCase("tan(x)", "(cos(x) ^ -2)")]
         [TestCase("ctg(x)", "(-(sin(x) ^ -2))")]
         //Root
-        [TestCase("root(x,2)", "(0,5 * (x ^ -0,5))")]
+        [TestCase("root(x,2)", "(0.5 * (x ^ -0.5))")]
         //Logarithms
         [TestCase("ln(x)", "(1 / x)")]
         [TestCase("Log(x, e)", "(1 / x)")]
-        [TestCase("Log(x, 4)", "(0,7213475204444817 * (1 / x))")]
+        [TestCase("Log(x, 4)", "(0.7213475204444817 * (1 / x))")]
         public void TestDerivatives(string expression, string expected)
         {
 

@@ -28,7 +28,7 @@ namespace ExpressionEngine.FunctionExpressions
             return new TanExpression(newChild);
         }
 
-        public override string ToString(string format, IFormatProvider formatProvider)
+        public override string ToString(IFormatProvider formatProvider)
         {
             return $"tan({Child})";
         }

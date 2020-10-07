@@ -28,7 +28,7 @@ namespace ExpressionEngine.FunctionExpressions
             return new CtgExpression(newChild);
         }
 
-        public override string ToString(string format, IFormatProvider formatProvider)
+        public override string ToString(IFormatProvider formatProvider)
         {
             return $"ctg({Child})";
         }

@@ -29,14 +29,14 @@ namespace ExpressionEngine.BaseExpressions
             return new ConstantExpression(Value);
         }
 
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(IFormatProvider formatProvider)
         {
             return Value.ToString(formatProvider);
         }
 
         public override string ToString()
         {
-            return ToString(string.Empty, CultureInfo.CurrentCulture);
+            return ToString(CultureInfo.InvariantCulture);
         }
     }
 }

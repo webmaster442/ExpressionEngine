@@ -33,7 +33,7 @@ namespace ExpressionEngine.FunctionExpressions
             }
         }
 
-        public override string ToString(string format, IFormatProvider formatProvider)
+        public override string ToString(IFormatProvider formatProvider)
         {
             return $"log({Left}, {Right})";
         }

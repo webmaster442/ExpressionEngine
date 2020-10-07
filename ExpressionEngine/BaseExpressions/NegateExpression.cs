@@ -25,7 +25,7 @@ namespace ExpressionEngine.BaseExpressions
             return new NegateExpression(newChild);
         }
 
-        public override string ToString(string format, IFormatProvider formatProvider)
+        public override string ToString(IFormatProvider formatProvider)
         {
             return $"(-{Child})";
         }

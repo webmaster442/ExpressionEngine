@@ -62,7 +62,7 @@ namespace ExpressionEngine.FunctionExpressions
             return new ExponentExpression(newLeft, new DivideExpression(new ConstantExpression(1), newRight));
         }
 
-        public override string ToString(string format, IFormatProvider formatProvider)
+        public override string ToString(IFormatProvider formatProvider)
         {
             return $"Root({Left}, {Right})";
         }
