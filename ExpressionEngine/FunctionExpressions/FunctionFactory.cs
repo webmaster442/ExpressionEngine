@@ -9,6 +9,7 @@ namespace ExpressionEngine.FunctionExpressions
         private static readonly Dictionary<string, Func<IExpression?, IExpression>> SingleParamFunctions 
             = new Dictionary<string, Func<IExpression?, IExpression>>
         {
+                { "ln", (child) => new LnExpression(child) },
                 { "sin", (child) => new SinExpression(child) },
                 { "cos", (child) => new CosExpression(child) },
                 { "tan", (child) => new TanExpression(child) },
