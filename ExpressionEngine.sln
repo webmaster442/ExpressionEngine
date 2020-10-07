@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEngine", "ExpressionEngine\ExpressionEngine.csproj", "{5A344F14-1BFF-4486-ABF1-BAF046DB0B1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEngine.Tests", "ExpressionEngine.Tests\ExpressionEngine.Tests.csproj", "{6915F62B-EEDF-4AA7-9ECE-1940B62820E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A344F14-1BFF-4486-ABF1-BAF046DB0B1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A344F14-1BFF-4486-ABF1-BAF046DB0B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A344F14-1BFF-4486-ABF1-BAF046DB0B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A344F14-1BFF-4486-ABF1-BAF046DB0B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6915F62B-EEDF-4AA7-9ECE-1940B62820E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6915F62B-EEDF-4AA7-9ECE-1940B62820E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6915F62B-EEDF-4AA7-9ECE-1940B62820E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6915F62B-EEDF-4AA7-9ECE-1940B62820E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2D26777-7010-4362-85AC-009B828E944C}
+	EndGlobalSection
+EndGlobal
