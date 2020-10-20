@@ -34,6 +34,12 @@ namespace ExpressionEngine
             throw new ExpressionEngineException($"{variable} is not defined");
         }
 
+        public double this[string name]
+        {
+            get { return GetValue(name); }
+            set { Register(name, value); }
+        }
+
         public void Register(string variable, double value)
         {
             if (_protectedNames.Contains(variable))

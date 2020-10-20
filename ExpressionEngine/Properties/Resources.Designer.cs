@@ -151,6 +151,15 @@ namespace ExpressionEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The from value must be smaller than the to value.
+        /// </summary>
+        internal static string IntegrateErrorRange {
+            get {
+                return ResourceManager.GetString("IntegrateErrorRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid expression.
         /// </summary>
         internal static string InvalidExpression {
@@ -178,6 +187,15 @@ namespace ExpressionEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Variables not set on expression..
+        /// </summary>
+        internal static string NoVariables {
+            get {
+                return ResourceManager.GetString("NoVariables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t complete operation on expression. Varaibles are not set.
         /// </summary>
         internal static string NoVariableValues {
@@ -192,6 +210,15 @@ namespace ExpressionEngine.Properties {
         internal static string OutOfTokens {
             get {
                 return ResourceManager.GetString("OutOfTokens", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steps must be greater than 1.
+        /// </summary>
+        internal static string ToLessSteps {
+            get {
+                return ResourceManager.GetString("ToLessSteps", resourceCulture);
             }
         }
         
