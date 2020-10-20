@@ -1,4 +1,9 @@
-﻿using ExpressionEngine.Maths;
+﻿//-----------------------------------------------------------------------------
+// (c) 2020 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using ExpressionEngine.Maths;
 using NUnit.Framework;
 
 namespace ExpressionEngine.Tests.Maths

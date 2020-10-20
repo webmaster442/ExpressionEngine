@@ -1,4 +1,9 @@
-﻿using ExpressionEngine.Calculator.Commands;
+﻿//-----------------------------------------------------------------------------
+// (c) 2020 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using ExpressionEngine.Calculator.Commands;
 using ExpressionEngine.Calculator.Infrastructure;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,9 @@
-﻿using ExpressionEngine.FunctionExpressions;
+﻿//-----------------------------------------------------------------------------
+// (c) 2020 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using ExpressionEngine.FunctionExpressions;
 using ExpressionEngine.Properties;
 using System.Globalization;
 using System.Text;

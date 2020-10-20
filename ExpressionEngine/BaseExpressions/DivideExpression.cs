@@ -1,4 +1,9 @@
-﻿using ExpressionEngine.Base;
+﻿//-----------------------------------------------------------------------------
+// (c) 2020 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using ExpressionEngine.Base;
 using ExpressionEngine.Properties;
 using System;
 
