@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEngine", "Express
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionEngine.Tests", "ExpressionEngine.Tests\ExpressionEngine.Tests.csproj", "{6915F62B-EEDF-4AA7-9ECE-1940B62820E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEngine.Calculator", "ExpressionEngine.Calculator\ExpressionEngine.Calculator.csproj", "{309C15F8-296B-45E7-A7F4-7C911F1318A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6915F62B-EEDF-4AA7-9ECE-1940B62820E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6915F62B-EEDF-4AA7-9ECE-1940B62820E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6915F62B-EEDF-4AA7-9ECE-1940B62820E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{309C15F8-296B-45E7-A7F4-7C911F1318A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{309C15F8-296B-45E7-A7F4-7C911F1318A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{309C15F8-296B-45E7-A7F4-7C911F1318A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{309C15F8-296B-45E7-A7F4-7C911F1318A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
