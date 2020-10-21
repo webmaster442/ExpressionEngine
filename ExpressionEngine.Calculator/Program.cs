@@ -4,13 +4,12 @@
 //-----------------------------------------------------------------------------
 
 using ExpressionEngine.Calculator.Infrastructure;
-using System;
 
 namespace ExpressionEngine.Calculator
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             IConsole console = new ConsoleConsole();
 
