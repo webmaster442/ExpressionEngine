@@ -12,12 +12,12 @@ namespace ExpressionEngine.FunctionExpressions
 {
     internal sealed class VariableExpression : IExpression
     {
-        public Variables? Variables { get; }
+        public IVariables? Variables { get; }
 
         public string Identifier { get; }
 
 
-        public VariableExpression(string identifier, Variables variables)
+        public VariableExpression(string identifier, IVariables variables)
         {
             Variables = variables;
             Identifier = identifier.ToLower();

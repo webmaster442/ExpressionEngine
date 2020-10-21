@@ -10,7 +10,7 @@ namespace ExpressionEngine.Base
 {
     internal abstract class BinaryExpression: IExpression
     {
-        public Variables? Variables { get; }
+        public IVariables? Variables { get; }
 
         protected BinaryExpression(IExpression? left, IExpression? right)
         {

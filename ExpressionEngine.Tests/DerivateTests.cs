@@ -3,6 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using Moq;
 using NUnit.Framework;
 
 namespace ExpressionEngine.Tests
@@ -11,13 +12,11 @@ namespace ExpressionEngine.Tests
     public class DerivateTests
     {
         private ExpressionParser _sut;
-        private Variables _variables;
 
         [SetUp]
         public void Setup()
         {
             _sut = new ExpressionParser();
-            _variables = new Variables();
         }
 
         //Constants
@@ -51,7 +50,7 @@ namespace ExpressionEngine.Tests
         public void TestDerivatives(string expression, string expected)
         {
 
-            IExpression derived = _sut.Parse(expression, _variables).Differentiate("x").Simplify();
+            IExpression derived = _sut.Parse(expression, Mocks.CreateVariableMock()).Differentiate("x").Simplify();
             Assert.AreEqual(expected, derived.ToString());
         }
     }

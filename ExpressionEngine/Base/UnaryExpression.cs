@@ -10,7 +10,7 @@ namespace ExpressionEngine.Base
 {
     internal abstract class UnaryExpression: IExpression
     {
-        public Variables? Variables { get; }
+        public IVariables? Variables { get; }
 
         protected UnaryExpression(IExpression? child)
         {

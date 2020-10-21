@@ -11,13 +11,11 @@ namespace ExpressionEngine.Tests
     public class EvaluateTests
     {
         private ExpressionParser _sut;
-        private Variables _variables;
 
         [SetUp]
         public void Setup()
         {
             _sut = new ExpressionParser();
-            _variables = new Variables();
         }
 
         [TestCase("1\t+1", 2)]
@@ -48,7 +46,7 @@ namespace ExpressionEngine.Tests
         [TestCase("log(1024,2)", 10)]
         public void TestEvaluator(string expression, double expected)
         {
-            IExpression parsed = _sut.Parse(expression, _variables);
+            IExpression parsed = _sut.Parse(expression, Mocks.CreateVariableMock());
 
             double result = parsed.Evaluate();
 
@@ -73,7 +71,7 @@ namespace ExpressionEngine.Tests
         {
             Assert.Throws<ExpressionEngineException>(() =>
             {
-                IExpression parsed = _sut.Parse(expression, _variables);
+                IExpression parsed = _sut.Parse(expression, Mocks.CreateVariableMock());
             });
         }
     }

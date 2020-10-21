@@ -10,7 +10,7 @@ namespace ExpressionEngine.BaseExpressions
 {
     internal sealed class ConstantExpression : IExpression
     {
-        public Variables? Variables { get; }
+        public IVariables? Variables { get; }
 
         public double Value { get; }
 

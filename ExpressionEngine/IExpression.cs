@@ -12,7 +12,7 @@ namespace ExpressionEngine
         /// <summary>
         /// Variables availabe for Expression
         /// </summary>
-        Variables? Variables { get; }
+        IVariables? Variables { get; }
 
         /// <summary>
         /// Evaluate an expression

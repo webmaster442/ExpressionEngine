@@ -3,6 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.Properties;
 using System;
 
@@ -11,7 +12,7 @@ namespace ExpressionEngine
     /// <summary>
     /// Expression extension: Allows integrating of expression
     /// </summary>
-    public static class Integrator
+    public static class Extensions
     {
         /// <summary>
         /// Integrates the expression with Simpson algorithm
@@ -36,6 +37,12 @@ namespace ExpressionEngine
             if (string.IsNullOrEmpty(var))
                 throw new ArgumentNullException(nameof(var));
 
+            if (expression.IsConstantExpression())
+            {
+                // constant expression's integral is the constant.
+                return expression.Evaluate();
+            }
+
             double h = (to - from) / steps;
             double x = from + h;
             double s = 0.0;
@@ -59,6 +66,16 @@ namespace ExpressionEngine
             double Fxhb = expression.Evaluate();
 
             return h / 3 * (2 * Fxa + Fxb + 4 * Fxhb);
+        }
+
+        /// <summary>
+        /// Returns true, if the expression only contains constants.
+        /// </summary>
+        /// <param name="expression">Expression to check</param>
+        /// <returns>True, if the expression is only containing constants and can be evaluated</returns>
+        public static bool IsConstantExpression(this IExpression expression)
+        {
+            return expression is ConstantExpression;
         }
     }
 }

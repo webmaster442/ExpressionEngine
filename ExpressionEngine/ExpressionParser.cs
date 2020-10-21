@@ -39,7 +39,7 @@ namespace ExpressionEngine
         /// </summary>
         /// <param name="function">The function to parse</param>
         /// <returns>An expression tree representing the function parsed</returns>
-        public IExpression? Parse(string function, Variables variables)
+        public IExpression? Parse(string function, IVariables variables)
         {
             _tokenizer = new Tokenizer(function);
             _currentToken = new Token("", TokenType.None);
@@ -62,7 +62,7 @@ namespace ExpressionEngine
             return exp;
         }
 
-        private IExpression? ParseAddExpression(Variables variables)
+        private IExpression? ParseAddExpression(IVariables variables)
         {
             if (Check(FirstMultExp))
             {
@@ -99,7 +99,7 @@ namespace ExpressionEngine
             throw new ExpressionEngineException(Resources.InvalidExpression);
         }
 
-        private IExpression? ParseMultExpression(Variables variables)
+        private IExpression? ParseMultExpression(IVariables variables)
         {
             if (Check(FirstExpExp))
             {
@@ -136,7 +136,7 @@ namespace ExpressionEngine
             throw new ExpressionEngineException(Resources.InvalidExpression);
         }
 
-        private IExpression? ParseExpExpression(Variables variables)
+        private IExpression? ParseExpExpression(IVariables variables)
         {
             if (Check(FirstUnaryExp))
             {
@@ -169,7 +169,7 @@ namespace ExpressionEngine
             throw new ExpressionEngineException(Resources.InvalidExpression);
         }
 
-        private IExpression? ParseUnaryExpression(Variables variables)
+        private IExpression? ParseUnaryExpression(IVariables variables)
         {
             var negate = false;
             if (_currentToken.Type == TokenType.Minus)
@@ -191,7 +191,7 @@ namespace ExpressionEngine
             throw new ExpressionEngineException(Resources.InvalidExpression);
         }
 
-        private IExpression? ParseFactorPrefix(Variables variables)
+        private IExpression? ParseFactorPrefix(IVariables variables)
         {
             IExpression? exp = null;
             if (_currentToken.Type == TokenType.Constant)
@@ -219,7 +219,7 @@ namespace ExpressionEngine
             return exp;
         }
 
-        private IExpression? ParseFactor(Variables variables)
+        private IExpression? ParseFactor(IVariables variables)
         {
             IExpression? exp = null;
             do
@@ -256,7 +256,7 @@ namespace ExpressionEngine
             return exp;
         }
 
-        private IExpression? ParseFunction(Variables variables)
+        private IExpression? ParseFunction(IVariables variables)
         {
             var opType = _currentToken.Type;
             var function = _currentToken.Value;
@@ -277,7 +277,7 @@ namespace ExpressionEngine
             }
         }
 
-        private IExpression? ParseFunction2(Variables variables)
+        private IExpression? ParseFunction2(IVariables variables)
         {
             var opType = _currentToken.Type;
             var function = _currentToken.Value;
