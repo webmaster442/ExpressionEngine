@@ -34,7 +34,7 @@ namespace ExpressionEngine.Base
                     var number = new StringBuilder();
                     number.Append(_function[_index++]);
                     while (_index < _function.Length &&
-                        char.IsNumber(_function[_index]) || _function[_index] == '.')
+                        (char.IsNumber(_function[_index]) || _function[_index] == '.'))
                     {
                         number.Append(_function[_index++]);
                     }
