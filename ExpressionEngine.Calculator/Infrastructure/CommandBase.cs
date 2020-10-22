@@ -3,6 +3,8 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using System;
+
 namespace ExpressionEngine.Calculator.Infrastructure
 {
     internal abstract class CommandBase
@@ -16,6 +18,6 @@ namespace ExpressionEngine.Calculator.Infrastructure
 
         public abstract string Name { get; }
 
-        public abstract void Execute(State currentState, string[] arguments);
+        public abstract void Execute(State currentState, Arguments arguments);
     }
 }

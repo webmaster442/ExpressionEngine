@@ -5,6 +5,8 @@
 
 using ExpressionEngine.Calculator.Infrastructure;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ExpressionEngine.Calculator
@@ -14,12 +16,13 @@ namespace ExpressionEngine.Calculator
         private State _currentState;
         private IConsole _console;
 
-        private CommandBase[] Commands;
+        private List<CommandBase> Commands;
 
         public Calculator(IConsole console)
         {
             _console = console;
             _currentState = new State();
+            Commands = new List<CommandBase>();
             ConfigureCommands();
         }
 
@@ -46,11 +49,20 @@ namespace ExpressionEngine.Calculator
                 {
                     try
                     {
-                        cmd.Execute(_currentState, tokens.Skip(1).ToArray());
+                        cmd.Execute(_currentState, new Arguments(tokens.Skip(1)));
                     }
-                    catch (Exception ex)
+                    catch (Exception ex) when (ex is ExpressionEngineException 
+                                            || ex is CannotDifferentiateException 
+                                            || ex is CalculatorException)
                     {
-
+                        _console.WriteLine("Error: {0}", ex.Message);
+                    }
+                    catch (Exception e)
+                    {
+                        _console.WriteLine("Unhandled exception in command: {0}", e.Message);
+#if DEBUG
+                        Debugger.Break();
+#endif
                     }
                 }
             }
@@ -64,10 +76,18 @@ namespace ExpressionEngine.Calculator
 
         private void ConfigureCommands()
         {
-            Commands = new CommandBase[]
-            {
+            var assembly = typeof(Calculator).Assembly;
+            var commands = assembly
+                            .GetTypes()
+                            .Where(x => x.BaseType == typeof(CommandBase));
 
-            };
+            foreach (var cmd in commands)
+            {
+                if (Activator.CreateInstance(cmd, _console) is CommandBase instance)
+                {
+                    Commands.Add(instance);
+                }
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace ExpressionEngine.Calculator.Infrastructure
     {
         private Dictionary<string, double> _variables;
         private Dictionary<string, double> _contants;
+        private Dictionary<string, IExpression> _expressions;
 
         public State()
         {
@@ -22,6 +23,7 @@ namespace ExpressionEngine.Calculator.Infrastructure
                 { "e", Math.E }
             };
             _variables = new Dictionary<string, double>();
+            _expressions = new Dictionary<string, IExpression>();
         }
 
         public double this[string variable]
@@ -39,6 +41,11 @@ namespace ExpressionEngine.Calculator.Infrastructure
             {
                 if (IsConstant(variable))
                     throw new ExpressionEngineException("Can't overwrite a constant");
+
+                if (_expressions.ContainsKey(variable))
+                {
+                    _expressions.Remove(variable);
+                }
 
                 _variables[variable] = value;
             }
@@ -72,9 +79,34 @@ namespace ExpressionEngine.Calculator.Infrastructure
             }
             else
             {
+                if (_expressions.ContainsKey(variable))
+                {
+                    _expressions.Remove(variable);
+                }
+
                 _variables[variable] = value;
                 return true;
             }
+        }
+
+        public bool TryGetExpression(string variableName, out IExpression? expression)
+        {
+            expression = null;
+            if (_expressions.ContainsKey(variableName))
+            {
+                expression = _expressions[variableName];
+                return true;
+            }
+            return false;
+        }
+
+        public void SetExpression(string variableName, IExpression? expression)
+        {
+            if (expression == null) return;
+            if (_variables.ContainsKey(variableName))
+                _variables.Remove(variableName);
+
+            _expressions[variableName] = expression;
         }
     }
 }
