@@ -3,6 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using ExpressionEngine.Maths;
 using System;
 using System.Collections.Generic;
 
@@ -25,13 +26,33 @@ namespace ExpressionEngine.Calculator.Infrastructure
 
         public double this[string variable]
         {
-            get => _variables[variable];
-            set => _variables[variable] = value;
+            get
+            {
+                if (_contants.ContainsKey(variable))
+                    return _contants[variable];
+                else if (_variables.ContainsKey(variable))
+                    return _variables[variable];
+                else
+                    throw new ExpressionEngineException($"Unknown variable: {variable}");
+            }
+            set
+            {
+                if (IsConstant(variable))
+                    throw new ExpressionEngineException("Can't overwrite a constant");
+
+                _variables[variable] = value;
+            }
         }
 
         public int Count => _variables.Count;
 
         public IEnumerable<string> VariableNames => _variables.Keys;
+
+        public AngleMode AngleMode
+        {
+            get => Trigonometry.AngleMode;
+            set => Trigonometry.AngleMode = value;
+        }
 
         public void Clear()
         {
@@ -45,8 +66,15 @@ namespace ExpressionEngine.Calculator.Infrastructure
 
         public bool TrySetValue(string variable, double value)
         {
-            _variables[variable] = value;
-            return true;
+            if (IsConstant(variable))
+            {
+                return false;
+            }
+            else
+            {
+                _variables[variable] = value;
+                return true;
+            }
         }
     }
 }

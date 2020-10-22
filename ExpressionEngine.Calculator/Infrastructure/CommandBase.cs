@@ -3,9 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Calculator.Infrastructure;
-
-namespace ExpressionEngine.Calculator.Commands
+namespace ExpressionEngine.Calculator.Infrastructure
 {
     internal abstract class CommandBase
     {
