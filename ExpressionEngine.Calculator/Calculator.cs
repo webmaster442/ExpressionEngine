@@ -29,7 +29,7 @@ namespace ExpressionEngine.Calculator
         public void Run()
         {
             string? command = null;
-            do
+            while (_currentState.CanRun)
             {
                 Prompt();
                 string[] tokens = _console.ReadTokens();
@@ -51,8 +51,8 @@ namespace ExpressionEngine.Calculator
                     {
                         cmd.Execute(_currentState, new Arguments(tokens.Skip(1)));
                     }
-                    catch (Exception ex) when (ex is ExpressionEngineException 
-                                            || ex is CannotDifferentiateException 
+                    catch (Exception ex) when (ex is ExpressionEngineException
+                                            || ex is CannotDifferentiateException
                                             || ex is CalculatorException)
                     {
                         _console.WriteLine("Error: {0}", ex.Message);
@@ -65,8 +65,8 @@ namespace ExpressionEngine.Calculator
 #endif
                     }
                 }
+                Console.WriteLine();
             }
-            while (!string.Equals(command, "exit", StringComparison.OrdinalIgnoreCase));
         }
 
         private void Prompt()

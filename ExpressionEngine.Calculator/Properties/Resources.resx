@@ -120,9 +120,24 @@
   <data name="ErrorArgumentCount" xml:space="preserve">
     <value>This command requires {0} parameters. {1} was given.</value>
   </data>
+  <data name="ErrorNoHelpFound" xml:space="preserve">
+    <value>No Help found for command: {0}</value>
+  </data>
+  <data name="HelpClear" xml:space="preserve">
+    <value>Clears the terminal output.
+Usage: clear</value>
+  </data>
   <data name="HelpEval" xml:space="preserve">
     <value>Evaluates an expression.
 Usage: eval &lt;expression&gt;</value>
+  </data>
+  <data name="HelpExit" xml:space="preserve">
+    <value>Exit the program
+Usage: Exit</value>
+  </data>
+  <data name="HelpHelp" xml:space="preserve">
+    <value>Print usage info for a command.
+Usage: Help &lt;command name&gt;</value>
   </data>
   <data name="HelpLet" xml:space="preserve">
     <value>Defines a variable or an expression for later usage.

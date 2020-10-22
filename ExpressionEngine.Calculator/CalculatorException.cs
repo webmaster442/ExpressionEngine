@@ -14,6 +14,10 @@ namespace ExpressionEngine.Calculator
         {
         }
 
+        public CalculatorException(string format, params string[] arguments): base(string.Format(format, arguments))
+        {
+        }
+
         public CalculatorException(string? message, Exception? innerException) : base(message, innerException)
         {
         }

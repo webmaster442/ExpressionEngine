@@ -70,12 +70,51 @@ namespace ExpressionEngine.Calculator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Help found for command: {0}.
+        /// </summary>
+        internal static string ErrorNoHelpFound {
+            get {
+                return ResourceManager.GetString("ErrorNoHelpFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clears the terminal output.
+        ///Usage: clear.
+        /// </summary>
+        internal static string HelpClear {
+            get {
+                return ResourceManager.GetString("HelpClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Evaluates an expression.
         ///Usage: eval &lt;expression&gt;.
         /// </summary>
         internal static string HelpEval {
             get {
                 return ResourceManager.GetString("HelpEval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit the program
+        ///Usage: Exit.
+        /// </summary>
+        internal static string HelpExit {
+            get {
+                return ResourceManager.GetString("HelpExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print usage info for a command.
+        ///Usage: Help &lt;command name&gt;.
+        /// </summary>
+        internal static string HelpHelp {
+            get {
+                return ResourceManager.GetString("HelpHelp", resourceCulture);
             }
         }
         

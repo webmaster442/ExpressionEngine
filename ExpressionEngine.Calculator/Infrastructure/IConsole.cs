@@ -11,5 +11,7 @@ namespace ExpressionEngine.Calculator.Infrastructure
         void Write(string format, params object[] arguments);
         void WriteLine(string format, params object[] arguments) =>
             Write(format + "\r\n", arguments);
+
+        void Clear();
     }
 }

@@ -39,6 +39,11 @@ namespace ExpressionEngine.Calculator
             return input;
         }
 
+        public void Clear()
+        {
+            Console.Clear();
+        }
+
         public string[] ReadTokens()
         {
             string line = Console.ReadLine();
