@@ -11,7 +11,7 @@ namespace ExpressionEngine.Calculator.Commands
 {
     internal class HelpCommand : CommandBase
     {
-        public HelpCommand(IConsole console) : base(console)
+        public HelpCommand(IConsole console, IHost host) : base(console, host)
         {
         }
 

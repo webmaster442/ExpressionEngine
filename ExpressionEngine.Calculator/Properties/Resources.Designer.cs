@@ -89,6 +89,16 @@ namespace ExpressionEngine.Calculator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lists available commands
+        ///Usage: cmdlist.
+        /// </summary>
+        internal static string HelpCmdlist {
+            get {
+                return ResourceManager.GetString("HelpCmdlist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Evaluates an expression.
         ///Usage: eval &lt;expression&gt;.
         /// </summary>

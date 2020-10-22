@@ -12,6 +12,8 @@ namespace ExpressionEngine.Calculator
 {
     internal class ConsoleConsole : IConsole
     {
+        public int CurrentWidth => Console.BufferWidth;
+
         private static IEnumerable<string> Split(string str, Predicate<char> controller)
         {
             int nextPiece = 0;
@@ -57,6 +59,11 @@ namespace ExpressionEngine.Calculator
         public void Write(string format, params object[] arguments)
         {
             Console.Write(format, arguments);
+        }
+
+        public void WriteLine()
+        {
+            Console.WriteLine();
         }
     }
 }

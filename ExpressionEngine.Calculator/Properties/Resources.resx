@@ -127,6 +127,10 @@
     <value>Clears the terminal output.
 Usage: clear</value>
   </data>
+  <data name="HelpCmdlist" xml:space="preserve">
+    <value>Lists available commands
+Usage: cmdlist</value>
+  </data>
   <data name="HelpEval" xml:space="preserve">
     <value>Evaluates an expression.
 Usage: eval &lt;expression&gt;</value>

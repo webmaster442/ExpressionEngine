@@ -9,7 +9,7 @@ namespace ExpressionEngine.Calculator.Commands
 {
     internal class ClearCommand : CommandBase
     {
-        public ClearCommand(IConsole console) : base(console)
+        public ClearCommand(IConsole console, IHost host) : base(console, host)
         {
         }
 

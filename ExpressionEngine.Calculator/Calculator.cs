@@ -11,18 +11,23 @@ using System.Linq;
 
 namespace ExpressionEngine.Calculator
 {
-    internal class Calculator
+    internal class Calculator: IHost
     {
         private State _currentState;
         private IConsole _console;
 
-        private List<CommandBase> Commands;
+        private List<CommandBase> _commands;
+
+        IEnumerable<string> IHost.Commands
+        {
+            get => _commands.Select(x => x.Name);
+        }
 
         public Calculator(IConsole console)
         {
             _console = console;
             _currentState = new State();
-            Commands = new List<CommandBase>();
+            _commands = new List<CommandBase>();
             ConfigureCommands();
         }
 
@@ -37,7 +42,7 @@ namespace ExpressionEngine.Calculator
 
                 if (string.IsNullOrEmpty(command)) continue;
 
-                CommandBase? cmd = Commands
+                CommandBase? cmd = _commands
                     .Where(c => string.Equals(c.Name, command, StringComparison.OrdinalIgnoreCase))
                     .FirstOrDefault();
 
@@ -83,9 +88,9 @@ namespace ExpressionEngine.Calculator
 
             foreach (var cmd in commands)
             {
-                if (Activator.CreateInstance(cmd, _console) is CommandBase instance)
+                if (Activator.CreateInstance(cmd, _console, this) is CommandBase instance)
                 {
-                    Commands.Add(instance);
+                    _commands.Add(instance);
                 }
             }
         }

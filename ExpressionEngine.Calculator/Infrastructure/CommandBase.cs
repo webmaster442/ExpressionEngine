@@ -8,10 +8,12 @@ namespace ExpressionEngine.Calculator.Infrastructure
     internal abstract class CommandBase
     {
         protected IConsole Console { get; }
+        protected IHost Host { get; }
 
-        public CommandBase(IConsole console)
+        public CommandBase(IConsole console, IHost host)
         {
             Console = console;
+            Host = host;
         }
 
         public abstract string Name { get; }

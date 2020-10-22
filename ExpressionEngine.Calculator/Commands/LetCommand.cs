@@ -9,7 +9,7 @@ namespace ExpressionEngine.Calculator.Commands
 {
     internal class LetCommand : CommandBase
     {
-        public LetCommand(IConsole console) : base(console)
+        public LetCommand(IConsole console, IHost host) : base(console, host)
         {
         }
 

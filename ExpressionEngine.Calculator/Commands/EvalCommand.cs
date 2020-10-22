@@ -9,7 +9,7 @@ namespace ExpressionEngine.Calculator.Commands
 {
     internal class EvalCommand : CommandBase
     {
-        public EvalCommand(IConsole console) : base(console)
+        public EvalCommand(IConsole console, IHost host) : base(console, host)
         {
         }
 

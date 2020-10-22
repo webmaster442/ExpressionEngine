@@ -1,13 +1,15 @@
-﻿using ExpressionEngine.Calculator.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//-----------------------------------------------------------------------------
+// (c) 2020 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using ExpressionEngine.Calculator.Infrastructure;
 
 namespace ExpressionEngine.Calculator.Commands
 {
     internal class ExitCommand : CommandBase
     {
-        public ExitCommand(IConsole console) : base(console)
+        public ExitCommand(IConsole console, IHost host) : base(console, host)
         {
         }
 

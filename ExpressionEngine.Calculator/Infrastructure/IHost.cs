@@ -3,19 +3,12 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace ExpressionEngine.Calculator.Infrastructure
 {
-    interface IConsole
+    internal interface IHost
     {
-        int CurrentWidth { get; }
-
-        string[] ReadTokens();
-        void Write(string format, params object[] arguments);
-        void WriteLine(string format, params object[] arguments) =>
-            Write(format + "\r\n", arguments);
-
-        void WriteLine();
-
-        void Clear();
+        IEnumerable<string> Commands { get; }
     }
 }
