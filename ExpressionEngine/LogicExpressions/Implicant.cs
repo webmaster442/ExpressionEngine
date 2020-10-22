@@ -5,14 +5,15 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ExpressionEngine.LogicExpressions
 {
-    internal class Implicant
+    internal sealed class Implicant : IEquatable<Implicant?>
     {
         public string Mask { get; set; } //number mask.
-        public List<int> Minterms { get; set; }
+        public List<int> Minterms { get; }
 
         public Implicant()
         {
@@ -63,6 +64,23 @@ namespace ExpressionEngine.LogicExpressions
             }
             if (negate) return "(" + strFinal.Remove(strFinal.Length - 1, 1) + ")";
             return strFinal.ToString();
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return Equals(obj as Implicant);
+        }
+
+        public bool Equals(Implicant? other)
+        {
+            return other != null &&
+                   Mask == other.Mask &&
+                   Minterms.SequenceEqual(other.Minterms);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Mask, Minterms);
         }
     }
 }

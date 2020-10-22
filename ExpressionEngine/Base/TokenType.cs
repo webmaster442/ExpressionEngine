@@ -10,18 +10,21 @@ namespace ExpressionEngine.Base
         None = 0x0,
         Constant = 0x1,
         Variable = 0x2,
-        Plus = 0x4,
-        Minus = 0x8,
-        Multiply = 0x10,
-        Divide = 0x20,
-        Exponent = 0x40,
-        Function1 = 0x80,
-        Function2 = 0x100,
-        ArgumentDivider = 0x200,
+        Not = 0x4,
+        Plus = 0x8,
+        Minus = 0x10,
+        Multiply = 0x20,
+        Divide = 0x40,
+        And = 0x80,
+        Or = 0x100,
+        Exponent = 0x200,
+        Function1 = 0x400,
+        Function2 = 0x800,
+        ArgumentDivider = 0x1000,
 
-        OpenParen = 0x400,
-        CloseParen = 0x800,
+        OpenParen = 0x2000,
+        CloseParen = 0x4000,
 
-        Eof = 0x1000
+        Eof = 0x10000
     }
 }

@@ -28,7 +28,7 @@ namespace ExpressionEngine
             var firstFunction = new TokenSet(TokenType.Function1, TokenType.Function2);
             FirstFactor = firstFunction + new TokenSet(TokenType.Variable, TokenType.OpenParen);
             FirstFactorPrefix = FirstFactor + TokenType.Constant;
-            FirstUnaryExp = FirstFactorPrefix + TokenType.Minus;
+            FirstUnaryExp = FirstFactorPrefix + TokenType.Minus + TokenType.Not;
             FirstExpExp = new TokenSet(FirstUnaryExp);
             FirstMultExp = new TokenSet(FirstUnaryExp);
         }
@@ -68,7 +68,7 @@ namespace ExpressionEngine
             {
                 var exp = ParseMultExpression(variables);
 
-                while (Check(new TokenSet(TokenType.Plus, TokenType.Minus)))
+                while (Check(new TokenSet(TokenType.Plus, TokenType.Minus, TokenType.Or)))
                 {
                     var opType = _currentToken.Type;
                     Eat(opType);
@@ -82,6 +82,10 @@ namespace ExpressionEngine
                     {
                         case TokenType.Plus:
                             exp = new AddExpression(exp, right);
+                            break;
+
+                        case TokenType.Or:
+                            exp = new OrExpression(exp, right);
                             break;
 
                         case TokenType.Minus:
@@ -105,7 +109,7 @@ namespace ExpressionEngine
             {
                 var exp = ParseExpExpression(variables);
 
-                while (Check(new TokenSet(TokenType.Multiply, TokenType.Divide)))
+                while (Check(new TokenSet(TokenType.Multiply, TokenType.Divide, TokenType.And)))
                 {
                     var opType = _currentToken.Type;
                     Eat(opType);
@@ -123,6 +127,10 @@ namespace ExpressionEngine
 
                         case TokenType.Divide:
                             exp = new DivideExpression(exp, right);
+                            break;
+
+                        case TokenType.And:
+                            exp = new AndExpression(exp, right);
                             break;
 
                         default:
@@ -172,10 +180,16 @@ namespace ExpressionEngine
         private IExpression? ParseUnaryExpression(IVariables variables)
         {
             var negate = false;
+            var not = false;
             if (_currentToken.Type == TokenType.Minus)
             {
                 Eat(TokenType.Minus);
                 negate = true;
+            }
+            if (_currentToken.Type == TokenType.Not)
+            {
+                Eat(TokenType.Not);
+                not = true;
             }
 
             if (Check(FirstFactorPrefix))
@@ -186,6 +200,11 @@ namespace ExpressionEngine
                 {
                     return new NegateExpression(exp);
                 }
+                else if (not)
+                {
+                    return new NotExpression(exp);
+                }
+
                 return exp;
             }
             throw new ExpressionEngineException(Resources.InvalidExpression);

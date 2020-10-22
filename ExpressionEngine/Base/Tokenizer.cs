@@ -72,6 +72,12 @@ namespace ExpressionEngine.Base
                     case '\n':
                         continue;
 
+                    case '|':
+                        return new Token("|", TokenType.Or);
+                    case '&':
+                        return new Token("&", TokenType.And);
+                    case '!':
+                        return new Token("!", TokenType.Not);
                     case '+':
                         return new Token("+", TokenType.Plus);
                     case '-':

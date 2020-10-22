@@ -3,7 +3,9 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ExpressionEngine.LogicExpressions
 {
@@ -89,5 +91,13 @@ namespace ExpressionEngine.LogicExpressions
             }
             return ret;
         }
+
+        public static string GetBinaryValue(int number, int chars)
+        {
+            string bin = Convert.ToString(number, 2);
+            int cnt = chars - bin.Length;
+            return bin.PadLeft(cnt, '0');
+        }
+
     }
 }

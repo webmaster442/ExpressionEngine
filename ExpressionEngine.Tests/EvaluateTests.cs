@@ -44,6 +44,18 @@ namespace ExpressionEngine.Tests
         [TestCase("ln(e)", 1)]
         [TestCase("ln(100)", 4.6051701859880913680359829093687)]
         [TestCase("log(1024,2)", 10)]
+        [TestCase("0&0", 0)]
+        [TestCase("0&1", 0)]
+        [TestCase("1&0", 0)]
+        [TestCase("1&1", 1)]
+        [TestCase("0|0", 0)]
+        [TestCase("0|1", 1)]
+        [TestCase("1|0", 1)]
+        [TestCase("1|1", 1)]
+        [TestCase("!0", 1)]
+        [TestCase("!1", 0)]
+        [TestCase("!(!1)", 1)]
+        [TestCase("!0&!0", 1)]
         public void TestEvaluator(string expression, double expected)
         {
             IExpression parsed = _sut.Parse(expression, Mocks.CreateVariableMock());
@@ -55,7 +67,6 @@ namespace ExpressionEngine.Tests
 
         [TestCase("1:2")]
         [TestCase("1Ö2")]
-        [TestCase("1|2")]
         [TestCase("1=2")]
         [TestCase(null)]
         [TestCase("")]

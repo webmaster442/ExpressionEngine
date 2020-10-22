@@ -14,9 +14,12 @@ namespace ExpressionEngine.Base
             _tokens = (uint)token;
         }
 
-        public TokenSet(TokenType token1, TokenType token2)
+        public TokenSet(params TokenType[] tokens)
         {
-            _tokens = (uint)token1 | (uint)token2;
+            foreach (var token in tokens)
+            {
+                _tokens |= (uint)token;
+            }
         }
 
         public TokenSet(TokenSet set)
