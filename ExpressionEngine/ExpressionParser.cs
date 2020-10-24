@@ -6,9 +6,12 @@
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.FunctionExpressions;
+using ExpressionEngine.LogicExpressions;
 using ExpressionEngine.Properties;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace ExpressionEngine
@@ -60,6 +63,22 @@ namespace ExpressionEngine
                 ExceptionHelper.ThrowException(Resources.TrailingChars, leftover);
             }
             return exp;
+        }
+
+        public IExpression? ParseMinterms(IEnumerable<int> minterms, IVariables variables, int varCount, bool msbA = true)
+        {
+            var ordered = minterms.OrderByDescending(m => m);
+
+            List<string> expressions = new List<string>();
+            foreach (var minterm in ordered)
+            {
+                string binary = Utilities.GetBinaryValue(minterm, varCount);
+                expressions.Add(Utilities.GetMintermExpression(binary, msbA));
+            }
+            
+            var final = string.Join('|', expressions);
+
+            return Parse(final, variables);
         }
 
         private IExpression? ParseAddExpression(IVariables variables)

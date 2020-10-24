@@ -151,6 +151,15 @@ namespace ExpressionEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The requested function isn&apos;t  representable with the given number of variables.
+        /// </summary>
+        internal static string FunctionRequiresMoreVariables {
+            get {
+                return ResourceManager.GetString("FunctionRequiresMoreVariables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The from value must be smaller than the to value.
         /// </summary>
         internal static string IntegrateErrorRange {
@@ -219,6 +228,15 @@ namespace ExpressionEngine.Properties {
         internal static string ToLessSteps {
             get {
                 return ResourceManager.GetString("ToLessSteps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum 24 variables are supported.
+        /// </summary>
+        internal static string ToManyVariables {
+            get {
+                return ResourceManager.GetString("ToManyVariables", resourceCulture);
             }
         }
         

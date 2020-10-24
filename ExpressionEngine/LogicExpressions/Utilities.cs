@@ -5,22 +5,20 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Text;
 
 namespace ExpressionEngine.LogicExpressions
 {
-    internal class Utilities
+    internal static class Utilities
     {
         public static void GetBalanced(ref string a, ref string b)
         {
             if (a.Length < b.Length)
-            {
-                a.PadLeft(b.Length - a.Length, '0');
-            }
+                a = a.PadLeft(b.Length, '0');
             else
-            {
-                b.PadLeft(a.Length - b.Length, '0');
-            }
+                b = b.PadLeft(a.Length, '0');
         }
 
         public static int GetDifferences(string a, string b)
@@ -30,38 +28,34 @@ namespace ExpressionEngine.LogicExpressions
             int differences = 0;
 
             for (int i = 0; i < a.Length; i++)
+            {
                 if (a[i] != b[i])
                     differences++;
+            }
 
             return differences;
         }
 
         public static int GetOneCount(string a)
         {
-            int count = 0;
-
-            foreach (char c in a)
-                if (c == '1')
-                    count++;
-
-            return count;
+            return a.Count(c => c == '1');
         }
 
         public static string GetMask(string a, string b)
         {
             GetBalanced(ref a, ref b);
 
-            string final = string.Empty;
+            StringBuilder final = new StringBuilder(a.Length);
 
             for (int i = 0; i < a.Length; i++)
             {
                 if (a[i] != b[i])
-                    final += '-';
+                    final.Append('-');
                 else
-                    final += a[i];
+                    final.AppendFormat("{0}", a[i]);
             }
 
-            return final;
+            return final.ToString();
         }
 
         public static bool ContainsSubList(List<int> list, List<int> OtherList)
@@ -95,9 +89,39 @@ namespace ExpressionEngine.LogicExpressions
         public static string GetBinaryValue(int number, int chars)
         {
             string bin = Convert.ToString(number, 2);
-            int cnt = chars - bin.Length;
-            return bin.PadLeft(cnt, '0');
+            return bin.PadLeft(chars, '0');
         }
 
+
+        public static string GetMintermExpression(string binary, bool msbA = true)
+        {
+            StringBuilder sb = new StringBuilder(binary.Length * 2);
+            int variable = 'A';
+
+            if (!msbA)
+                variable += (binary.Length -1);
+
+            int cnt = 0;
+            sb.Append("(");
+            foreach (var bin in binary)
+            {
+                if (bin == '0')
+                    sb.AppendFormat("!{0}", (char)variable);
+                else
+                    sb.Append((char)variable);
+
+                if (cnt < binary.Length -1)
+                    sb.Append('&');
+
+                if (msbA)
+                    ++variable;
+                else
+                    --variable;
+
+                ++cnt;
+            }
+            sb.Append(")");
+            return sb.ToString();
+        }
     }
 }
