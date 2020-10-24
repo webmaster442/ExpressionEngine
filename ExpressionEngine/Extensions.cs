@@ -73,6 +73,9 @@ namespace ExpressionEngine
                 return expression.Evaluate();
             }
 
+            AngleMode old = Trigonometry.AngleMode;
+            Trigonometry.AngleMode = AngleMode.Rad;
+
             double h = (to - from) / steps;
             double x = from + h;
             double s = 0.0;
@@ -83,7 +86,7 @@ namespace ExpressionEngine
                 vars[var] = x + h;
                 double Fx2 = expression.Evaluate();
 
-                s = s + 2 * Fx + Fx2;
+                s = s + (2 * Fx) + Fx2;
                 x += 2 * h;
             }
 
@@ -97,10 +100,9 @@ namespace ExpressionEngine
 
             double result = (h / 3) * ((2 * s) + Fxa + Fxb + (4 * Fxhb));
 
-            if (trigonometric)
-                return Math.Round(result, 3);
+            Trigonometry.AngleMode = old;
 
-            return result;
+            return Math.Round(result, 2);
         }
 
         /// <summary>
