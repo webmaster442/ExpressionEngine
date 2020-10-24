@@ -10,7 +10,6 @@ using ExpressionEngine.Maths;
 using ExpressionEngine.Properties;
 using System;
 using System.Collections.Generic;
-using System.IO.Pipes;
 using System.Linq;
 
 namespace ExpressionEngine
@@ -31,7 +30,6 @@ namespace ExpressionEngine
         /// <returns>Integration result</returns>
         public static double Integrate(this IExpression expression, string var, double from, double to, int steps = 2048)
         {
-            //IVariables? vars = expression.Variables;
 
             if (to < from)
                 throw new ArgumentException(Resources.IntegrateErrorRange);
@@ -42,7 +40,6 @@ namespace ExpressionEngine
             var flatExpression = expression.Flatten();
 
             var vars = flatExpression.FirstOrDefault(e => e.Variables != null)?.Variables;
-
 
             if (vars == null)
                 throw new InvalidOperationException(Resources.NoVariables);
