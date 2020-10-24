@@ -36,8 +36,8 @@ namespace ExpressionEngine
             if (to < from)
                 throw new ArgumentException(Resources.IntegrateErrorRange);
 
-            if (steps < 1)
-                throw new ArgumentException(Resources.ToLessSteps);
+            if (steps < 2 || (steps % 2 == 1))
+                throw new ArgumentException(Resources.InvalidSteps);
 
             var flatExpression = expression.Flatten();
 

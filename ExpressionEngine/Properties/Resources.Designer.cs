@@ -178,6 +178,15 @@ namespace ExpressionEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Steps must be at least 2 and an even number.
+        /// </summary>
+        internal static string InvalidSteps {
+            get {
+                return ResourceManager.GetString("InvalidSteps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid token &apos;{0}&apos; in function: {1}.
         /// </summary>
         internal static string InvalidToken {
@@ -219,15 +228,6 @@ namespace ExpressionEngine.Properties {
         internal static string OutOfTokens {
             get {
                 return ResourceManager.GetString("OutOfTokens", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Steps must be greater than 1.
-        /// </summary>
-        internal static string ToLessSteps {
-            get {
-                return ResourceManager.GetString("ToLessSteps", resourceCulture);
             }
         }
         
