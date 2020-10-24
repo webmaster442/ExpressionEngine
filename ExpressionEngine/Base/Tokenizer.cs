@@ -49,20 +49,18 @@ namespace ExpressionEngine.Base
                         var.Append(_function[_index++]);
                     }
 
-                    string variable = var.ToString().ToLower(CultureInfo.InvariantCulture);
+                    string identifier = var.ToString().ToLower(CultureInfo.InvariantCulture);
 
-                    if (FunctionFactory.IsSignleParamFunction(variable))
-                    {
-                        return new Token(variable, TokenType.Function1);
-                    }
-                    else if (FunctionFactory.IsTwoParamFunction(variable))
-                    {
-                        return new Token(variable, TokenType.Function2);
-                    }
+                    if (identifier == "true")
+                        return new Token("1", TokenType.Constant);
+                    else if (identifier == "false")
+                        return new Token("0", TokenType.Constant);
+                    else if (FunctionFactory.IsSignleParamFunction(identifier))
+                        return new Token(identifier, TokenType.Function1);
+                    else if (FunctionFactory.IsTwoParamFunction(identifier))
+                        return new Token(identifier, TokenType.Function2);
                     else
-                    {
-                        return new Token(variable, TokenType.Variable);
-                    }
+                        return new Token(identifier, TokenType.Variable);
                 }
                 switch (_function[_index++])
                 {
