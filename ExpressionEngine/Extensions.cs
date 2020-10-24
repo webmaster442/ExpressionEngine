@@ -3,9 +3,13 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
+using ExpressionEngine.FunctionExpressions;
 using ExpressionEngine.Properties;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ExpressionEngine
 {
@@ -25,14 +29,23 @@ namespace ExpressionEngine
         /// <returns>Integration result</returns>
         public static double Integrate(this IExpression expression, string var, double from, double to, int steps = 1000)
         {
+            IVariables? vars = expression.Variables;
+
             if (to < from)
                 throw new ArgumentException(Resources.IntegrateErrorRange);
 
             if (steps < 1)
                 throw new ArgumentException(Resources.ToLessSteps);
 
-            if (expression.Variables == null)
-                throw new InvalidOperationException(Resources.NoVariables);
+            if (vars == null)
+            {
+                var firstWithVariables = expression.Flatten().FirstOrDefault(e => e.Variables != null);
+
+                vars = firstWithVariables?.Variables;
+
+                if (vars == null)
+                    throw new InvalidOperationException(Resources.NoVariables);
+            }
 
             if (string.IsNullOrEmpty(var))
                 throw new ArgumentNullException(nameof(var));
@@ -48,21 +61,21 @@ namespace ExpressionEngine
             double s = 0.0;
             for (int i=1; i<steps/2; i++)
             {
-                expression.Variables[var] = x;
+                vars[var] = x;
                 double Fx = expression.Evaluate();
-                expression.Variables[var] = x + h;
+                vars[var] = x + h;
                 double Fx2 = expression.Evaluate();
 
                 s = s + 2 * Fx + Fx2;
                 x += 2 * h;
             }
 
-            expression.Variables[var] = from;
+            vars[var] = from;
             double Fxa = expression.Evaluate();
-            expression.Variables[var] = to;
+            vars[var] = to;
             double Fxb = expression.Evaluate();
 
-            expression.Variables[var] = to - h;
+            vars[var] = to - h;
             double Fxhb = expression.Evaluate();
 
             return h / 3 * (2 * Fxa + Fxb + 4 * Fxhb);
@@ -76,6 +89,52 @@ namespace ExpressionEngine
         public static bool IsConstantExpression(this IExpression expression)
         {
             return expression is ConstantExpression;
+        }
+
+        public static IEnumerable<IExpression> Flatten(this IExpression expression)
+        {
+            Stack<IExpression> expressions = new Stack<IExpression>();
+            
+            expressions.Push(expression);
+
+            while (expressions.Count > 0)
+            {
+                var n = expressions.Pop();
+              
+                if (n != null)
+                {
+                    yield return n;
+                }
+
+                if (n is BinaryExpression bin)
+                {
+                    if (bin.Left != null)
+                        expressions.Push(bin.Left);
+                    if (bin.Right != null)
+                        expressions.Push(bin.Right);
+                }
+                else if (n is UnaryExpression un)
+                {
+                    if (un.Child != null)
+                        expressions.Push(un.Child);
+                }
+            }
+        }
+
+        private static bool IsLogicExpressionNode(IExpression expression)
+        {
+            return expression is AndExpression
+                || expression is OrExpression
+                || expression is NotExpression
+                || expression is ConstantExpression
+                || expression is VariableExpression;
+        }
+
+        public static bool IsLogicExpression(this IExpression expression)
+        {
+            return expression
+                    .Flatten()
+                    .All(n => IsLogicExpressionNode(n));
         }
     }
 }

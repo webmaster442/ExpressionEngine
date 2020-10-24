@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ExpressionEngine.BaseExpressions.AddExpression" Collapsed="true">
+    <Position X="1.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>BaseExpressions\AddExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.BaseExpressions.AndExpression" Collapsed="true">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>BaseExpressions\AndExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.BaseExpressions.ConstantExpression" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAQgAAAAACA=</HashCode>
+      <FileName>BaseExpressions\ConstantExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ExpressionEngine.BaseExpressions.DivideExpression" Collapsed="true">
+    <Position X="5.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>BaseExpressions\DivideExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.BaseExpressions.ExponentExpression" Collapsed="true">
+    <Position X="7" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>BaseExpressions\ExponentExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.BaseExpressions.MultiplyExpression" Collapsed="true">
+    <Position X="3.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>BaseExpressions\MultiplyExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.BaseExpressions.NegateExpression" Collapsed="true">
+    <Position X="1.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>BaseExpressions\NegateExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.BaseExpressions.NotExpression" Collapsed="true">
+    <Position X="3.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>BaseExpressions\NotExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.BaseExpressions.OrExpression" Collapsed="true">
+    <Position X="5.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>BaseExpressions\OrExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.BaseExpressions.SubtractExpression" Collapsed="true">
+    <Position X="1.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>BaseExpressions\SubtractExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.Base.BinaryExpression" Collapsed="true">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAACASAAAAAACA=</HashCode>
+      <FileName>Base\BinaryExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ExpressionEngine.Base.UnaryExpression" Collapsed="true">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAEAAAAAgAAAAAAABAAAAQAAAAAACA=</HashCode>
+      <FileName>Base\UnaryExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.CosExpression" Collapsed="true">
+    <Position X="14.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>FunctionExpressions\CosExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.CtgExpression" Collapsed="true">
+    <Position X="7.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>FunctionExpressions\CtgExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.FunctionFactory">
+    <Position X="14" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAIAACAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>FunctionExpressions\FunctionFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.LnExpression" Collapsed="true">
+    <Position X="10.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>FunctionExpressions\LnExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.LogExpression" Collapsed="true">
+    <Position X="8.75" Y="4" Width="1.5" />
+    <InheritanceLine Type="ExpressionEngine.Base.BinaryExpression" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="1.812" />
+        <Point X="4.75" Y="2.375" />
+        <Point X="9.562" Y="2.375" />
+        <Point X="9.562" Y="4" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>FunctionExpressions\LogExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.NonDifferentiatableFunction" Collapsed="true">
+    <Position X="9" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAEAAAAAgAAAAAAABABAAAAAAAAACA=</HashCode>
+      <FileName>FunctionExpressions\NonDifferentiatableFunction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.RootExpression" Collapsed="true">
+    <Position X="10.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>FunctionExpressions\RootExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.SinExpression" Collapsed="true">
+    <Position X="12.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>FunctionExpressions\SinExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.TanExpression" Collapsed="true">
+    <Position X="5.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAAAAAAAACA=</HashCode>
+      <FileName>FunctionExpressions\TanExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpressionEngine.FunctionExpressions.VariableExpression" Collapsed="true">
+    <Position X="12.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAQAQAAAACA=</HashCode>
+      <FileName>FunctionExpressions\VariableExpression.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ExpressionEngine.IExpression">
+    <Position X="12.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAgAAAAAAABAAAAQAAAAAACA=</HashCode>
+      <FileName>IExpression.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

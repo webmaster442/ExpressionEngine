@@ -56,6 +56,14 @@ namespace ExpressionEngine.Tests
         [TestCase("!1", 0)]
         [TestCase("!(!1)", 1)]
         [TestCase("!0&!0", 1)]
+        [TestCase("false", 0)]
+        [TestCase("true", 1)]
+        [TestCase("sin(y)", 1)]
+        [TestCase("y^2", 8100)]
+        [TestCase("y-2", 88)]
+        [TestCase("y+2", 92)]
+        [TestCase("y*2", 180)]
+        [TestCase("y/2", 45)]
         public void TestEvaluator(string expression, double expected)
         {
             IExpression parsed = _sut.Parse(expression, Mocks.CreateVariableMock());
@@ -84,6 +92,14 @@ namespace ExpressionEngine.Tests
             {
                 IExpression parsed = _sut.Parse(expression, Mocks.CreateVariableMock());
             });
+        }
+
+        [TestCase("(((a & b) & c) & (((!a) & (!b)) & (!c)))", 0, 7)]
+        public void TestParseMinterms(string expected, params int[] minterms)
+        {
+            IExpression parsed = _sut.ParseMinterms(minterms, Mocks.CreateVariableMock(), 3);
+
+            Assert.AreEqual(expected, parsed.ToString());
         }
     }
 }
