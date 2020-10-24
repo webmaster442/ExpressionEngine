@@ -48,8 +48,8 @@ namespace ExpressionEngine.Tests
             Assert.AreEqual(expected, result);
         }
 
-        [TestCase("sin(x)", 0, 180, 2.0)]
-        [TestCase("x^2", 0, 8, 170.67)]
+        [TestCase("sin(x)", 0, 6.28, 0.0)]
+        [TestCase("x^2", 0, 8, 170.66666666666657)]
         public void TestIntegrate(string expression, double from, double to, double expected)
         {
             ExpressionParser parser = new ExpressionParser();

@@ -6,9 +6,11 @@
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.FunctionExpressions;
+using ExpressionEngine.Maths;
 using ExpressionEngine.Properties;
 using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 
 namespace ExpressionEngine
@@ -27,9 +29,9 @@ namespace ExpressionEngine
         /// <param name="to">End value</param>
         /// <param name="steps">Number of steps</param>
         /// <returns>Integration result</returns>
-        public static double Integrate(this IExpression expression, string var, double from, double to, int steps = 1000)
+        public static double Integrate(this IExpression expression, string var, double from, double to, int steps = 2048)
         {
-            IVariables? vars = expression.Variables;
+            //IVariables? vars = expression.Variables;
 
             if (to < from)
                 throw new ArgumentException(Resources.IntegrateErrorRange);
@@ -37,14 +39,29 @@ namespace ExpressionEngine
             if (steps < 1)
                 throw new ArgumentException(Resources.ToLessSteps);
 
+            var flatExpression = expression.Flatten();
+
+            var vars = flatExpression.FirstOrDefault(e => e.Variables != null)?.Variables;
+
+
             if (vars == null)
+                throw new InvalidOperationException(Resources.NoVariables);
+
+            bool trigonometric = flatExpression.Any(e => IsTrigonometricNode(e));
+
+            if (trigonometric)
             {
-                var firstWithVariables = expression.Flatten().FirstOrDefault(e => e.Variables != null);
-
-                vars = firstWithVariables?.Variables;
-
-                if (vars == null)
-                    throw new InvalidOperationException(Resources.NoVariables);
+                switch (Trigonometry.AngleMode)
+                {
+                    case AngleMode.Deg:
+                        from = DoubleFunctions.DegToRad(from);
+                        to = DoubleFunctions.DegToRad(to);
+                        break;
+                    case AngleMode.Grad:
+                        from = DoubleFunctions.DegToGrad(from);
+                        to = DoubleFunctions.DegToGrad(to);
+                        break;
+                }
             }
 
             if (string.IsNullOrEmpty(var))
@@ -78,7 +95,12 @@ namespace ExpressionEngine
             vars[var] = to - h;
             double Fxhb = expression.Evaluate();
 
-            return h / 3 * (2 * Fxa + Fxb + 4 * Fxhb);
+            double result = (h / 3) * ((2 * s) + Fxa + Fxb + (4 * Fxhb));
+
+            if (trigonometric)
+                return Math.Round(result, 3);
+
+            return result;
         }
 
         /// <summary>
@@ -128,6 +150,14 @@ namespace ExpressionEngine
                 || expression is NotExpression
                 || expression is ConstantExpression
                 || expression is VariableExpression;
+        }
+
+        private static bool IsTrigonometricNode(IExpression expression)
+        {
+            return expression is SinExpression
+                || expression is CosExpression
+                || expression is TanExpression
+                || expression is CtgExpression;
         }
 
         public static bool IsLogicExpression(this IExpression expression)
