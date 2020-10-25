@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CanotDifferentiate" xml:space="preserve">
-    <value>I do not support complex exponent differentiation</value>
+    <value>The specified expression can't be differentiated</value>
   </data>
   <data name="ConstantCantReassign" xml:space="preserve">
     <value>'{0}' is a constant. Constant values can't be redefined</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="Missing" xml:space="preserve">
     <value>Missing:</value>
+  </data>
+  <data name="NotLogicExpression" xml:space="preserve">
+    <value>This operation is only supported on logic expressions.</value>
   </data>
   <data name="NoVariables" xml:space="preserve">
     <value>Variables not set on expression.</value>

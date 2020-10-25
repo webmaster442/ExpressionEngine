@@ -13,8 +13,8 @@ namespace ExpressionEngine.Calculator
 {
     internal class Calculator: IHost
     {
-        private State _currentState;
-        private IConsole _console;
+        private readonly State _currentState;
+        private readonly IConsole _console;
 
         private List<CommandBase> _commands;
 

@@ -1,4 +1,9 @@
-﻿using ExpressionEngine.Maths;
+﻿//-----------------------------------------------------------------------------
+// (c) 2020 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using ExpressionEngine.Maths;
 using NUnit.Framework;
 using System.Linq;
 
@@ -81,6 +86,19 @@ namespace ExpressionEngine.Tests
 
             double result = expr.Integrate("x", from, to);
             Assert.AreEqual(expected, result, 1E-2);
+        }
+
+        [TestCase("a&b", 3)]
+        [TestCase("a|b", 1, 2, 3)]
+        [TestCase("!a&!b", 0)]
+        public void TestGetMinterms(string expression, params int[] expected)
+        {
+            ExpressionParser parser = new ExpressionParser();
+            IExpression expr = parser.Parse(expression, Mocks.CreateVariableMock());
+
+            var result = expr.GetMinterms().ToArray();
+
+            Assert.AreEqual(expected, result);
         }
     }
 }

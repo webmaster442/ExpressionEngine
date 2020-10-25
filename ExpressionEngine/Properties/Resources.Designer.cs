@@ -61,7 +61,7 @@ namespace ExpressionEngine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I do not support complex exponent differentiation.
+        ///   Looks up a localized string similar to The specified expression can&apos;t be differentiated.
         /// </summary>
         internal static string CanotDifferentiate {
             get {
@@ -201,6 +201,15 @@ namespace ExpressionEngine.Properties {
         internal static string Missing {
             get {
                 return ResourceManager.GetString("Missing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This operation is only supported on logic expressions..
+        /// </summary>
+        internal static string NotLogicExpression {
+            get {
+                return ResourceManager.GetString("NotLogicExpression", resourceCulture);
             }
         }
         

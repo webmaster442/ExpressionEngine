@@ -6,6 +6,7 @@
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.FunctionExpressions;
+using ExpressionEngine.LogicExpressions;
 using ExpressionEngine.Maths;
 using ExpressionEngine.Properties;
 using System;
@@ -41,9 +42,6 @@ namespace ExpressionEngine
 
             var vars = flatExpression.FirstOrDefault(e => e.Variables != null)?.Variables;
 
-            if (vars == null)
-                throw new InvalidOperationException(Resources.NoVariables);
-
             bool trigonometric = flatExpression.Any(e => IsTrigonometricNode(e));
 
             if (trigonometric)
@@ -61,14 +59,11 @@ namespace ExpressionEngine
                 }
             }
 
+            if (vars == null)
+                throw new InvalidOperationException(Resources.NoVariables);
+
             if (string.IsNullOrEmpty(var))
                 throw new ArgumentNullException(nameof(var));
-
-            if (expression.IsConstantExpression())
-            {
-                // constant expression's integral is the constant.
-                return expression.Evaluate();
-            }
 
             AngleMode old = Trigonometry.AngleMode;
             Trigonometry.AngleMode = AngleMode.Rad;
@@ -138,6 +133,48 @@ namespace ExpressionEngine
                 {
                     if (un.Child != null)
                         expressions.Push(un.Child);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get minterms of a logical expression
+        /// </summary>
+        /// <param name="expression">Expression</param>
+        /// <returns>Minterm collection</returns>
+        public static IEnumerable<int> GetMinterms(this IExpression expression)
+        {
+            if (!IsLogicExpression(expression))
+                throw new ExpressionEngineException(Resources.NotLogicExpression);
+
+            var flatExpression = expression.Flatten();
+
+            var vars = flatExpression.FirstOrDefault(e => e.Variables != null)?.Variables;
+
+            if (vars == null)
+                throw new InvalidOperationException(Resources.NoVariables);
+
+            var varNames = flatExpression
+                .Where(x => x is VariableExpression)
+                .Cast<VariableExpression>()
+                .Select(v => v.Identifier)
+                .ToArray();
+
+            if (varNames.Length > 24)
+                throw new ExpressionEngineException(Resources.ToManyVariables);
+
+            int combinations = 1 << varNames.Length;
+
+            for (int i=0; i<combinations; i++)
+            {
+                string pattern = Utilities.GetBinaryValue(i, varNames.Length);
+                for (int j=0; j<varNames.Length; j++)
+                {
+                    vars[varNames[j]] = pattern[j] == '1' ? 1.0 : 0.0;
+                }
+                if (expression.Evaluate() == 1.0)
+                {
+                    yield return i;
                 }
             }
         }
