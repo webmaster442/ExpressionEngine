@@ -157,12 +157,33 @@ namespace ExpressionEngine.Calculator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Switches trigonometric angle mode.
+        ///angle mode can be one of the following: deg, rad, grad
+        ///usage: mode &lt;angle mode&gt;.
+        /// </summary>
+        internal static string HelpMode {
+            get {
+                return ResourceManager.GetString("HelpMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unset a variable or all variables. If invoked without parameters all variables are unset.
         ///Usage: unset &lt;variable name&gt;.
         /// </summary>
         internal static string HelpUnset {
             get {
                 return ResourceManager.GetString("HelpUnset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print program version info
+        ///Usage: version.
+        /// </summary>
+        internal static string HelpVersion {
+            get {
+                return ResourceManager.GetString("HelpVersion", resourceCulture);
             }
         }
     }
