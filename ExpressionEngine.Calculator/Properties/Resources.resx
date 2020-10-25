@@ -126,6 +126,9 @@
   <data name="ErrorNoHelpFound" xml:space="preserve">
     <value>No Help found for command: {0}</value>
   </data>
+  <data name="ErrorUnknownMode" xml:space="preserve">
+    <value>Unknown Mode: {0}</value>
+  </data>
   <data name="ErrorUnknownVariable" xml:space="preserve">
     <value>Unknown variable: {0}</value>
   </data>

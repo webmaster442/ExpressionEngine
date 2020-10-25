@@ -88,6 +88,15 @@ namespace ExpressionEngine.Calculator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unknown Mode: {0}.
+        /// </summary>
+        internal static string ErrorUnknownMode {
+            get {
+                return ResourceManager.GetString("ErrorUnknownMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown variable: {0}.
         /// </summary>
         internal static string ErrorUnknownVariable {
