@@ -18,6 +18,11 @@ namespace ExpressionEngine.Calculator.Infrastructure
             get => _tokens[index];
         }
 
+        public int Count
+        {
+            get => _tokens.Length;
+        }
+
         public bool TryGetArgument(int index, out string value)
         {
             value = string.Empty;

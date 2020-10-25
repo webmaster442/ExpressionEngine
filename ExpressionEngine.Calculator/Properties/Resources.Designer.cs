@@ -70,11 +70,29 @@ namespace ExpressionEngine.Calculator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t modify or delete a constant value..
+        /// </summary>
+        internal static string ErrorConstantWriteDelete {
+            get {
+                return ResourceManager.GetString("ErrorConstantWriteDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Help found for command: {0}.
         /// </summary>
         internal static string ErrorNoHelpFound {
             get {
                 return ResourceManager.GetString("ErrorNoHelpFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown variable: {0}.
+        /// </summary>
+        internal static string ErrorUnknownVariable {
+            get {
+                return ResourceManager.GetString("ErrorUnknownVariable", resourceCulture);
             }
         }
         
@@ -135,6 +153,16 @@ namespace ExpressionEngine.Calculator.Properties {
         internal static string HelpLet {
             get {
                 return ResourceManager.GetString("HelpLet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unset a variable or all variables. If invoked without parameters all variables are unset.
+        ///Usage: unset &lt;variable name&gt;.
+        /// </summary>
+        internal static string HelpUnset {
+            get {
+                return ResourceManager.GetString("HelpUnset", resourceCulture);
             }
         }
     }

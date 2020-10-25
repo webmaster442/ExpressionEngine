@@ -120,8 +120,14 @@
   <data name="ErrorArgumentCount" xml:space="preserve">
     <value>This command requires {0} parameters. {1} was given.</value>
   </data>
+  <data name="ErrorConstantWriteDelete" xml:space="preserve">
+    <value>Can't modify or delete a constant value.</value>
+  </data>
   <data name="ErrorNoHelpFound" xml:space="preserve">
     <value>No Help found for command: {0}</value>
+  </data>
+  <data name="ErrorUnknownVariable" xml:space="preserve">
+    <value>Unknown variable: {0}</value>
   </data>
   <data name="HelpClear" xml:space="preserve">
     <value>Clears the terminal output.
@@ -146,5 +152,9 @@ Usage: Help &lt;command name&gt;</value>
   <data name="HelpLet" xml:space="preserve">
     <value>Defines a variable or an expression for later usage.
 Usage: let &lt;variable name&gt; &lt;expression&gt;</value>
+  </data>
+  <data name="HelpUnset" xml:space="preserve">
+    <value>Unset a variable or all variables. If invoked without parameters all variables are unset.
+Usage: unset &lt;variable name&gt;</value>
   </data>
 </root>

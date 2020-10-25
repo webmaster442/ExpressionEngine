@@ -3,6 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using ExpressionEngine.Calculator.Properties;
 using ExpressionEngine.Maths;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,25 @@ namespace ExpressionEngine.Calculator.Infrastructure
             _expressions = new Dictionary<string, IExpression>();
         }
 
+        internal void Clear(string variable)
+        {
+            if (IsConstant(variable))
+                throw new CalculatorException(Resources.ErrorConstantWriteDelete);
+
+            if (_variables.ContainsKey(variable))
+            {
+                _variables.Remove(variable);
+            }
+            else if (_expressions.ContainsKey(variable))
+            {
+                _expressions.Remove(variable);
+            }
+            else
+            {
+                throw new CalculatorException(Resources.ErrorUnknownVariable, variable);
+            }
+        }
+
         public double this[string variable]
         {
             get
@@ -36,12 +56,12 @@ namespace ExpressionEngine.Calculator.Infrastructure
                 else if (_variables.ContainsKey(variable))
                     return _variables[variable];
                 else
-                    throw new ExpressionEngineException($"Unknown variable: {variable}");
+                    throw new CalculatorException(Resources.ErrorUnknownVariable, variable);
             }
             set
             {
                 if (IsConstant(variable))
-                    throw new ExpressionEngineException("Can't overwrite a constant");
+                    throw new CalculatorException(Resources.ErrorConstantWriteDelete);
 
                 if (_expressions.ContainsKey(variable))
                 {
