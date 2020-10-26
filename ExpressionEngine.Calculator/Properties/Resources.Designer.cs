@@ -88,6 +88,15 @@ namespace ExpressionEngine.Calculator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Argument can&apos;t be parsed to type: {0}.
+        /// </summary>
+        internal static string ErrorParsing {
+            get {
+                return ResourceManager.GetString("ErrorParsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown Mode: {0}.
         /// </summary>
         internal static string ErrorUnknownMode {

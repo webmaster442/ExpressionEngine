@@ -1,4 +1,9 @@
-﻿using ExpressionEngine.Calculator.Properties;
+﻿//-----------------------------------------------------------------------------
+// (c) 2020 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using ExpressionEngine.Calculator.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -52,8 +57,26 @@ namespace ExpressionEngine.Calculator.Infrastructure
 
         }
 
-        
+        public IEnumerable<T> Parse<T>(int start, int end)
+        {
+            for (int i=start; i<end; i++)
+            {
+                yield return Parse<T>(i);
+            }
+        }
+
+        public T Parse<T>(int index)
+        {
+            var call = TryParse<T>(index, out T local, false);
+            return local!;
+        }
+
         public bool TryParse<T>(int index, [MaybeNull] out T result)
+        {
+            return TryParse<T>(index, out result, true);
+        }
+
+        private bool TryParse<T>(int index, [MaybeNull] out T result, bool handle)
         {
             result = default;
 
@@ -69,7 +92,10 @@ namespace ExpressionEngine.Calculator.Infrastructure
                 {
                     result = (T)obj;
                 }
-                return convert;
+                if (handle)
+                    return convert;
+                else
+                    throw new CalculatorException(Resources.ErrorParsing, typeof(T).Name);
             }
             else
             {
@@ -80,8 +106,13 @@ namespace ExpressionEngine.Calculator.Infrastructure
                 }
                 catch (Exception)
                 {
-                    result = default;
-                    return false;
+                    if (handle)
+                    {
+                        result = default;
+                        return false;
+                    }
+                    else
+                        throw new CalculatorException(Resources.ErrorParsing, typeof(T).Name);
                 }
             }
         }
