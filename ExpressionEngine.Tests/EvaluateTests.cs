@@ -44,6 +44,7 @@ namespace ExpressionEngine.Tests
         [TestCase("ln(e)", 1)]
         [TestCase("ln(100)", 4.6051701859880913680359829093687)]
         [TestCase("log(1024,2)", 10)]
+        [TestCase("factorial(5)", 120)]
         [TestCase("0&0", 0)]
         [TestCase("0&1", 0)]
         [TestCase("1&0", 0)]

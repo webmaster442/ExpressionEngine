@@ -71,5 +71,30 @@ namespace ExpressionEngine.Maths
         {
             return (rad * 200.0) / Math.PI;
         }
+
+        /// <summary>
+        /// Returns the product of all positive integers less than or equal to n
+        /// </summary>
+        /// <remarks>if n is negative NaN is returned, if N > 100 positiveInfity returned</remarks>
+        /// <param name="n">factorial limit</param>
+        /// <returns>the product of all positive integers less than or equal to n</returns>
+        public static double Factorial(int n)
+        {
+            if (n < 0) 
+                return double.NaN;
+            else if (n == 0)
+                return 1;
+            else if (n > 170)
+                return double.PositiveInfinity;
+
+            double fact = 1.0;
+
+            for (int k = 1; k <= n; k++)
+            {
+                fact *= k;
+            }
+
+            return fact;
+        }
     }
 }

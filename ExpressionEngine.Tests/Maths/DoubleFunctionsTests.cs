@@ -89,5 +89,18 @@ namespace ExpressionEngine.Tests.Maths
             double result = DoubleFunctions.RadToGrad(rad);
             Assert.AreEqual(expectedGrad, result, 1E-9);
         }
+
+        [TestCase(-1, double.NaN)]
+        [TestCase(0, 1)]
+        [TestCase(1, 1)]
+        [TestCase(5, 120)]
+        [TestCase(50, 3.0414093201713376E64)]
+        [TestCase(170, 7.257415615307994E306)]
+        [TestCase(171, double.PositiveInfinity)]
+        public void TestFactorial(int n, double expected)
+        {
+            double result = DoubleFunctions.Factorial(n);
+            Assert.AreEqual(expected, result);
+        }
     }
 }

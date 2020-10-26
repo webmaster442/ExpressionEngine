@@ -29,8 +29,14 @@ namespace ExpressionEngine.FunctionExpressions
                 { "deg2grad", (child) => new NonDifferentiatableFunction(child, DoubleFunctions.DegToGrad, "deg2grad")  },
                 { "grad2rad", (child) => new NonDifferentiatableFunction(child, DoubleFunctions.GradToRad, "grad2rad")  },
                 { "rad2grad", (child) => new NonDifferentiatableFunction(child, DoubleFunctions.RadToGrad, "rad2grad")  },
+                { "factorial", (child) => new NonDifferentiatableFunction(child, FactorialWrapper, "factorial")  },
 
         };
+
+        private static double FactorialWrapper(double arg)
+        {
+            return DoubleFunctions.Factorial((int)arg);
+        }
 
         private static readonly Dictionary<string, Func<IExpression?, IExpression?, IExpression>> TwoParamFunctions
             = new Dictionary<string, Func<IExpression?, IExpression?, IExpression>>
