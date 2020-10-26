@@ -4,6 +4,7 @@
 //-----------------------------------------------------------------------------
 
 using ExpressionEngine.Calculator.Infrastructure;
+using Mono.Terminal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,13 @@ namespace ExpressionEngine.Calculator
 {
     internal class ConsoleConsole : IConsole
     {
+        private LineEditor _editor;
+
         public int CurrentWidth => Console.BufferWidth;
+
+        public string Prompt { get; set; }
+
+        public Func<string, int, string[]>? AutocompleteLookup { get; set; }
 
         private static IEnumerable<string> Split(string str, Predicate<char> controller)
         {
@@ -46,9 +53,23 @@ namespace ExpressionEngine.Calculator
             Console.Clear();
         }
 
+        public ConsoleConsole()
+        {
+            _editor = new LineEditor(nameof(ExpressionEngine.Calculator));
+            _editor.AutoCompleteEvent += OnAutoComplete;
+            Prompt = string.Empty;
+        }
+
+        private LineEditor.Completion OnAutoComplete(string text, int pos)
+        {
+            string[]? results = AutocompleteLookup?.Invoke(text, pos);
+            string[] emptyArray = new string[] { string.Empty };
+            return new LineEditor.Completion(string.Empty, results ?? emptyArray);
+        }
+
         public string[] ReadTokens()
         {
-            string line = Console.ReadLine();
+            string line = _editor.Edit(Prompt, string.Empty).ToLower();
 
             var q = Split(line, c => c == ' ')
                         .Select(x => TrimMatchingQuotes(x, '"'));

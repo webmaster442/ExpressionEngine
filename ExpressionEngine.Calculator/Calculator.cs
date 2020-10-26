@@ -29,6 +29,23 @@ namespace ExpressionEngine.Calculator
             _currentState = new State();
             _commands = new List<CommandBase>();
             ConfigureCommands();
+            _console.AutocompleteLookup = Autocompleter;
+        }
+
+        private string[] Autocompleter(string text, int pos)
+        {
+            return _commands
+                .Where(c => c.Name.StartsWith(text, StringComparison.OrdinalIgnoreCase))
+                .Select(c => SafeSubstring(c.Name, pos))
+                .ToArray();
+        }
+
+        private string SafeSubstring(string name, int pos)
+        {
+            if (pos > -1 && pos < name.Length - 1)
+                return name[pos..];
+            return
+                name;
         }
 
         public void Run()
@@ -36,7 +53,7 @@ namespace ExpressionEngine.Calculator
             string? command = null;
             while (_currentState.CanRun)
             {
-                Prompt();
+                _console.Prompt = $"{_currentState.AngleMode} >";
                 string[] tokens = _console.ReadTokens();
                 command = tokens.Length > 0 ? tokens[0] : string.Empty;
 
@@ -72,11 +89,6 @@ namespace ExpressionEngine.Calculator
                 }
                 Console.WriteLine();
             }
-        }
-
-        private void Prompt()
-        {
-            _console.Write("{0} >", _currentState.AngleMode);
         }
 
         private void ConfigureCommands()
