@@ -30,6 +30,7 @@ namespace ExpressionEngine.FunctionExpressions
                 { "grad2rad", (child) => new NonDifferentiatableFunction(child, DoubleFunctions.GradToRad, "grad2rad")  },
                 { "rad2grad", (child) => new NonDifferentiatableFunction(child, DoubleFunctions.RadToGrad, "rad2grad")  },
                 { "factorial", (child) => new NonDifferentiatableFunction(child, FactorialWrapper, "factorial")  },
+                { "gamma", (child) => new NonDifferentiatableFunction(child, SpecialFunctions.Gamma, "gamma")  },
 
         };
 
