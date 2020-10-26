@@ -5,7 +5,6 @@
 
 using ExpressionEngine.Calculator.Infrastructure;
 using System.Linq;
-using System.Net.Mime;
 
 namespace ExpressionEngine.Calculator.Commands
 {
@@ -21,12 +20,12 @@ namespace ExpressionEngine.Calculator.Commands
         {
             const int textWidth = 20;
             int i = 0;
-            int columns = Console.CurrentWidth / textWidth;
+            int columns = (Console.CurrentWidth - 1) / textWidth;
             foreach (var cmd in Host.Commands.OrderBy(x => x))
             {
                 if (i % columns == 0)
                 {
-                    Console.WriteLine();
+                    Console.Write("\r\n");
                 }
                 Console.Write("{0,-" + textWidth + "} ", cmd);
                 ++i;

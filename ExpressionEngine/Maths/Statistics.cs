@@ -13,7 +13,7 @@ namespace ExpressionEngine.Maths
     {
         public static StatisticResult Statistic(params double[] items)
         {
-            return Statistic(items);
+            return Statistic(items as IEnumerable<double>);
         }
 
         public static StatisticResult Statistic(IEnumerable<double> items)
@@ -29,20 +29,22 @@ namespace ExpressionEngine.Maths
             }
 
             double sum = 0;
-            double mean = 0;
-            double M2 = 0;
             double currentValue = 0;
             double mode = 0;
             int occurence = 0;
             int maxOccurence = 0;
             double meanSquare = 0;
+            int n = 0;
+            double Ex = 0.0;
+            double Ex2 = 0.0;
             foreach (var item in items)
             {
                 sum += item;
-                double delta = item - mean;
-                mean += delta / ordered.Length;
-                M2 += delta * (item - mean);
                 meanSquare += Math.Pow(item, 2);
+
+                ++n;
+                Ex += item - ordered[0];
+                Ex2 += Math.Pow(item - ordered[0], 2);
 
                 Mode(ref currentValue, ref mode, ref occurence, ref maxOccurence, item);
 
@@ -58,8 +60,13 @@ namespace ExpressionEngine.Maths
             if (maxOccurence > 1)
                 result.Mode = mode;
 
+            if (ordered.Length < 2)
+                result.Variance = 0.0;
+            else
+                result.Variance = (Ex2 - (Ex * Ex) / n) / (n - 1);
+
             result.Sum = sum;
-            result.Variance = M2 / (ordered.Length - 1);
+
             result.StandardDeviation = Math.Sqrt(result.Variance);
             result.Range = result.Maximum - result.Minimum;
             result.Average = sum / ordered.Length;
