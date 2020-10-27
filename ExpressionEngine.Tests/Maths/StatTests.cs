@@ -46,7 +46,7 @@ namespace ExpressionEngine.Tests.Maths
         [Test]
         public void TestMedian()
         {
-            Assert.AreEqual(43.5, result.Median);
+            Assert.AreEqual(46, result.Median);
         }
 
         [Test]

@@ -22,10 +22,9 @@ namespace ExpressionEngine.Maths
 
             StatisticResult result = new StatisticResult();
 
-            if (ordered.Length > 0)
+            if (ordered.Length < 1)
             {
-                result.Maximum = ordered[ordered.Length - 1];
-                result.Minimum = ordered[0];
+                return result;
             }
 
             double sum = 0;
@@ -50,12 +49,13 @@ namespace ExpressionEngine.Maths
 
             }
 
-            int itemIndex = ordered.Length / 2;
+            int itemIndex = (ordered.Length / 2);
 
             if (itemIndex % 2 == 0)
-                result.Median = (ordered[itemIndex] + ordered[itemIndex - 1]) / 2.0;
-            else
                 result.Median = ordered[itemIndex];
+            else
+                result.Median = (ordered[itemIndex] + ordered[itemIndex - 1]) / 2.0;
+
 
             if (maxOccurence > 1)
                 result.Mode = mode;
@@ -65,8 +65,10 @@ namespace ExpressionEngine.Maths
             else
                 result.Variance = (Ex2 - (Ex * Ex) / n) / (n - 1);
 
-            result.Sum = sum;
 
+            result.Maximum = ordered[^1];
+            result.Minimum = ordered[0];
+            result.Sum = sum;
             result.StandardDeviation = Math.Sqrt(result.Variance);
             result.Range = result.Maximum - result.Minimum;
             result.Average = sum / ordered.Length;

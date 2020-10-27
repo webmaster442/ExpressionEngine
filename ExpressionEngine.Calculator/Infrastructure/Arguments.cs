@@ -59,9 +59,12 @@ namespace ExpressionEngine.Calculator.Infrastructure
 
         public IEnumerable<T> Parse<T>(int start, int end)
         {
-            for (int i=start; i<end; i++)
+            if (end > -1)
             {
-                yield return Parse<T>(i);
+                for (int i = start; i <= end; i++)
+                {
+                    yield return Parse<T>(i);
+                }
             }
         }
 

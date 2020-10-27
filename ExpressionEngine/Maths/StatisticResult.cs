@@ -75,16 +75,16 @@ namespace ExpressionEngine.Maths
         public string ToString(IFormatProvider format)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("{0}: {1}", nameof(Minimum), Minimum.ToString(format));
-            sb.AppendFormat("{0}: {1}", nameof(Maximum), Maximum.ToString(format));
-            sb.AppendFormat("{0}: {1}", nameof(Range), Range.ToString(format));
-            sb.AppendFormat("{0}: {1}", nameof(Median), Median.ToString(format));
-            sb.AppendFormat("{0}: {1}", nameof(Mode), Mode.ToString(format));
-            sb.AppendFormat("{0}: {1}", nameof(Sum), Sum.ToString(format));
-            sb.AppendFormat("{0}: {1}", nameof(Average), Average.ToString(format));
-            sb.AppendFormat("{0}: {1}", nameof(RootMeanSquare), RootMeanSquare.ToString(format));
-            sb.AppendFormat("{0}: {1}", nameof(Variance), Variance.ToString(format));
-            sb.AppendFormat("{0}: {1}", nameof(StandardDeviation), StandardDeviation.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(Minimum), Minimum.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(Maximum), Maximum.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(Range), Range.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(Median), Median.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(Mode), Mode.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(Sum), Sum.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(Average), Average.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(RootMeanSquare), RootMeanSquare.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(Variance), Variance.ToString(format));
+            sb.AppendFormat("{0}: {1}\r\n", nameof(StandardDeviation), StandardDeviation.ToString(format));
             return sb.ToString();
         }
 
