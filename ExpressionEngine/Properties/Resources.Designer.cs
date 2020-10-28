@@ -232,6 +232,15 @@ namespace ExpressionEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t parse number.
+        /// </summary>
+        internal static string NumberParseError {
+            get {
+                return ResourceManager.GetString("NumberParseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parsed past the end of the function.
         /// </summary>
         internal static string OutOfTokens {
