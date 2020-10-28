@@ -30,7 +30,9 @@ namespace ExpressionEngine.Calculator.Commands
             IExpression? expression = parser.Parse(arguments[0], currentState);
             if (expression != null)
             {
-                Console.WriteLine("{0}", expression.Evaluate());
+                double result = expression.Evaluate();
+                currentState["ans"] = result;
+                Console.WriteLine("{0}", result);
             }
 
         }
