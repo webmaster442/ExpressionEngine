@@ -19,19 +19,24 @@ namespace ExpressionEngine.Calculator.Commands
         {
             arguments.GuardArgumentCount(2);
 
-            var parser = new ExpressionParser();
-            var expression = parser.Parse(arguments[1], currentState);
-
-            expression = expression?.Simplify();
-
-            if (expression?.IsConstantExpression() == true)
+            if (NumberParser.ParseNumber(arguments[1], out double value))
             {
-                var value = expression.Evaluate();
                 currentState[arguments[0]] = value;
             }
             else
             {
-                currentState.SetExpression(arguments[0], expression);
+                var parser = new ExpressionParser();
+                var expression = parser.Parse(arguments[1], currentState);
+                expression = expression?.Simplify();
+
+                if (expression?.IsConstantExpression() == true)
+                {
+                    currentState[arguments[0]] = expression.Evaluate();
+                }
+                else
+                {
+                    currentState.SetExpression(arguments[0], expression);
+                }
             }
         }
     }

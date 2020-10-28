@@ -3,7 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Base;
+using ExpressionEngine;
 using NUnit.Framework;
 
 namespace ExpressionEngine.Tests
@@ -17,18 +17,19 @@ namespace ExpressionEngine.Tests
         [TestCase("1E9", 1E9)]
         [TestCase("-1E+9", -1E+9)]
         [TestCase("-1E-9", -1E-9)]
-        [TestCase("0hff", 255)]
-        [TestCase("0hf_f", 255)]
-        [TestCase("0hFF", 255)]
-        [TestCase("0hF_F", 255)]
+        [TestCase("0xff", 255)]
+        [TestCase("0xf_f", 255)]
+        [TestCase("0xFF", 255)]
+        [TestCase("0xF_F", 255)]
         [TestCase("0255", 173)]
         [TestCase("0_255", 173)]
         [TestCase("0b1010", 10)]
         [TestCase("0b10_10", 10)]
         public void TestParseNumber(string input, double expected)
         {
-            double result = NumberParser.ParseNumber(input);
-            Assert.AreEqual(expected, result);
+            bool result = NumberParser.ParseNumber(input, out double number);
+            Assert.IsTrue(result);
+            Assert.AreEqual(expected, number);
         }
     }
 }
