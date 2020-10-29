@@ -19,6 +19,7 @@ namespace ExpressionEngine.Calculator.Infrastructure
         public State()
         {
             CanRun = true;
+            Programmer = false;
             _contants = new Dictionary<string, double>
             {
                 { "pi", Math.PI },
@@ -74,6 +75,8 @@ namespace ExpressionEngine.Calculator.Infrastructure
 
         public int Count => _variables.Count;
 
+        public bool Programmer { get; set; }
+
         public IEnumerable<string> VariableNames => _variables.Keys;
 
         public AngleMode AngleMode
@@ -81,6 +84,7 @@ namespace ExpressionEngine.Calculator.Infrastructure
             get => Trigonometry.AngleMode;
             set => Trigonometry.AngleMode = value;
         }
+
         public bool CanRun { get; set; }
 
         public void Clear()

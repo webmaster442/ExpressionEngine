@@ -232,6 +232,15 @@ namespace ExpressionEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Number sytem has to be between 2 and 36.
+        /// </summary>
+        internal static string NumberSystemRangeError {
+            get {
+                return ResourceManager.GetString("NumberSystemRangeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parsed past the end of the function.
         /// </summary>
         internal static string OutOfTokens {

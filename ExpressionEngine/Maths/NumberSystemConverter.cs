@@ -3,6 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using ExpressionEngine.Properties;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -48,19 +49,19 @@ namespace ExpressionEngine.Maths
         /// Convert a number in base 10 to a target system
         /// </summary>
         /// <param name="value">input value</param>
-        /// <param name="system">target number system</param>
+        /// <param name="targetSystem">target number system</param>
         /// <returns>value in system</returns>
-        public static string ToSystem(long value, int system)
+        public static string ToSystem(long value, int targetSystem)
         {
-            if (system < 2 || system > 36)
-                throw new ArgumentException($"{nameof(system)} must be between 2 and 36");
+            if (targetSystem < 2 || targetSystem > 36)
+                throw new ExpressionEngineException(string.Format(Resources.NumberSystemRangeError, nameof(targetSystem)));
 
             Stack<char> symbols = new Stack<char>();
             while (value > 0)
             {
-                int digit = (int)(value % system);
+                int digit = (int)(value % targetSystem);
                 symbols.Push(ValueToSymbol(digit));
-                value /= system;
+                value /= targetSystem;
             }
 
             return ToString(symbols);
@@ -70,19 +71,19 @@ namespace ExpressionEngine.Maths
         /// Converts a number from a given system to base 10
         /// </summary>
         /// <param name="input">input number</param>
-        /// <param name="system">number system</param>
+        /// <param name="sourceSystem">number system</param>
         /// <returns></returns>
-        public static long FromSystem(string input, int system)
+        public static long FromSystem(string input, int sourceSystem)
         {
-            if (system < 2 || system > 36)
-                throw new ArgumentException($"{nameof(system)} must be between 2 and 36");
+            if (sourceSystem < 2 || sourceSystem > 36)
+                throw new ExpressionEngineException(string.Format(Resources.NumberSystemRangeError,  nameof(sourceSystem)));
 
             int exponent = 0;
             long value = 0;
 
             for (int i = input.Length - 1; i >= 0; i--)
             {
-                value += GetVaueFromSymbol(input[i]) * (long)Math.Pow(system, exponent);
+                value += GetVaueFromSymbol(input[i]) * (long)Math.Pow(sourceSystem, exponent);
                 ++exponent;
             }
 

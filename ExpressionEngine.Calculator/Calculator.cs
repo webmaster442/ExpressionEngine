@@ -53,7 +53,11 @@ namespace ExpressionEngine.Calculator
             string? command = null;
             while (_currentState.CanRun)
             {
-                _console.Prompt = $"{_currentState.AngleMode} >";
+                if (_currentState.Programmer)
+                    _console.Prompt = $"{_currentState.AngleMode} (Prog)>";
+                else
+                     _console.Prompt = $"{_currentState.AngleMode} >";
+
                 string[] tokens = _console.ReadTokens();
                 command = tokens.Length > 0 ? tokens[0] : string.Empty;
 
