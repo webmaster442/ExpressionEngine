@@ -25,18 +25,23 @@ namespace ExpressionEngine.Calculator.Commands
             }
             else
             {
-                var parser = new ExpressionParser();
-                var expression = parser.Parse(arguments[1], currentState);
-                expression = expression?.Simplify();
+                ParseAsExpression(currentState, arguments);
+            }
+        }
 
-                if (expression?.IsConstantExpression() == true)
-                {
-                    currentState[arguments[0]] = expression.Evaluate();
-                }
-                else
-                {
-                    currentState.SetExpression(arguments[0], expression);
-                }
+        private static void ParseAsExpression(State currentState, Arguments arguments)
+        {
+            var parser = new ExpressionParser();
+            var expression = parser.Parse(arguments[1], currentState);
+            expression = expression?.Simplify();
+
+            if (expression?.IsConstantExpression() == true)
+            {
+                currentState[arguments[0]] = expression.Evaluate();
+            }
+            else
+            {
+                currentState.SetExpression(arguments[0], expression);
             }
         }
     }
