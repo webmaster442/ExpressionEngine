@@ -13,6 +13,11 @@ namespace ExpressionEngine
 {
     public static class LogicFunctions
     {
+        public static int GetVariableCount(IEnumerable<int> terms)
+        {
+            var max = terms.Max();
+            return Convert.ToString(max, 2).Length;
+        }
 
         public static IEnumerable<int> GetMinterms(int function, int variables)
         {

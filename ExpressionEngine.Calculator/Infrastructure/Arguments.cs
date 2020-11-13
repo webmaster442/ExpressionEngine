@@ -57,6 +57,18 @@ namespace ExpressionEngine.Calculator.Infrastructure
 
         }
 
+        public void GuardArgumentCountMin(int minimum)
+        {
+            if (_tokens.Length < minimum)
+                throw new CalculatorException(Resources.ErrorArgumentCountMin, minimum.ToString(), _tokens.Length.ToString());
+
+            for (int i = 0; i < minimum; i++)
+            {
+                if (string.IsNullOrEmpty(_tokens[i]))
+                    throw new CalculatorException(Resources.ErrorArgumentCountMin, minimum.ToString(), _tokens.Length.ToString());
+            }
+        }
+
         public IEnumerable<T> Parse<T>(int start, int end)
         {
             if (end > -1)

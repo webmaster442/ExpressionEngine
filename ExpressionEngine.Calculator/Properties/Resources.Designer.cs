@@ -70,6 +70,15 @@ namespace ExpressionEngine.Calculator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This command requires at least {0} parameters. {1} was given..
+        /// </summary>
+        internal static string ErrorArgumentCountMin {
+            get {
+                return ResourceManager.GetString("ErrorArgumentCountMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t modify or delete a constant value..
         /// </summary>
         internal static string ErrorConstantWriteDelete {

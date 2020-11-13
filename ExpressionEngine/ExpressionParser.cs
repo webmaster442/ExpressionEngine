@@ -81,6 +81,20 @@ namespace ExpressionEngine
             return Parse(final, variables);
         }
 
+        public IExpression? ParseMaxterms(IEnumerable<int> maxterms, IVariables variables, int varCount, bool msbA = true)
+        {
+            var ordered = maxterms.OrderByDescending(m => m);
+            List<string> expressions = new List<string>();
+            foreach (var maxterm in ordered)
+            {
+                string binary = Utilities.GetBinaryValue(maxterm, varCount);
+                expressions.Add(Utilities.GetMintermExpression(binary, msbA));
+            }
+            var final = string.Join('&', expressions);
+
+            return Parse(final, variables);
+        }
+
         private IExpression? ParseAddExpression(IVariables variables)
         {
             if (Check(FirstMultExp))

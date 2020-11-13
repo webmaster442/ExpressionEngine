@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace ExpressionEngine.LogicExpressions
 {
-    internal class QuineMcclusky
+    public class QuineMcclusky
     {
         private static Dictionary<int, List<Implicant>> Group(List<Implicant> implicants)
         {
@@ -157,8 +157,14 @@ namespace ExpressionEngine.LogicExpressions
             }
         }
 
-        public static string GetSimplified(IEnumerable<int> care, IEnumerable<int> dontcre, int variables, bool hazardsafe = false, bool lsba = false, bool negate = false)
+        public static string GetSimplified(IEnumerable<int> care, IEnumerable<int> dontcre, int variables, QuineMcCluskeyConfig? config = null)
         {
+            if (config == null)
+            {
+                config = new QuineMcCluskeyConfig();
+            }
+
+
             var implicants = new List<Implicant>();
 
             var all = care.Concat(dontcre).OrderBy(x => x).Distinct().ToList();
@@ -182,9 +188,9 @@ namespace ExpressionEngine.LogicExpressions
                 PopulateMatrix(ref matrix, implicants, all);
             }
             List<Implicant> selected;
-            if (hazardsafe) selected = implicants;
+            if (config.HazardFree) selected = implicants;
             else selected = SelectImplicants(implicants, care.ToList());
-            return GetFinalExpression(selected, lsba, negate);
+            return GetFinalExpression(selected, config.AIsLsb, config.Negate);
         }
     }
 }

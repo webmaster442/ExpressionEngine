@@ -120,6 +120,9 @@
   <data name="ErrorArgumentCount" xml:space="preserve">
     <value>This command requires {0} parameters. {1} was given.</value>
   </data>
+  <data name="ErrorArgumentCountMin" xml:space="preserve">
+    <value>This command requires at least {0} parameters. {1} was given.</value>
+  </data>
   <data name="ErrorConstantWriteDelete" xml:space="preserve">
     <value>Can't modify or delete a constant value.</value>
   </data>
