@@ -13,7 +13,7 @@ namespace ExpressionEngine.Calculator
 {
     internal class ConsoleConsole : IConsole
     {
-        private LineEditor _editor;
+        private readonly LineEditor _editor;
 
         public int CurrentWidth => Console.BufferWidth;
 

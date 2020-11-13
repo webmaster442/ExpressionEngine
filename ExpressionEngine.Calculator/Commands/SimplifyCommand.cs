@@ -48,7 +48,7 @@ namespace ExpressionEngine.Calculator.Commands
             else
             {
                 IEnumerable<int>? terms = arguments.Parse<int>(3, arguments.Count);
-                HandleTerms(currentState, terms, config);
+                HandleTerms(terms, config);
             }
         }
 
@@ -78,7 +78,7 @@ namespace ExpressionEngine.Calculator.Commands
             Console.WriteLine(result);
         }
 
-        private void HandleTerms(State currentState, IEnumerable<int> terms, QuineMcCluskeyConfig config)
+        private void HandleTerms(IEnumerable<int> terms, QuineMcCluskeyConfig config)
         {
             int variables = LogicFunctions.GetVariableCount(terms);
             string result = QuineMcclusky.GetSimplified(terms, Enumerable.Empty<int>(), variables, config);
