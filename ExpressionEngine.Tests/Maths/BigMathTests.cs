@@ -1,4 +1,4 @@
-﻿using ExpressionEngine.BigNumber;
+﻿using ExpressionEngine.Numbers;
 using NUnit.Framework;
 using System;
 using System.Globalization;
@@ -51,14 +51,14 @@ namespace ExpressionEngine.Tests.Maths
             CallMethodUnderTest(input, expected, BigMath.Truncate);
         }
 
-        [TestCase("2", 2, "1.4142135623730950488016887242096980785696718753769480731766797379907324784621070388503875343276415727")]
-        [TestCase("3", 2, "1.7320508075688772935274463415058723669428052538103806280558069794519330169088000370811461867572485756")]
-        [TestCase("2", 1, "2")]
-        [TestCase("1", 2, "1")]
-        public void TestRoot(string input, int root, string expected)
+        [TestCase("2.12344", 3, "2.123")]
+        [TestCase("3.44", 1, "3.4")]
+        [TestCase("3.45", 1, "3.4")]
+        [TestCase("3.46", 1, "3.5")]
+        public void TestRound(string input, int decimals, string expected)
         {
             var number = BigFloat.Parse(input, CultureInfo.InvariantCulture);
-            var op = BigMath.Root(number, root).ToString();
+            var op = BigMath.Round(number, decimals).ToString();
             Assert.AreEqual(expected, op);
         }
     }

@@ -34,5 +34,23 @@ namespace ExpressionEngine.BigNumber
 		{
 			return (a * b) / Gcd(a, b);
 		}
+
+		public static BigFloat Root(BigFloat value, int n)
+		{
+			if (n == 1)
+				return value;
+
+			BigFloat x = value;
+			BigFloat root = BigFloat.Zero;
+
+			BigFloat desiredroot = new BigFloat(1, n);
+			for (int i = 0; i < 15; i++)
+			{
+				root = desiredroot * (x + (value / x));
+				x = root;
+			}
+
+			return root;
+		}
 	}
 }

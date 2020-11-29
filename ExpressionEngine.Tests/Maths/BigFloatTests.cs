@@ -1,5 +1,4 @@
-﻿using ExpressionEngine.BigNumber;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace ExpressionEngine.Tests.Maths
 {

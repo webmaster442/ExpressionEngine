@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExpressionEngine.Math\ExpressionEngine.BigNumber.csproj" />
     <ProjectReference Include="..\ExpressionEngine\ExpressionEngine.csproj" />
   </ItemGroup>
 

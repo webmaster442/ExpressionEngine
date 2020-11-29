@@ -1,8 +1,13 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------------
+// (c) 2020 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using System;
 using System.Globalization;
 using System.Numerics;
 
-namespace ExpressionEngine.BigNumber
+namespace ExpressionEngine.Numbers
 {
     public static class BigMath
     {
@@ -36,6 +41,32 @@ namespace ExpressionEngine.BigNumber
             BigInteger numerator = value.Numerator;
             numerator -= BigInteger.Remainder(numerator, value.Denominator);
             return new BigFloat(numerator, value.Denominator);
+        }
+
+        public static BigFloat Round(BigFloat value, int digits)
+        {
+            int i;
+            BigFloat b, e, j, m;
+            b = value;
+            for (i = 0; b >= 1; ++i)
+                b /= new BigFloat(10);
+
+            int targetDigits = digits +1 - i;
+            b = value;
+            b *= InternalMath.Pow(new BigFloat(10), targetDigits);
+            e = b + new BigFloat(1, 2);
+            if (e == Ceiling(b))
+            {
+                BigInteger f = Ceiling(b).Numerator;
+                BigInteger h = f - new BigInteger(2);
+                if (h % 2 != 0)
+                {
+                    e -= BigFloat.One;
+                }
+            }
+            j = Floor(e);
+            m = InternalMath.Pow(new BigFloat(10), targetDigits);
+            return j / m;
         }
 
         public static BigFloat Log10(BigFloat value)
