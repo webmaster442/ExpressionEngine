@@ -255,5 +255,6 @@ namespace ExpressionEngine
 
         public static readonly BigFloat Zero = new BigFloat(0);
         public static readonly BigFloat One = new BigFloat(1);
+        public static readonly BigFloat MinusOne = new BigFloat(-1);
     }
 }

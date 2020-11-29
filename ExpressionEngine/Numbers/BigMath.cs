@@ -3,7 +3,6 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using System;
 using System.Globalization;
 using System.Numerics;
 
@@ -11,8 +10,8 @@ namespace ExpressionEngine.Numbers
 {
     public static class BigMath
     {
-        public static readonly BigFloat Pi = BigFloat.Parse("3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679", CultureInfo.InvariantCulture);
-        public static readonly BigFloat E = BigFloat.Parse("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274", CultureInfo.InvariantCulture);
+        public static readonly BigFloat Pi =   BigFloat.Parse("3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679", CultureInfo.InvariantCulture);
+        public static readonly BigFloat E =    BigFloat.Parse("2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274", CultureInfo.InvariantCulture);
 
         public static BigFloat Abs(BigFloat value)
         {
@@ -67,18 +66,6 @@ namespace ExpressionEngine.Numbers
             j = Floor(e);
             m = InternalMath.Pow(new BigFloat(10), targetDigits);
             return j / m;
-        }
-
-        public static BigFloat Log10(BigFloat value)
-        {
-            var v = BigInteger.Log10(value.Numerator) - BigInteger.Log10(value.Denominator);
-            return (BigFloat)v;
-        }
-
-        public static BigFloat Log(BigFloat value, double baseValue)
-        {
-            var v = BigInteger.Log(value.Numerator, baseValue) - BigInteger.Log(value.Denominator, baseValue);
-            return (BigFloat)v;
         }
     }
 }

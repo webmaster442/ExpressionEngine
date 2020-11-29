@@ -10,6 +10,8 @@ namespace ExpressionEngine.Numbers
 {
     internal static class InternalMath
     {
+		private static readonly BigFloat Ln2 = BigFloat.Parse("0.693147180559945309417232121458176568075500134360255254120680009493393621969694715605863326996418687", CultureInfo.InvariantCulture);
+
 		private  static bool ShouldRound(BigInteger a)
         {
 			return a.ToString().Length > (BigFloat.Precision - 1);
@@ -34,7 +36,7 @@ namespace ExpressionEngine.Numbers
 			BigFloat root = BigFloat.Zero;
 
 			BigFloat desiredroot = new BigFloat(1, desiredRoot);
-			for (int i = 0; i < 15; i++)
+			for (int i = 0; i < 20; i++)
 			{
 				root = desiredroot * (x + (value / x));
 				x = root;
@@ -71,6 +73,30 @@ namespace ExpressionEngine.Numbers
             }
 
 			return res;
+		}
+
+		public static BigFloat Ln(BigFloat x)
+		{
+			if (x >= new BigFloat(2))
+			{
+				return BigMath.Round(Ln(x / new BigFloat(2)) + Ln2, BigFloat.Precision - 3);
+			}
+			// validate 0 < x < 2
+			BigFloat @base = x - BigFloat.One;        // Base of the numerator; exponent will be explicit
+			BigFloat den = BigFloat.One;              // Denominator of the nth term
+			BigFloat sign = BigFloat.One;             // Used to swap the sign of each term
+			BigFloat term = @base;       // First term
+			BigFloat result = term;     // Kick it off
+
+			for (int i = 0; i < 214; ++i)
+			{
+				den += BigFloat.One;
+				sign *= BigFloat.MinusOne;
+				term *= @base;
+				result += sign * term / den;
+			}
+
+			return result;
 		}
 	}
 }

@@ -46,5 +46,12 @@ namespace ExpressionEngine.Tests.Maths
             var result = InternalMath.Gcd(a, b);
             Assert.AreEqual(expected, (long)result);
         }
+
+        [Test]
+        public void TestLn()
+        {
+            var result = InternalMath.Ln(BigMath.E);
+            Assert.AreEqual(BigFloat.One, result);
+        }
     }
 }
