@@ -3,6 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using System;
 using System.Numerics;
 
 namespace ExpressionEngine.Numbers
@@ -43,6 +44,11 @@ namespace ExpressionEngine.Numbers
                 result = a;
                 return false;
             }
+        }
+
+        internal static bool TryHandleSpecialCase(Number value, out Number result)
+        {
+            return TryHandleSpecialCase(value, value, out result);
         }
 
         public static bool TryHandleSpecialToString(Number a, out string result)

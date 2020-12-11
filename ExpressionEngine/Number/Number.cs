@@ -16,6 +16,9 @@ namespace ExpressionEngine.Numbers
         public static readonly Number Zero = new Number(BigInteger.Zero);
         public static readonly Number One = new Number(BigInteger.One);
         public static readonly Number MinusOne = new Number(BigInteger.MinusOne);
+        public static readonly Number PositiveInfinity = new Number(NumberState.PositiveInfinity);
+        public static readonly Number NaN = new Number(NumberState.NaN);
+        public static readonly Number NegativeInfinity = new Number(NumberState.NegativeInfinity);
 
         public const int Precision = 21;
 
@@ -66,8 +69,10 @@ namespace ExpressionEngine.Numbers
                 case "nan":
                     return new Number(NumberState.NaN);
                 case "-∞":
+                case "-infinity":
                     return new Number(NumberState.NegativeInfinity);
                 case "∞":
+                case "infinity":
                     return new Number(NumberState.PositiveInfinity);
             }
 
@@ -243,7 +248,7 @@ namespace ExpressionEngine.Numbers
 
         public static Number operator -(Number a)
         {
-            if (NumberAlgorithms.TryHandleSpecialCase(a, a, out Number value))
+            if (NumberAlgorithms.TryHandleSpecialCase(a, out Number value))
             {
                 return value;
             }
@@ -312,6 +317,22 @@ namespace ExpressionEngine.Numbers
         public static bool operator >=(Number left, Number right)
         {
             return Compare(left, right) >= 0;
+        }
+
+        public static implicit operator Number(double value)
+        {
+            string num = value.ToString(CultureInfo.InvariantCulture);
+            return Parse(num, CultureInfo.InvariantCulture);
+        }
+
+        public static implicit operator Number(int value)
+        {
+            return new Number(value);
+        }
+
+        public static implicit operator Number(long value)
+        {
+            return new Number(value);
         }
     }
 }
