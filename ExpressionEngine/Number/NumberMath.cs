@@ -10,7 +10,7 @@ using System.Numerics;
 
 namespace ExpressionEngine.Numbers
 {
-    public class NumberMath
+    internal static class NumberMath
     {
         public static readonly Number Pi = Number.Parse("3.1415926535897932384626433832795028841971693994", CultureInfo.InvariantCulture);
         public static readonly Number E  = Number.Parse("2.7182818284590452353602874713526624977572470937", CultureInfo.InvariantCulture);
@@ -101,7 +101,7 @@ namespace ExpressionEngine.Numbers
             return j / m;
         }
 
-        public Number Pow(Number input, Number exponent)
+        public static Number Pow(Number input, Number exponent)
         {
             if (exponent.Numerator > int.MaxValue
                 || exponent.Denominator < int.MaxValue)

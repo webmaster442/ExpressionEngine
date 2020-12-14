@@ -18,7 +18,7 @@ namespace ExpressionEngine
         /// Evaluate an expression
         /// </summary>
         /// <returns>Result of expression</returns>
-        double Evaluate();
+        INumber Evaluate();
         /// <summary>
         /// Diferentiate an expression
         /// </summary>

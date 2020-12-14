@@ -11,7 +11,7 @@ using System.Numerics;
 
 namespace ExpressionEngine.Numbers
 {
-    public class Number: IComparable<Number>
+    public class Number: INumber, IComparable<Number>
     {
         public static readonly Number Zero = new Number(BigInteger.Zero);
         public static readonly Number One = new Number(BigInteger.One);
@@ -136,7 +136,7 @@ namespace ExpressionEngine.Numbers
             }
         }
 
-        public string ToString(CultureInfo culture)
+        public string ToString(IFormatProvider formatProvider)
         {
             if (NumberAlgorithms.TryHandleSpecialToString(this, out string special))
             {
@@ -222,6 +222,11 @@ namespace ExpressionEngine.Numbers
             two *= Denominator;
 
             return BigInteger.Compare(one, two);
+        }
+
+        public int CompareTo(INumber? other)
+        {
+            return CompareTo(other as Number);
         }
 
         private static int Compare(Number left, Number right)

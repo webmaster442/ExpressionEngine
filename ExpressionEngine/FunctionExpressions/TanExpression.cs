@@ -6,6 +6,7 @@
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.Maths;
+using ExpressionEngine.Numbers;
 using System;
 
 
@@ -38,9 +39,9 @@ namespace ExpressionEngine.FunctionExpressions
             return $"tan({Child})";
         }
 
-        protected override double Evaluate(double number)
+        protected override Number Evaluate(Number number)
         {
-            return Math.Round(Trigonometry.Tan(number), 15);
+            return NumberMath.Round(NumberMath.Tan(number), 21);
         }
     }
 }

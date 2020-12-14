@@ -24,7 +24,7 @@ namespace ExpressionEngine
         /// </summary>
         /// <param name="variable">Variable name</param>
         /// <returns>variable value</returns>
-        double this[string variable] { get; set; }
+        INumber this[string variable] { get; set; }
 
         /// <summary>
         /// Exception safe alternative for setting a varaible
@@ -32,14 +32,14 @@ namespace ExpressionEngine
         /// <param name="variable">variable name</param>
         /// <param name="value">variable value</param>
         /// <returns>true, if variable was set succesfully</returns>
-        bool TrySetValue(string variable, double value);
+        bool TrySetValue(string variable, INumber value);
 
         /// <summary>
         /// Get a variable value
         /// </summary>
         /// <param name="variable">variable name</param>
         /// <returns>variable value</returns>
-        double GetValue(string variable) => this[variable];
+        INumber GetValue(string variable) => this[variable];
 
         /// <summary>
         /// Clear all previously set variables

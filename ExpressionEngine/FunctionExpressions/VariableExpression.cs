@@ -40,7 +40,7 @@ namespace ExpressionEngine.FunctionExpressions
             return new ConstantExpression(0);
         }
 
-        public double Evaluate()
+        public INumber Evaluate()
         {
             if (Variables == null)
                 throw new ExpressionEngineException(Resources.NoVariableValues);

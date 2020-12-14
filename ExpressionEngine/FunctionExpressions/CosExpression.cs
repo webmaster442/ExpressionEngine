@@ -6,6 +6,7 @@
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.Maths;
+using ExpressionEngine.Numbers;
 using System;
 
 namespace ExpressionEngine.FunctionExpressions
@@ -37,9 +38,9 @@ namespace ExpressionEngine.FunctionExpressions
             return $"cos({Child})";
         }
 
-        protected override double Evaluate(double number)
+        protected override Number Evaluate(Number number)
         {
-            return Math.Round(Trigonometry.Cos(number));
+            return NumberMath.Round(NumberMath.Cos(number), 21);
         }
     }
 }

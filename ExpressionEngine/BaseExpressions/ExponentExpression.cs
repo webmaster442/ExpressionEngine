@@ -4,6 +4,7 @@
 //-----------------------------------------------------------------------------
 
 using ExpressionEngine.Base;
+using ExpressionEngine.Numbers;
 using ExpressionEngine.Properties;
 using System;
 
@@ -76,9 +77,9 @@ namespace ExpressionEngine.BaseExpressions
             return $"({Left} ^ {Right})";
         }
 
-        protected override double Evaluate(double number1, double number2)
+        protected override Number Evaluate(Number number1, Number number2)
         {
-            return Math.Pow(number1, number2);
+            return NumberMath.Pow(number1, number2);
         }
     }
 }

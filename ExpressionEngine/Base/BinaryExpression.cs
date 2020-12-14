@@ -3,6 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using ExpressionEngine.Numbers;
 using System;
 using System.Globalization;
 
@@ -21,12 +22,14 @@ namespace ExpressionEngine.Base
         public IExpression? Left { get; }
         public IExpression? Right { get; }
 
-        public double Evaluate()
+        public INumber Evaluate()
         {
-            return Evaluate(Left?.Evaluate() ?? double.NaN, Right?.Evaluate() ?? double.NaN);
+            var l = Left?.Evaluate() as Number ?? new Number(NumberState.NaN);
+            var r = Right?.Evaluate() as Number ?? new Number(NumberState.NaN);
+            return Evaluate(l, r);
         }
 
-        protected abstract double Evaluate(double number1, double number2);
+        protected abstract Number Evaluate(Number number1, Number number2);
 
         public abstract IExpression? Simplify();
 
