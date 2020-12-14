@@ -177,6 +177,12 @@
   <data name="NumberSystemRangeError" xml:space="preserve">
     <value>{0} Number sytem has to be between 2 and 36</value>
   </data>
+  <data name="NumberTooBig" xml:space="preserve">
+    <value>Number is too big</value>
+  </data>
+  <data name="NumberTooSmall" xml:space="preserve">
+    <value>Number is too small</value>
+  </data>
   <data name="OutOfTokens" xml:space="preserve">
     <value>Parsed past the end of the function</value>
   </data>

@@ -241,6 +241,24 @@ namespace ExpressionEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number is too big.
+        /// </summary>
+        internal static string NumberTooBig {
+            get {
+                return ResourceManager.GetString("NumberTooBig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number is too small.
+        /// </summary>
+        internal static string NumberTooSmall {
+            get {
+                return ResourceManager.GetString("NumberTooSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parsed past the end of the function.
         /// </summary>
         internal static string OutOfTokens {

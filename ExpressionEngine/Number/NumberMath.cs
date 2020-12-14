@@ -3,6 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using ExpressionEngine.Properties;
 using System;
 using System.Globalization;
 using System.Numerics;
@@ -98,6 +99,18 @@ namespace ExpressionEngine.Numbers
             j = Floor(e);
             m = NumberAlgorithms.Pow(new Number(10), targetDigits);
             return j / m;
+        }
+
+        public Number Pow(Number input, Number exponent)
+        {
+            if (exponent.Numerator > int.MaxValue
+                || exponent.Denominator < int.MaxValue)
+                throw new ArgumentOutOfRangeException(Resources.NumberTooBig);
+            else if (exponent.Denominator > int.MaxValue
+                || exponent.Numerator < int.MaxValue)
+                throw new ArgumentOutOfRangeException(Resources.NumberTooSmall);
+
+            return NumberAlgorithms.Root(NumberAlgorithms.Pow(input, (int)exponent.Numerator), (int)exponent.Denominator);
         }
 
         /// <summary>
@@ -205,7 +218,7 @@ namespace ExpressionEngine.Numbers
             else if (n > 170)
                 return Number.PositiveInfinity;
 
-            Number fact = 1.0;
+            Number fact = Number.One;
 
             for (int k = 1; k <= n; k++)
             {
