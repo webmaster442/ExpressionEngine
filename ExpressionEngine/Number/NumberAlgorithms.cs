@@ -10,16 +10,12 @@ namespace ExpressionEngine.Numbers
 {
     internal static class NumberAlgorithms
     {
-        public static NumberState GetNumberState(double doubleValue)
+        public static bool IsSpecialState(Number n)
         {
-            if (double.IsNaN(doubleValue))
-                return NumberState.NaN;
-            else if (double.IsPositiveInfinity(doubleValue))
-                return NumberState.PositiveInfinity;
-            else if (double.IsNegativeInfinity(doubleValue))
-                return NumberState.NegativeInfinity;
-            else
-                return NumberState.Value;
+            return
+                n.State == NumberState.NaN
+                || n.State == NumberState.NegativeInfinity
+                || n.State == NumberState.PositiveInfinity;
         }
 
         public static bool TryHandleSpecialCase(Number a, Number b, out Number result)

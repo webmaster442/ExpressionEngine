@@ -3,7 +3,6 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Properties;
 using System;
 using System.Globalization;
 using System.Numerics;
@@ -103,14 +102,7 @@ namespace ExpressionEngine.Numbers
 
         public static Number Pow(Number input, Number exponent)
         {
-            if (exponent.Numerator > int.MaxValue
-                || exponent.Denominator < int.MaxValue)
-                throw new ArgumentOutOfRangeException(Resources.NumberTooBig);
-            else if (exponent.Denominator > int.MaxValue
-                || exponent.Numerator < int.MaxValue)
-                throw new ArgumentOutOfRangeException(Resources.NumberTooSmall);
-
-            return NumberAlgorithms.Root(NumberAlgorithms.Pow(input, (int)exponent.Numerator), (int)exponent.Denominator);
+            return Math.Pow(input.ToDouble(), exponent.ToDouble());
         }
 
         /// <summary>
@@ -368,6 +360,20 @@ namespace ExpressionEngine.Numbers
             }
 
             return ExecuteInvertedTrigonometry((x) => Math.Atan((1.0 / Ctg(x)).ToDouble()), input);
+        }
+
+        public static Number Ln(Number number)
+        {
+            return ((Number)BigInteger.Log(number.Numerator)) - ((Number)BigInteger.Log(number.Denominator));
+        }
+
+        public static Number Log(Number number, Number exponent)
+        {
+            if (exponent.Numerator == 10 && exponent.Denominator == 1)
+            {
+                return ((Number)BigInteger.Log10(number.Numerator)) - ((Number)BigInteger.Log10(number.Denominator));
+            }
+            return Ln(number) / Ln(exponent);
         }
     }
 }

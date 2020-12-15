@@ -32,7 +32,7 @@ namespace ExpressionEngine.BaseExpressions
                 // f(x) = a^g(x)
                 // f'(x) = (ln a) * g'(x) * a^g(x)
                 var a = constant.Value;
-                return new MultiplyExpression(new MultiplyExpression(new ConstantExpression(Math.Log(a)), Right?.Differentiate(byVariable)), new ExponentExpression(simple, Right));
+                return new MultiplyExpression(new MultiplyExpression(new ConstantExpression(NumberMath.Ln(a)), Right?.Differentiate(byVariable)), new ExponentExpression(simple, Right));
             }
             throw new CannotDifferentiateException(Resources.CanotDifferentiate);
         }
@@ -48,7 +48,7 @@ namespace ExpressionEngine.BaseExpressions
             if (leftConst != null && rightConst != null)
             {
                 // two constants
-                return new ConstantExpression(Math.Pow(leftConst.Value, rightConst.Value));
+                return new ConstantExpression(Evaluate(leftConst.Value, rightConst.Value));
             }
             if (rightConst != null)
             {

@@ -3,14 +3,14 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Maths;
+using ExpressionEngine.Numbers;
 using NUnit.Framework;
 using System;
 
 namespace ExpressionEngine.Tests.Maths
 {
     [TestFixture]
-    public class DoubleFunctionsTests
+    public class DoubleFunctionsTests: TestBase
     {
         [TestCase(0, 0)]
         [TestCase(45, Math.PI/4)]
@@ -21,8 +21,8 @@ namespace ExpressionEngine.Tests.Maths
         [TestCase(360, Math.PI*2)]
         public void TestDegToRad(double deg, double expectedRad)
         {
-            double result = DoubleFunctions.DegToRad(deg);
-            Assert.AreEqual(expectedRad, result, 1E-9);
+            Number result = NumberMath.DegToRad(deg);
+            AreEqual(expectedRad, result, 1E-9);
         }
 
         [TestCase(0, 0)]
@@ -34,8 +34,8 @@ namespace ExpressionEngine.Tests.Maths
         [TestCase(Math.PI * 2, 360)]
         public void TestRadToDeg(double rad, double expectedDeg)
         {
-            double result = DoubleFunctions.RadToDeg(rad);
-            Assert.AreEqual(expectedDeg, result, 1E-9);
+            Number result = NumberMath.RadToDeg(rad);
+            AreEqual(expectedDeg, result, 1E-9);
         }
 
         [TestCase(0, 0)]
@@ -47,8 +47,8 @@ namespace ExpressionEngine.Tests.Maths
         [TestCase(360, 400)]
         public void TestDegToGrad(double deg, double expectedGrad)
         {
-            double result = DoubleFunctions.DegToGrad(deg);
-            Assert.AreEqual(expectedGrad, result, 1E-9);
+            Number result = NumberMath.DegToGrad(deg);
+            AreEqual(expectedGrad, result, 1E-9);
         }
 
         [TestCase(0, 0)]
@@ -60,8 +60,8 @@ namespace ExpressionEngine.Tests.Maths
         [TestCase(400, 360)]
         public void TestGradToDeg(double grad, double expectedDeg)
         {
-            double result = DoubleFunctions.GradToDeg(grad);
-            Assert.AreEqual(expectedDeg, result, 1E-9);
+            Number result = NumberMath.GradToDeg(grad);
+            AreEqual(expectedDeg, result, 1E-9);
         }
 
         [TestCase(0, 0)]
@@ -73,8 +73,8 @@ namespace ExpressionEngine.Tests.Maths
         [TestCase(400, Math.PI * 2)]
         public void TestGradToRad(double grad, double expectedRad)
         {
-            double result = DoubleFunctions.GradToRad(grad);
-            Assert.AreEqual(expectedRad, result, 1E-9);
+            Number result = NumberMath.GradToRad(grad);
+            AreEqual(expectedRad, result, 1E-9);
         }
 
         [TestCase(0, 0)]
@@ -86,8 +86,8 @@ namespace ExpressionEngine.Tests.Maths
         [TestCase(Math.PI * 2, 400)]
         public void TestRadToGrad(double rad, double expectedGrad)
         {
-            double result = DoubleFunctions.RadToGrad(rad);
-            Assert.AreEqual(expectedGrad, result, 1E-9);
+            Number result = NumberMath.RadToGrad(rad);
+            AreEqual(expectedGrad, result, 1E-9);
         }
 
         [TestCase(-1, double.NaN)]
@@ -99,8 +99,8 @@ namespace ExpressionEngine.Tests.Maths
         [TestCase(171, double.PositiveInfinity)]
         public void TestFactorial(int n, double expected)
         {
-            double result = DoubleFunctions.Factorial(n);
-            Assert.AreEqual(expected, result);
+            Number result = NumberMath.Factorial(n);
+            AreEqual(expected, result);
         }
     }
 }

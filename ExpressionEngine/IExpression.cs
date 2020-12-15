@@ -24,6 +24,7 @@ namespace ExpressionEngine
         /// </summary>
         /// <param name="byVariable">Diferentation variable</param>
         /// <returns>Diferentiated expression</returns>
+        /// 
         IExpression? Differentiate(string byVariable);
         /// <summary>
         /// Simplifies an expresion

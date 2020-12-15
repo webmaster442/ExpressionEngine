@@ -13,5 +13,6 @@ namespace ExpressionEngine
         BigInteger Numerator { get; }
         BigInteger Denominator { get; }
         string ToString(IFormatProvider formatProvider);
+        double ToDouble();
     }
 }

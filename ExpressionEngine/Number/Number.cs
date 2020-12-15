@@ -44,7 +44,12 @@ namespace ExpressionEngine.Numbers
                 State = NumberState.NaN;
             }
             BigInteger num = NumberAlgorithms.Gcd(numerator, denominator);
-            if (denominator < BigInteger.Zero)
+
+            if (num == BigInteger.Zero)
+            {
+                State = NumberState.PositiveInfinity;
+            }
+            else if (denominator < BigInteger.Zero)
             {
                 Numerator = -numerator / num;
                 Denominator = -denominator / num;
