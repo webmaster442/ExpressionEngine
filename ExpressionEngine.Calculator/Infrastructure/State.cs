@@ -12,20 +12,20 @@ namespace ExpressionEngine.Calculator.Infrastructure
 {
     internal class State : IVariables
     {
-        private Dictionary<string, double> _variables;
-        private Dictionary<string, double> _contants;
+        private Dictionary<string, INumber> _variables;
+        private Dictionary<string, INumber> _contants;
         private Dictionary<string, IExpression> _expressions;
 
         public State()
         {
             CanRun = true;
             Programmer = false;
-            _contants = new Dictionary<string, double>
+            _contants = new Dictionary<string, INumber>
             {
-                { "pi", Math.PI },
-                { "e", Math.E }
+                { "pi", NumberHelper.Pi },
+                { "e", NumberHelper.E }
             };
-            _variables = new Dictionary<string, double>();
+            _variables = new Dictionary<string, INumber>();
             _expressions = new Dictionary<string, IExpression>();
         }
 
@@ -48,7 +48,7 @@ namespace ExpressionEngine.Calculator.Infrastructure
             }
         }
 
-        public double this[string variable]
+        public INumber this[string variable]
         {
             get
             {
@@ -81,8 +81,8 @@ namespace ExpressionEngine.Calculator.Infrastructure
 
         public AngleMode AngleMode
         {
-            get => Trigonometry.AngleMode;
-            set => Trigonometry.AngleMode = value;
+            get => ExpressionParser.AngleMode;
+            set => ExpressionParser.AngleMode = value;
         }
 
         public bool CanRun { get; set; }
@@ -97,7 +97,7 @@ namespace ExpressionEngine.Calculator.Infrastructure
             return _contants.ContainsKey(variableName);
         }
 
-        public bool TrySetValue(string variable, double value)
+        public bool TrySetValue(string variable, INumber value)
         {
             if (IsConstant(variable))
             {

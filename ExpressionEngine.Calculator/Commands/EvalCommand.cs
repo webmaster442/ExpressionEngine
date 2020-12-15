@@ -22,7 +22,7 @@ namespace ExpressionEngine.Calculator.Commands
             if (currentState.TryGetExpression(arguments[0], out var storedExpression)
                 && storedExpression != null)
             {
-                double result = storedExpression.Evaluate();
+                INumber result = storedExpression.Evaluate();
                 currentState["ans"] = result;
                 Console.WriteLine("{0}", ResultFormatter.ToString(result, currentState.Programmer));
                 return;
@@ -32,7 +32,7 @@ namespace ExpressionEngine.Calculator.Commands
             IExpression? expression = parser.Parse(arguments[0], currentState);
             if (expression != null)
             {
-                double result = expression.Evaluate();
+                INumber result = expression.Evaluate();
                 currentState["ans"] = result;
                 Console.WriteLine("{0}", ResultFormatter.ToString(result, currentState.Programmer));
             }
