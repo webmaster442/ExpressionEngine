@@ -8,7 +8,7 @@ using System.Numerics;
 
 namespace ExpressionEngine
 {
-    public interface INumber: IComparable<INumber>
+    public interface INumber: IComparable<INumber>, IEquatable<INumber>
     {
         BigInteger Numerator { get; }
         BigInteger Denominator { get; }

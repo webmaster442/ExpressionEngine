@@ -197,6 +197,11 @@ namespace ExpressionEngine.Numbers
             return double.Parse(str, CultureInfo.InvariantCulture);
         }
 
+        public bool Equals(INumber? other)
+        {
+            return Equals(other as Number);
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Number number &&
