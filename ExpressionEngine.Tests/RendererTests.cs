@@ -20,6 +20,8 @@ namespace ExpressionEngine.Tests
         {
             _writerMock = new Mock<IWriter>();
             _sut = new ExpressionRenderer(_writerMock.Object);
+            _sut.Run("let test 3");
+            _sut.Run("let expr test*2");
         }
 
         [TestCase("let x 3.14", true)]
@@ -47,6 +49,15 @@ namespace ExpressionEngine.Tests
                     _sut.Run(command);
                 });
             }
+        }
+
+        [TestCase("eval 33+22", "55")]
+        [TestCase("eval expr", "6")]
+        public void TestEvalCommand(string command, string expected)
+        {
+            _sut.Run(command);
+            _writerMock.Verify(x => x.WriteLine(It.IsAny<object>()), Times.Once);
+            Assert.AreEqual(expected, _sut.State.Ans.ToString());
         }
 
     }

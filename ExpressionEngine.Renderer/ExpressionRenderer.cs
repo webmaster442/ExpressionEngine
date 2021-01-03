@@ -17,13 +17,14 @@ namespace ExpressionEngine.Renderer
     public class ExpressionRenderer
     {
         private readonly IWriter _outputWriter;
-        private readonly IState _state;
         private readonly Dictionary<string, RendererCommandBase> _commands;
+
+        public IState State { get; }
 
         public ExpressionRenderer(IWriter outputWriter)
         {
             _outputWriter = outputWriter;
-            _state = new State();
+            State = new State();
             _commands = new Dictionary<string, RendererCommandBase>();
             ConfigureCommands();
         }
@@ -33,7 +34,7 @@ namespace ExpressionEngine.Renderer
             try
             {
                 var command = typeof(T);
-                if (Activator.CreateInstance(command, _outputWriter, _state) is RendererCommandBase instance)
+                if (Activator.CreateInstance(command, _outputWriter, State) is RendererCommandBase instance)
                 {
                     _commands.Add(GetName(command), instance);
                 }
@@ -88,7 +89,7 @@ namespace ExpressionEngine.Renderer
 
             foreach (var cmd in commands)
             {
-                if (Activator.CreateInstance(cmd, _outputWriter, _state) is RendererCommandBase instance)
+                if (Activator.CreateInstance(cmd, _outputWriter, State) is RendererCommandBase instance)
                 {
                     _commands.Add(GetName(cmd), instance);
                 }

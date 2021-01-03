@@ -37,5 +37,17 @@ namespace ExpressionEngine.Renderer
         {
             return $"<pre><code>\r\n{_buffer}\r\n</code></pre>\r\n";
         }
+
+        public void WriteLine(object? o)
+        {
+            if (o != null)
+                _buffer.AppendLine(o.ToString());
+        }
+
+        public void Write(object? o)
+        {
+            if (o != null)
+                _buffer.Append(o.ToString());
+        }
     }
 }

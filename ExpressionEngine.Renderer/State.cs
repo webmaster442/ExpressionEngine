@@ -55,14 +55,31 @@ namespace ExpressionEngine.Renderer
 
         public IEnumerable<string> VariableNames => _variables.Keys;
 
+        public INumber Ans
+        {
+            get { return this["ans"]; }
+            set { this["ans"] = value; }
+        }
+
         public void Clear()
         {
             _variables.Clear();
         }
 
+        public IExpression? GetExpression(string variableName)
+        {
+            if (!IsExpression(variableName)) return null;
+            return _expressions[variableName];
+        }
+
         public bool IsConstant(string variableName)
         {
             return _contants.ContainsKey(variableName);
+        }
+
+        public bool IsExpression(string variableName)
+        {
+            return _expressions.ContainsKey(variableName);
         }
 
         public void SetExpression(string variableName, IExpression? expression)

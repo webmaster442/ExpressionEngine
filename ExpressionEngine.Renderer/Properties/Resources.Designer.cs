@@ -97,6 +97,15 @@ namespace ExpressionEngine.Renderer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t evaluate: {0}.
+        /// </summary>
+        internal static string ErrorEvaluate {
+            get {
+                return ResourceManager.GetString("ErrorEvaluate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Argument can&apos;t be parsed to type: {0}.
         /// </summary>
         internal static string ErrorParsing {

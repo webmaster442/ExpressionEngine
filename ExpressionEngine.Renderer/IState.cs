@@ -8,5 +8,8 @@ namespace ExpressionEngine.Renderer
     public interface IState : IVariables
     {
         void SetExpression(string variableName, IExpression? expression);
+        bool IsExpression(string variableName);
+        IExpression? GetExpression(string variableName);
+        INumber Ans { get; set; }
     }
 }

@@ -129,6 +129,9 @@
   <data name="ErrorEmptyCommand" xml:space="preserve">
     <value>Empty command</value>
   </data>
+  <data name="ErrorEvaluate" xml:space="preserve">
+    <value>Can't evaluate: {0}</value>
+  </data>
   <data name="ErrorParsing" xml:space="preserve">
     <value>Argument can't be parsed to type: {0}</value>
   </data>
