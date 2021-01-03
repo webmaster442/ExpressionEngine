@@ -1,22 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net50</TargetFramework>
     <Nullable>enable</Nullable>
     <OutputPath>..\bin\$(Configuration)\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AssemblyName>ExpressionEngine.</AssemblyName>
   </PropertyGroup>
-
-  <ItemGroup>
-    <AssemblyAttribute Include="ExpressionEngine.Calculator.Properties.AssemblyBuildDateAttribute">
-      <_Parameter1>$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</_Parameter1>
-    </AssemblyAttribute>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Mono.Terminal" Version="5.4.2" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ExpressionEngine\ExpressionEngine.csproj" />

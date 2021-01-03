@@ -27,7 +27,7 @@ namespace ExpressionEngine.Tests
         [TestCase("0b10_10", 10)]
         public void TestParseNumber(string input, double expected)
         {
-            bool result = NumberParser.ParseNumber(input, out double number);
+            bool result = NumberParser.ParseNumber(input, out INumber number);
             Assert.IsTrue(result);
             Assert.AreEqual(expected, number);
         }

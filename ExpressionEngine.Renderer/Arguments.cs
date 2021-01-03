@@ -1,17 +1,22 @@
 ﻿//-----------------------------------------------------------------------------
-// (c) 2020 Ruzsinszki Gábor
+// (c) 2021 Ruzsinszki Gábor
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Calculator.Properties;
+using ExpressionEngine.Renderer.Properties;
+//-----------------------------------------------------------------------------
+// (c) 2021 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-namespace ExpressionEngine.Calculator.Infrastructure
+namespace ExpressionEngine.Renderer.Infrastructure
 {
-    internal class Arguments
+    public class Arguments
     {
         private string[] _tokens;
 
@@ -49,23 +54,23 @@ namespace ExpressionEngine.Calculator.Infrastructure
         public void GuardArgumentCount(int count)
         {
             if (_tokens.Length != count)
-                throw new CalculatorException(Resources.ErrorArgumentCount, count.ToString(), _tokens.Length.ToString());
+                throw new CommandException(Resources.ErrorArgumentCount, count.ToString(), _tokens.Length.ToString());
 
             bool isNull = _tokens.Any(t => string.IsNullOrEmpty(t));
             if (isNull)
-                throw new CalculatorException(Resources.ErrorArgumentCount, count.ToString(), _tokens.Length.ToString());
+                throw new CommandException(Resources.ErrorArgumentCount, count.ToString(), _tokens.Length.ToString());
 
         }
 
         public void GuardArgumentCountMin(int minimum)
         {
             if (_tokens.Length < minimum)
-                throw new CalculatorException(Resources.ErrorArgumentCountMin, minimum.ToString(), _tokens.Length.ToString());
+                throw new CommandException(Resources.ErrorArgumentCountMin, minimum.ToString(), _tokens.Length.ToString());
 
             for (int i = 0; i < minimum; i++)
             {
                 if (string.IsNullOrEmpty(_tokens[i]))
-                    throw new CalculatorException(Resources.ErrorArgumentCountMin, minimum.ToString(), _tokens.Length.ToString());
+                    throw new CommandException(Resources.ErrorArgumentCountMin, minimum.ToString(), _tokens.Length.ToString());
             }
         }
 
@@ -110,7 +115,7 @@ namespace ExpressionEngine.Calculator.Infrastructure
                 if (handle)
                     return convert;
                 else
-                    throw new CalculatorException(Resources.ErrorParsing, typeof(T).Name);
+                    throw new CommandException(Resources.ErrorParsing, typeof(T).Name);
             }
             else
             {
@@ -127,7 +132,7 @@ namespace ExpressionEngine.Calculator.Infrastructure
                         return false;
                     }
                     else
-                        throw new CalculatorException(Resources.ErrorParsing, typeof(T).Name);
+                        throw new CommandException(Resources.ErrorParsing, typeof(T).Name);
                 }
             }
         }

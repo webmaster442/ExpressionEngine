@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExpressionEngine.Calculator.Properties {
+namespace ExpressionEngine.Renderer.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ExpressionEngine.Calculator.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ExpressionEngine.Calculator.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ExpressionEngine.Renderer.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -88,11 +88,11 @@ namespace ExpressionEngine.Calculator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Help found for command: {0}.
+        ///   Looks up a localized string similar to Empty command.
         /// </summary>
-        internal static string ErrorNoHelpFound {
+        internal static string ErrorEmptyCommand {
             get {
-                return ResourceManager.GetString("ErrorNoHelpFound", resourceCulture);
+                return ResourceManager.GetString("ErrorEmptyCommand", resourceCulture);
             }
         }
         
@@ -106,7 +106,16 @@ namespace ExpressionEngine.Calculator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Mode: {0}.
+        ///   Looks up a localized string similar to Unknown command: {0}.
+        /// </summary>
+        internal static string ErrorUnknownCommand {
+            get {
+                return ResourceManager.GetString("ErrorUnknownCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown mode: {0}.
         /// </summary>
         internal static string ErrorUnknownMode {
             get {
@@ -120,97 +129,6 @@ namespace ExpressionEngine.Calculator.Properties {
         internal static string ErrorUnknownVariable {
             get {
                 return ResourceManager.GetString("ErrorUnknownVariable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Clears the terminal output.
-        ///Usage: clear.
-        /// </summary>
-        internal static string HelpClear {
-            get {
-                return ResourceManager.GetString("HelpClear", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Lists available commands
-        ///Usage: cmdlist.
-        /// </summary>
-        internal static string HelpCmdlist {
-            get {
-                return ResourceManager.GetString("HelpCmdlist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Evaluates an expression.
-        ///Usage: eval &lt;expression&gt;.
-        /// </summary>
-        internal static string HelpEval {
-            get {
-                return ResourceManager.GetString("HelpEval", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Exit the program
-        ///Usage: Exit.
-        /// </summary>
-        internal static string HelpExit {
-            get {
-                return ResourceManager.GetString("HelpExit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Print usage info for a command.
-        ///Usage: Help &lt;command name&gt;.
-        /// </summary>
-        internal static string HelpHelp {
-            get {
-                return ResourceManager.GetString("HelpHelp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Defines a variable or an expression for later usage.
-        ///Usage: let &lt;variable name&gt; &lt;expression&gt;.
-        /// </summary>
-        internal static string HelpLet {
-            get {
-                return ResourceManager.GetString("HelpLet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Switches trigonometric angle mode.
-        ///angle mode can be one of the following: deg, rad, grad
-        ///usage: mode &lt;angle mode&gt;.
-        /// </summary>
-        internal static string HelpMode {
-            get {
-                return ResourceManager.GetString("HelpMode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unset a variable or all variables. If invoked without parameters all variables are unset.
-        ///Usage: unset &lt;variable name&gt;.
-        /// </summary>
-        internal static string HelpUnset {
-            get {
-                return ResourceManager.GetString("HelpUnset", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Print program version info
-        ///Usage: version.
-        /// </summary>
-        internal static string HelpVersion {
-            get {
-                return ResourceManager.GetString("HelpVersion", resourceCulture);
             }
         }
     }

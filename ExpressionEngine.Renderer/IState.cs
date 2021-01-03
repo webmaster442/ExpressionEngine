@@ -1,14 +1,12 @@
 ﻿//-----------------------------------------------------------------------------
-// (c) 2020 Ruzsinszki Gábor
+// (c) 2021 Ruzsinszki Gábor
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
-namespace ExpressionEngine.Calculator.Infrastructure
+namespace ExpressionEngine.Renderer
 {
-    internal interface IHost
+    public interface IState : IVariables
     {
-        IEnumerable<string> Commands { get; }
+        void SetExpression(string variableName, IExpression? expression);
     }
 }
