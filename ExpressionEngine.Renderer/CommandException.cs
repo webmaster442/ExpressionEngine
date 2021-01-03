@@ -6,7 +6,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace ExpressionEngine.Renderer.Infrastructure
+namespace ExpressionEngine.Renderer
 {
     public class CommandException : Exception
     {

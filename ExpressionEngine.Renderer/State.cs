@@ -3,6 +3,7 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
+using ExpressionEngine.Renderer.Properties;
 using System;
 using System.Collections.Generic;
 
@@ -25,7 +26,30 @@ namespace ExpressionEngine.Renderer
             _expressions = new Dictionary<string, IExpression>();
         }
 
-        public INumber this[string variable] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public INumber this[string variable]
+        {
+            get
+            {
+                if (_contants.ContainsKey(variable))
+                    return _contants[variable];
+                else if (_variables.ContainsKey(variable))
+                    return _variables[variable];
+                else
+                    throw new CommandException(Resources.ErrorUnknownVariable, variable);
+            }
+            set
+            {
+                if (IsConstant(variable))
+                    throw new CommandException(Resources.ErrorConstantWriteDelete);
+
+                if (_expressions.ContainsKey(variable))
+                {
+                    _expressions.Remove(variable);
+                }
+
+                _variables[variable] = value;
+            }
+        }
 
         public int Count => _variables.Count;
 

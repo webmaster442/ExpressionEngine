@@ -14,13 +14,13 @@ using System.Linq;
 
 namespace ExpressionEngine.Renderer
 {
-    public class Renderer
+    public class ExpressionRenderer
     {
         private readonly IWriter _outputWriter;
         private readonly IState _state;
         private readonly Dictionary<string, RendererCommandBase> _commands;
 
-        public Renderer(IWriter outputWriter)
+        public ExpressionRenderer(IWriter outputWriter)
         {
             _outputWriter = outputWriter;
             _state = new State();
@@ -81,7 +81,7 @@ namespace ExpressionEngine.Renderer
 
         private void ConfigureCommands()
         {
-            var assembly = typeof(Renderer).Assembly;
+            var assembly = typeof(ExpressionRenderer).Assembly;
             var commands = assembly
                             .GetTypes()
                             .Where(x => x.BaseType == typeof(RendererCommandBase));

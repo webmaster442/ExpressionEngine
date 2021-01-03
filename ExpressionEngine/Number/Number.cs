@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// (c) 2020 Ruzsinszki Gábor
+// (c) 2020-2021 Ruzsinszki Gábor
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
@@ -69,7 +69,9 @@ namespace ExpressionEngine.Numbers
 
         public static Number Parse(string value, CultureInfo cultureInfo)
         {
-            switch (value.ToLower())
+            value = value.ToLower();
+
+            switch (value)
             {
                 case "nan":
                     return new Number(NumberState.NaN);
@@ -85,9 +87,9 @@ namespace ExpressionEngine.Numbers
 
             BigInteger multiplier = BigInteger.One;
 
-            if (value.Contains("E"))
+            if (value.Contains("e"))
             {
-                var parts = value.Split('E');
+                var parts = value.Split('e');
                 value = parts[0];
 
                 int exponent = int.Parse(parts[1], cultureInfo);
@@ -150,7 +152,10 @@ namespace ExpressionEngine.Numbers
 
             BigInteger integerPart = BigInteger.DivRem(Numerator, Denominator, out BigInteger remainder);
 
-            int padding = (Denominator.ToString().Length - Numerator.ToString().Length) - 1;
+            int padding = (Denominator.ToString().Length - Numerator.ToString().Length);
+
+            if (Numerator.Sign != -1)
+                padding -= 1;
 
             string pad = string.Empty;
 

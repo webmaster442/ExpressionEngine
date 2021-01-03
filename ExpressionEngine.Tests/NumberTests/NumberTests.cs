@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// (c) 2020 Ruzsinszki Gábor
+// (c) 2020-2021 Ruzsinszki Gábor
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
@@ -26,6 +26,8 @@ namespace ExpressionEngine.Tests.NumberTests
         [TestCase("11.12E+6", "11120000")]
         [TestCase("12E-6", "0.000012")]
         [TestCase("12.1E-6", "0.0000121")]
+        [TestCase("-1E-6", "-0.000001")]
+        [TestCase("-12.1E-6", "-0.0000121")]
         [TestCase("0.0000121", "0.0000121")]
         [TestCase("-0.25", "-0.25")]
         public void TestParse(string input, string expected)
