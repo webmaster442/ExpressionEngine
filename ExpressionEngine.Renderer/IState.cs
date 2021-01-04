@@ -7,6 +7,7 @@ namespace ExpressionEngine.Renderer
 {
     public interface IState : IVariables
     {
+        void Clear(string? variableName = null);
         void SetExpression(string variableName, IExpression? expression);
         bool IsExpression(string variableName);
         IExpression? GetExpression(string variableName);

@@ -60,5 +60,27 @@ namespace ExpressionEngine.Tests
             Assert.AreEqual(expected, _sut.State.Ans.ToString());
         }
 
+
+        [Test]
+        public void TestUnsetAll()
+        {
+            Assert.AreEqual(4, _sut.State.Count);
+
+            _sut.State.Clear();
+
+            Assert.AreEqual(2, _sut.State.Count);
+        }
+
+        [Test]
+        public void TestUnsetX()
+        {
+            _sut.Run("let x 1");
+
+            Assert.AreEqual(5, _sut.State.Count);
+
+            _sut.State.Clear("x");
+
+            Assert.AreEqual(4, _sut.State.Count);
+        }
     }
 }

@@ -51,7 +51,7 @@ namespace ExpressionEngine.Renderer
             }
         }
 
-        public int Count => _variables.Count;
+        public int Count => _variables.Count + _contants.Count + _expressions.Count;
 
         public IEnumerable<string> VariableNames => _variables.Keys;
 
@@ -61,9 +61,28 @@ namespace ExpressionEngine.Renderer
             set { this["ans"] = value; }
         }
 
-        public void Clear()
+        public void Clear(string? variableName = null)
         {
-            _variables.Clear();
+            if (string.IsNullOrWhiteSpace(variableName))
+            {
+                _variables.Clear();
+                _expressions.Clear();
+                return;
+            }
+
+            if (_contants.ContainsKey(variableName))
+                throw new CommandException(Resources.ErrorConstantWriteDelete);
+
+            if (_variables.ContainsKey(variableName))
+                _variables.Remove(variableName);
+
+            if (_expressions.ContainsKey(variableName))
+                _expressions.Remove(variableName);
+        }
+
+        void IVariables.Clear()
+        {
+            Clear(null);
         }
 
         public IExpression? GetExpression(string variableName)

@@ -1,9 +1,9 @@
-﻿using ExpressionEngine.Renderer.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//-----------------------------------------------------------------------------
+// (c) 2021 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using ExpressionEngine.Renderer.Infrastructure;
 
 namespace ExpressionEngine.Renderer.Commands
 {
@@ -18,6 +18,10 @@ namespace ExpressionEngine.Renderer.Commands
             if (arguments.Count ==0 )
             {
                 State.Clear();
+            }
+            else
+            {
+                State.Clear(arguments[0]);
             }
         }
     }
