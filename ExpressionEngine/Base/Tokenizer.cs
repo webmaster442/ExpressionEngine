@@ -31,36 +31,11 @@ namespace ExpressionEngine.Base
             {
                 if (char.IsNumber(_function[_index]) || _function[_index] == '.')
                 {
-                    var number = new StringBuilder();
-                    number.Append(_function[_index++]);
-                    while (_index < _function.Length &&
-                        (char.IsNumber(_function[_index]) || _function[_index] == '.'))
-                    {
-                        number.Append(_function[_index++]);
-                    }
-                    return new Token(number.ToString(), TokenType.Constant);
+                    return HandleNumber();
                 }
                 if (IsAlpha(_function[_index]))
                 {
-                    var var = new StringBuilder();
-                    var.Append(_function[_index++]);
-                    while (_index < _function.Length && IsAlpha(_function[_index]))
-                    {
-                        var.Append(_function[_index++]);
-                    }
-
-                    string identifier = var.ToString().ToLower(CultureInfo.InvariantCulture);
-
-                    if (identifier == "true")
-                        return new Token("1", TokenType.Constant);
-                    else if (identifier == "false")
-                        return new Token("0", TokenType.Constant);
-                    else if (FunctionFactory.IsSignleParamFunction(identifier))
-                        return new Token(identifier, TokenType.Function1);
-                    else if (FunctionFactory.IsTwoParamFunction(identifier))
-                        return new Token(identifier, TokenType.Function2);
-                    else
-                        return new Token(identifier, TokenType.Variable);
+                    return HandleString();
                 }
                 switch (_function[_index++])
                 {
@@ -98,6 +73,41 @@ namespace ExpressionEngine.Base
                 }
             }
             return new Token(string.Empty, TokenType.Eof);
+        }
+
+        private Token HandleString()
+        {
+            var var = new StringBuilder();
+            var.Append(_function[_index++]);
+            while (_index < _function.Length && IsAlpha(_function[_index]))
+            {
+                var.Append(_function[_index++]);
+            }
+
+            string identifier = var.ToString().ToLower(CultureInfo.InvariantCulture);
+
+            if (identifier == "true")
+                return new Token("1", TokenType.Constant);
+            else if (identifier == "false")
+                return new Token("0", TokenType.Constant);
+            else if (FunctionFactory.IsSignleParamFunction(identifier))
+                return new Token(identifier, TokenType.Function1);
+            else if (FunctionFactory.IsTwoParamFunction(identifier))
+                return new Token(identifier, TokenType.Function2);
+            else
+                return new Token(identifier, TokenType.Variable);
+        }
+
+        private Token HandleNumber()
+        {
+            var number = new StringBuilder();
+            number.Append(_function[_index++]);
+            while (_index < _function.Length &&
+                (char.IsNumber(_function[_index]) || _function[_index] == '.'))
+            {
+                number.Append(_function[_index++]);
+            }
+            return new Token(number.ToString(), TokenType.Constant);
         }
 
         private bool IsAlpha(char c)

@@ -16,6 +16,8 @@ namespace ExpressionEngine.Renderer.Commands
 
         public override void Execute(Arguments arguments)
         {
+            arguments.GuardArgumentCount(1);
+
             IExpression? expression;
             if (State.IsExpression(arguments[0]))
             {

@@ -74,6 +74,12 @@ namespace ExpressionEngine.Renderer.Infrastructure
             }
         }
 
+        public void GuardArgumentCountMax(int maximum)
+        {
+            if (_tokens.Length > maximum)
+                throw new CommandException(Resources.ErrorArgumentCountMax, maximum.ToString(), _tokens.Length.ToString());
+        }
+
         public IEnumerable<T> Parse<T>(int start, int end)
         {
             if (end > -1)
@@ -108,8 +114,12 @@ namespace ExpressionEngine.Renderer.Infrastructure
             if (typeof(T).IsEnum)
             {
                 bool convert = Enum.TryParse(typeof(T), _tokens[index], true, out var obj);
+
                 if (convert && obj != null)
                 {
+                    if (!Enum.IsDefined(typeof(T), obj))
+                        throw new CommandException(Resources.ErrorParsing, typeof(T).Name);
+
                     result = (T)obj;
                 }
                 if (handle)

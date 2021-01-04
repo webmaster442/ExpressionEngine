@@ -15,6 +15,8 @@ namespace ExpressionEngine.Renderer.Commands
 
         public override void Execute(Arguments arguments)
         {
+            arguments.GuardArgumentCountMax(1);
+
             if (arguments.Count ==0 )
             {
                 State.Clear();

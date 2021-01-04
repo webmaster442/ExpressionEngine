@@ -78,13 +78,35 @@ namespace ExpressionEngine.Tests
             Assert.AreEqual(expected, _sut.State.Ans.ToString());
         }
 
+        [TestCase("deg")]
+        [TestCase("rad")]
+        [TestCase("grad")]
+        public void TestValidModes(string mode)
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                _sut.Run("mode " + mode);
+            });
+        }
+
+        [TestCase("")]
+        [TestCase("asd")]
+        [TestCase("32")]
+        public void TestInvalidModes(string mode)
+        {
+            Assert.Throws<CommandException>(() =>
+            {
+                _sut.Run("mode " + mode);
+            });
+        }
+
 
         [Test]
         public void TestUnsetAll()
         {
             Assert.AreEqual(4, _sut.State.Count);
 
-            _sut.State.Clear();
+            _sut.Run("unset");
 
             Assert.AreEqual(2, _sut.State.Count);
         }
@@ -96,7 +118,7 @@ namespace ExpressionEngine.Tests
 
             Assert.AreEqual(5, _sut.State.Count);
 
-            _sut.State.Clear("x");
+            _sut.Run("unset x");
 
             Assert.AreEqual(4, _sut.State.Count);
         }

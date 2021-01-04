@@ -120,6 +120,9 @@
   <data name="ErrorArgumentCount" xml:space="preserve">
     <value>This command requires {0} parameters. {1} was given.</value>
   </data>
+  <data name="ErrorArgumentCountMax" xml:space="preserve">
+    <value>This command requires maximum {0} parameters. {1} was given.</value>
+  </data>
   <data name="ErrorArgumentCountMin" xml:space="preserve">
     <value>This command requires at least {0} parameters. {1} was given.</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="ErrorEvaluate" xml:space="preserve">
     <value>Can't evaluate: {0}</value>
+  </data>
+  <data name="ErrorNotCommand" xml:space="preserve">
+    <value>Variable {0} is not a Command</value>
   </data>
   <data name="ErrorParsing" xml:space="preserve">
     <value>Argument can't be parsed to type: {0}</value>

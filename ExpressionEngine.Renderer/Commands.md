@@ -47,14 +47,3 @@ Examples:
 mode
 mode rad
 ```
-
-## Simplify
-
-Simplifies an expression
-
-Examples:
-
-```
-set exp 2*x/2
-simplify exp
-```

@@ -70,6 +70,15 @@ namespace ExpressionEngine.Renderer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This command requires maximum {0} parameters. {1} was given..
+        /// </summary>
+        internal static string ErrorArgumentCountMax {
+            get {
+                return ResourceManager.GetString("ErrorArgumentCountMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This command requires at least {0} parameters. {1} was given..
         /// </summary>
         internal static string ErrorArgumentCountMin {
@@ -102,6 +111,15 @@ namespace ExpressionEngine.Renderer.Properties {
         internal static string ErrorEvaluate {
             get {
                 return ResourceManager.GetString("ErrorEvaluate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable {0} is not a Command.
+        /// </summary>
+        internal static string ErrorNotCommand {
+            get {
+                return ResourceManager.GetString("ErrorNotCommand", resourceCulture);
             }
         }
         

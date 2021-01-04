@@ -8,7 +8,7 @@ using ExpressionEngine.Renderer.Properties;
 
 namespace ExpressionEngine.Renderer.Commands
 {
-    public class ModeCommand : RendererCommandBase
+    internal class ModeCommand : RendererCommandBase
     {
         public ModeCommand(IWriter writer, IState state) : base(writer, state)
         {
@@ -16,11 +16,13 @@ namespace ExpressionEngine.Renderer.Commands
 
         public override void Execute(Arguments arguments)
         {
+            arguments.GuardArgumentCountMax(1);
+
             if (arguments.Count == 0)
             {
                 Writer.WriteLine(ExpressionParser.AngleMode);
             }
-            if (arguments.TryParse<AngleMode>(0, out AngleMode result))
+            if (arguments.TryParse(0, out AngleMode result))
             {
                 ExpressionParser.AngleMode = result;
             }
