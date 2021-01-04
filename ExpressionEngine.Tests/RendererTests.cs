@@ -51,6 +51,24 @@ namespace ExpressionEngine.Tests
             }
         }
 
+        [Test]
+        public void TestLetCopyVar()
+        {
+            _sut.Run("let x 88");
+            _sut.Run("let copy x");
+
+            Assert.AreEqual("88", _sut.State["copy"].ToString());
+        }
+
+        [Test]
+        public void TestLetCopyExpression()
+        {
+            _sut.Run("let asd sin(x)*2");
+            _sut.Run("let asdcopy asd");
+
+            Assert.AreEqual("(sin(x) * 2)", _sut.State.GetExpression("asdcopy").ToString());
+        }
+
         [TestCase("eval 33+22", "55")]
         [TestCase("eval expr", "6")]
         public void TestEvalCommand(string command, string expected)

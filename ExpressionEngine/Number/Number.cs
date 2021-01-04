@@ -254,6 +254,16 @@ namespace ExpressionEngine.Numbers
             return left.CompareTo(right);
         }
 
+        public INumber Clone()
+        {
+            return new Number(Numerator, Denominator);
+        }
+
+        object ICloneable.Clone()
+        {
+            return new Number(Numerator, Denominator);
+        }
+
         public static Number operator *(Number a, Number b)
         {
             if (NumberAlgorithms.TryHandleSpecialCase(a, b, out Number value))

@@ -27,6 +27,13 @@ namespace ExpressionEngine
         INumber this[string variable] { get; set; }
 
         /// <summary>
+        /// Cheks if a variable or constant is defined or not
+        /// </summary>
+        /// <param name="variable">Variable to check</param>
+        /// <returns>true, if variable or constant defined</returns>
+        bool IsDefined(string variable);
+
+        /// <summary>
         /// Exception safe alternative for setting a varaible
         /// </summary>
         /// <param name="variable">variable name</param>

@@ -11,6 +11,7 @@ let x 0b_1111_1111
 let x 01247
 let x 3+2
 let y x*2
+let z y
 ```
 
 ## Eval
@@ -33,4 +34,27 @@ Examples:
 ```
 unset
 unset y
+```
+
+
+## Mode
+
+Rerurns the current trigonometry mode or sets it. Valid values: Deg, Rad, Grad. Default is deg.
+
+Examples: 
+
+```
+mode
+mode rad
+```
+
+## Simplify
+
+Simplifies an expression
+
+Examples:
+
+```
+set exp 2*x/2
+simplify exp
 ```

@@ -127,5 +127,11 @@ namespace ExpressionEngine.Renderer
                 return true;
             }
         }
+
+        public bool IsDefined(string variable)
+        {
+            return _contants.ContainsKey(variable)
+                || _variables.ContainsKey(variable);
+        }
     }
 }

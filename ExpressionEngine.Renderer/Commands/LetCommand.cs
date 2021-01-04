@@ -1,4 +1,10 @@
-﻿using ExpressionEngine.Renderer.Infrastructure;
+﻿//-----------------------------------------------------------------------------
+// (c) 2021 Ruzsinszki Gábor
+// This code is licensed under MIT license (see LICENSE for details)
+//-----------------------------------------------------------------------------
+
+using ExpressionEngine.Renderer.Infrastructure;
+using System;
 
 namespace ExpressionEngine.Renderer.Commands
 {
@@ -15,10 +21,26 @@ namespace ExpressionEngine.Renderer.Commands
             {
                 State[arguments[0]] = value;
             }
+            else if (State.IsExpression(arguments[1]))
+            {
+                CopyExpression(arguments[0], arguments[1]);
+            }
+            else if (State.IsDefined(arguments[1]))
+            {
+                State[arguments[0]] = State[arguments[1]].Clone();
+            }
             else
             {
                 ParseAsExpression(arguments);
             }
+        }
+
+        private void CopyExpression(string target, string source)
+        {
+            ExpressionParser parser = new ExpressionParser();
+            var txt = State.GetExpression(source)?.ToString() ?? "";
+            IExpression? parsed = parser.Parse(txt, State);
+            State.SetExpression(target, parsed);
         }
 
         private void ParseAsExpression(Arguments arguments)
