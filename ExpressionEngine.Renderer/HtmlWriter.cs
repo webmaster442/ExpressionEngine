@@ -28,11 +28,6 @@ namespace ExpressionEngine.Renderer
             _buffer.AppendLine(str);
         }
 
-        public void WriteLine()
-        {
-            _buffer.AppendLine();
-        }
-
         public override string ToString()
         {
             return $"<pre><code>\r\n{_buffer}\r\n</code></pre>\r\n";
@@ -42,6 +37,8 @@ namespace ExpressionEngine.Renderer
         {
             if (o != null)
                 _buffer.AppendLine(o.ToString());
+            else
+                _buffer.AppendLine();
         }
 
         public void Write(object? o)

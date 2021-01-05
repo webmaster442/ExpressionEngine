@@ -25,8 +25,7 @@ namespace ExpressionEngine.Renderer.Commands
             }
             else
             {
-                ExpressionParser parser = new ExpressionParser();
-                expression = parser.Parse(arguments[0], State);
+                expression = ParseExpression(arguments[0]);
             }
             INumber? result = expression?.Evaluate();
             if (result == null)

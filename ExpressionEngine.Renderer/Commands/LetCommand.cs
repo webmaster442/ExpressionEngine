@@ -4,7 +4,6 @@
 //-----------------------------------------------------------------------------
 
 using ExpressionEngine.Renderer.Infrastructure;
-using System;
 
 namespace ExpressionEngine.Renderer.Commands
 {
@@ -45,8 +44,7 @@ namespace ExpressionEngine.Renderer.Commands
 
         private void ParseAsExpression(Arguments arguments)
         {
-            var parser = new ExpressionParser();
-            var expression = parser.Parse(arguments[1], State);
+            var expression = ParseExpression(arguments[1]);
             expression = expression?.Simplify();
 
             if (expression?.IsConstantExpression() == true)

@@ -11,7 +11,6 @@ namespace ExpressionEngine.Renderer
         void Write(object? o);
         void Write(string format, params object[] arguments);
         void WriteLine(string format, params object[] arguments);
-        void WriteLine();
         string ToString();
     }
 }

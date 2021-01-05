@@ -18,6 +18,12 @@ namespace ExpressionEngine.Renderer.Commands
             State = state;
         }
 
+        protected IExpression? ParseExpression(string expression)
+        {
+            ExpressionParser parser = new ExpressionParser();
+            return parser.Parse(expression, State);
+        }
+
         public abstract void Execute(Arguments arguments);
     }
 }

@@ -122,5 +122,30 @@ namespace ExpressionEngine.Tests
 
             Assert.AreEqual(4, _sut.State.Count);
         }
+
+        [Test]
+        public void TestDeriveStored()
+        {
+            _sut.Run("let simple x^2");
+            _sut.Run("derive simple x");
+
+            Assert.AreEqual("(2 * x)", _sut.State.GetExpression("simple").ToString());
+        }
+
+        [Test]
+        public void TestPrintNumber()
+        {
+            _sut.Run("print test");
+
+            _writerMock.Verify(x => x.WriteLine(It.IsAny<INumber>()), Times.Once);
+        }
+
+        [Test]
+        public void TestPrintExpression()
+        {
+            _sut.Run("print expr");
+
+            _writerMock.Verify(x => x.WriteLine(It.IsAny<IExpression>()), Times.Once);
+        }
     }
 }

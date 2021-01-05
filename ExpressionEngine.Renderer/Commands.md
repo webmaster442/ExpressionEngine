@@ -47,3 +47,24 @@ Examples:
 mode
 mode rad
 ```
+
+## Derive
+
+Derives an expression
+
+Examples: 
+
+```
+let expression = 2*x
+derive expression x
+```
+
+## Print
+
+Print a variable value
+
+Examples: 
+
+```
+print x
+```
