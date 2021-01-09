@@ -5,6 +5,11 @@
     <Nullable>enable</Nullable>
     <OutputPath>..\bin\$(Configuration)\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <PackageProjectUrl>https://github.com/webmaster442/ExpressionEngine</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/webmaster442/ExpressionEngine</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>expression,evaluator,syntax tree,calculator</PackageTags>
+    <PackageLicenseFile>LICENCE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +25,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENCE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

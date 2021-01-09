@@ -40,12 +40,12 @@ jobs:
       run: dotnet test --configuration Release --no-build --verbosity normal
       
     - name: Create nuget package
-      run: dotnet pack --configuration Release
+      run: dotnet pack ExpressionEngine.sln --configuration Release
     
     - name: Push nuget packages
-      run: dotnet nuget push ./bin/Release/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/webmaster442/index.json --skip-duplicate
+      run: dotnet nuget push ./bin/Release/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/webmaster442/index.json --skip-duplicate --no-symbols true
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
         
     - name: Create tag
       run: |
