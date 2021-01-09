@@ -57,7 +57,7 @@ jobs:
       run: dotnet nuget push ./bin/Release/*.nupkg --source "github" --skip-duplicate --no-symbols true
       
     - name: cleanup
-      if: allways()
+      if: always()
       continue-on-error: true
       run: dotnet nuget remove source github
 
