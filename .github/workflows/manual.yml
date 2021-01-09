@@ -10,12 +10,10 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
   build:
-    # The type of runner that the job will run on
+
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: echo version
       run: echo "Package version will be ${{ github.event.inputs.versionName }}"
@@ -24,9 +22,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+        
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ExpressionEngine.sln
+      
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ExpressionEngine.sln --no-restore --configuration Release -p:Version=${{ github.event.inputs.versionName }}
+      
     - name: Test
       run: dotnet test --no-build --verbosity normal
