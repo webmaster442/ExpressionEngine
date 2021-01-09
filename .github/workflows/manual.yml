@@ -43,7 +43,10 @@ jobs:
       run: dotnet pack ExpressionEngine.sln --configuration Release
     
     - name: Ensure GitHub NuGet Source
-      run: dotnet nuget add source https://nuget.pkg.github.com/webmaster442/index.json -n github -u ${{ secrets.USER }} -p ${{ secrets.TOKEN }} --store-password-in-clear-text
+      env:
+        USR: ${{ secrets.USER }}
+        PAS: ${{ secrets.TOKEN }}
+      run: dotnet nuget add source https://nuget.pkg.github.com/webmaster442/index.json -n github -u "$USR" -p "$PAS" --store-password-in-clear-text
 
     - name: Push nuget packages
       run: dotnet nuget push ./bin/Release/*.nupkg --source "github" --skip-duplicate --no-symbols true
