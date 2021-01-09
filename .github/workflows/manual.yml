@@ -31,9 +31,7 @@ jobs:
         dotnet-version: 5.0.x
         
     - name: Restore dependencies
-      run: dotnet restore ExpressionEngine.sln
-      env:
-         NUGET_AUTH_TOKEN: ${{ github.token }}
+      run: dotnet restore ExpressionEngine.sln --no-cache
       
     - name: Build
       run: dotnet build ExpressionEngine.sln --nologo --no-restore --configuration Release -p:Version=${{ github.event.inputs.versionName }}
