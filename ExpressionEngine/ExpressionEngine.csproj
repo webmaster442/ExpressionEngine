@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net50</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>netstandard2.1</TargetFramework>
+      <Nullable>enable</Nullable>
     <OutputPath>..\bin\$(Configuration)\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <PackageProjectUrl>https://github.com/webmaster442/ExpressionEngine</PackageProjectUrl>
