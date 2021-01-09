@@ -40,17 +40,12 @@ jobs:
       run: dotnet test --configuration Release --no-build --verbosity normal
       
     - name: Create nuget package
-      run: dotnet pack ExpressionEngine.sln --configuration Release
+      run: dotnet pack ExpressionEngine.sln --configuration Release --no-build
     
-    - name: Ensure GitHub NuGet Source
-      env:
-        USR: ${{ secrets.USER }}
-        PAS: ${{ secrets.TOKEN }}
-      run: |
-        dotnet nuget add source https://nuget.pkg.github.com/webmaster442/index.json -n github -u "$USR" -p "$PAS" --store-password-in-clear-text
-
     - name: Push nuget packages
-      run: dotnet nuget push ./bin/Release/*.nupkg --source "github" --skip-duplicate --no-symbols true
+      run: dotnet nuget push ./bin/Release/*.nupkg --skip-duplicate --no-symbols true
+      env:
+         NUGET_AUTH_TOKEN: ${{ github.token }}
       
     - name: cleanup
       run: dotnet nuget remove source github
