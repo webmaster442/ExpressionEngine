@@ -43,7 +43,7 @@ jobs:
       run: dotnet pack --configuration Release
     
     - name: Push nuget packages
-      run: dotnet nuget push ./bin/Release/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/webmaster442/index.json --skip-duplicate --no-symbols
+      run: dotnet nuget push ./bin/Release/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/webmaster442/index.json --skip-duplicate
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
