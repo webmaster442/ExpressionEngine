@@ -42,8 +42,16 @@ jobs:
     - name: Create nuget package
       run: dotnet pack ExpressionEngine.sln --configuration Release
     
+    - name: Setup Github Package registry tool
+      run: dotnet tool install --global --verbosity minimal --no-cache gpr
+    
     - name: Push nuget packages
-      run: dotnet nuget push ./bin/Release/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/webmaster442/index.json --skip-duplicate --no-symbols true
+      run: |
+        gpr push \
+        --api-key ${{ secrets.PACKAGE_TOKEN }} \
+        --repository ${{ github.repository }} \
+        --retries 3 \
+        ./bin/Release/*.nupkg
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
         
