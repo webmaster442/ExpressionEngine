@@ -44,7 +44,7 @@ jobs:
     
     - name: Ensure GitHub NuGet Source
       run: |
-        dotnet nuget add source ${{ env.NUGET_URL }} \
+        dotnet nuget add source https://nuget.pkg.github.com/webmaster442/index.json \
         -n github \
         -u ${GITHUB_TOKEN} \
         -p ${GITHUB_USER} \
