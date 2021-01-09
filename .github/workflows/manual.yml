@@ -42,22 +42,23 @@ jobs:
     - name: Create nuget package
       run: dotnet pack ExpressionEngine.sln --configuration Release
     
-    - name: Setup Github Package registry tool
-      run: dotnet tool install --global --verbosity minimal --no-cache gpr
-    
-    - name: Push nuget packages
+    - name: Ensure GitHub NuGet Source
       run: |
-        gpr push \
-        --api-key ${{ secrets.PACKAGE_TOKEN }} \
-        --repository ${{ github.repository }} \
-        --retries 3 \
-        ./bin/Release/*.nupkg
+        dotnet nuget add source ${{ env.NUGET_URL }} \
+        -n github \
+        -u ${GITHUB_TOKEN} \
+        -p ${GITHUB_USER} \
+        --store-password-in-clear-text
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        
-    - name: Create tag
-      run: |
-        git tag ${{ github.event.inputs.versionName }}"
-        git push origin --tags
+        GITHUB_USER: ${{ secrets.TOKEN}}
+    
+    - name: Push nuget packages
+      run: dotnet nuget push ./bin/Release/*.nupkg --source "github" --skip-duplicate --no-symbols true
+      
+    - name: cleanup
+      if: allways()
+      continue-on-error: true
+      run: dotnet nuget remove source github
 
     
