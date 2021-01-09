@@ -20,11 +20,10 @@ jobs:
       with:
         ref: main
     
-    - name: echo version
-      run: echo "Package version will be ${{ github.event.inputs.versionName }}"
-      
-    - name: echo pwd
-      run: echo $(pwd)
+    - name: echo check version
+      run: |
+        echo ${{ github.event.inputs.versionName }} | grep -oE '^([0-9]){1,4}\.([0-9]){1,2}\.([0-9]){1,2}\.([0-9]){1,2}$' -
+        echo "Package version will be ${{ github.event.inputs.versionName }}"
       
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -35,7 +34,22 @@ jobs:
       run: dotnet restore ExpressionEngine.sln
       
     - name: Build
-      run: dotnet build ExpressionEngine.sln --no-restore --configuration Release -p:Version=${{ github.event.inputs.versionName }}
+      run: dotnet build ExpressionEngine.sln --nologo --no-restore --configuration Release -p:Version=${{ github.event.inputs.versionName }}
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --configuration Release --no-build --verbosity normal
+      
+    - name: Create nuget package
+      run: dotnet pack --configuration Release
+    
+    - name: Push nuget packages
+      run: dotnet nuget push ./bin/Release/*.nupkg -k ${GITHUB_TOKEN} -s https://nuget.pkg.github.com/webmaster442/index.json --skip-duplicate --no-symbols
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Create tag
+      run: |
+        git tag ${{ github.event.inputs.versionName }}"
+        git push origin --tags
+
+    
