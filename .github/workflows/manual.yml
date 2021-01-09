@@ -3,12 +3,9 @@ name: Create release
 on:
   workflow_dispatch:
     inputs:
-      version:
-        # Friendly description to be shown in the UI instead of 'name'
+      versionName:
         description: 'Version number'
-        # Default value if no value is explicitly provided
         default: ''
-        # Input has to be provided for the workflow to run
         required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -21,7 +18,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: echo version
-      run: echo "Package version will be: ${{ github.event.inputs.version }}"
+      run: echo "Package version will be ${{ github.event.inputs.versionName }}"
+      
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
