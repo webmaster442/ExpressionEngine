@@ -45,12 +45,10 @@ jobs:
     - name: Push nuget packages
       run: |
         dotnet nuget add source https://nuget.pkg.github.com/webmaster442/index.json -n github
-        dotnet nuget push ./bin/Release/*.nupkg -s github -k $NUGET_AUTH_TOKEN --skip-duplicate --no-symbols true
+        for i in $(ls ./bin/Release/*.nupkg)
+        do
+        dotnet nuget push $i -s github -k $NUGET_AUTH_TOKEN --skip-duplicate --no-symbols true
+        done
         dotnet nuget remove source github
       env:
          NUGET_AUTH_TOKEN: ${{ github.token }}
-      
-    - name: cleanup
-      run: dotnet nuget remove source github
-
-    
