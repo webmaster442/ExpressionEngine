@@ -46,7 +46,8 @@ jobs:
       env:
         USR: ${{ secrets.USER }}
         PAS: ${{ secrets.TOKEN }}
-      run: dotnet nuget add source https://nuget.pkg.github.com/webmaster442/index.json -n github -u "$USR" -p "$PAS" --store-password-in-clear-text
+      run: |
+        dotnet nuget add source https://nuget.pkg.github.com/webmaster442/index.json -n github -u "$USR" -p "$PAS" --store-password-in-clear-text
 
     - name: Push nuget packages
       run: dotnet nuget push ./bin/Release/*.nupkg --source "github" --skip-duplicate --no-symbols true
