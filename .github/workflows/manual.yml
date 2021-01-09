@@ -32,6 +32,8 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore ExpressionEngine.sln
+      env:
+         NUGET_AUTH_TOKEN: ${{ github.token }}
       
     - name: Build
       run: dotnet build ExpressionEngine.sln --nologo --no-restore --configuration Release -p:Version=${{ github.event.inputs.versionName }}
@@ -40,7 +42,7 @@ jobs:
       run: dotnet test --configuration Release --no-build --verbosity normal
       
     - name: Create nuget package
-      run: dotnet pack ExpressionEngine.sln --configuration Release --no-build
+      run: dotnet pack ExpressionEngine.sln --configuration Release --no-build -p:PackageVersion=${{ github.event.inputs.versionName }}
     
     - name: Push nuget packages
       run: dotnet nuget push ./bin/Release/*.nupkg -s github -k $NUGET_AUTH_TOKEN --skip-duplicate --no-symbols true
