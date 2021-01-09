@@ -13,10 +13,18 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+   
     steps:
+    - name: Clone repo
+      uses: actions/checkout@v2
+      with:
+        ref: main
+    
     - name: echo version
       run: echo "Package version will be ${{ github.event.inputs.versionName }}"
+      
+    - name: echo pwd
+      run: echo $(pwd)
       
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
