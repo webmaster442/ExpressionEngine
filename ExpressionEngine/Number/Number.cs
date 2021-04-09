@@ -321,7 +321,7 @@ namespace ExpressionEngine.Numbers
 
         public static bool operator ==(Number? left, Number? right)
         {
-            return EqualityComparer<Number>.Default.Equals(left, right);
+            return EqualityComparer<Number>.Default.Equals(left!, right!);
         }
 
         public static bool operator !=(Number? left, Number? right)
