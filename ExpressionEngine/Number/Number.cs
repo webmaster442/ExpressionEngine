@@ -11,7 +11,7 @@ using System.Numerics;
 
 namespace ExpressionEngine.Numbers
 {
-    public class Number: INumber, IComparable<Number>
+    public sealed class Number: INumber, IComparable<Number>
     {
         public static readonly Number Zero = new Number(BigInteger.Zero);
         public static readonly Number One = new Number(BigInteger.One);
@@ -202,6 +202,17 @@ namespace ExpressionEngine.Numbers
             return double.Parse(str, CultureInfo.InvariantCulture);
         }
 
+        public decimal ToDecimal()
+        {
+            var str = ToString(CultureInfo.InvariantCulture);
+            return decimal.Parse(str, CultureInfo.InvariantCulture);
+        }
+
+        public DateTime ToUtcDate()
+        {
+            return DateFunctions.UnixTimeToUtcDateTime(ToDouble());
+        }
+
         public bool Equals(INumber? other)
         {
             return Equals(other as Number);
@@ -263,6 +274,7 @@ namespace ExpressionEngine.Numbers
         {
             return new Number(Numerator, Denominator);
         }
+
 
         public static Number operator *(Number a, Number b)
         {
@@ -352,6 +364,21 @@ namespace ExpressionEngine.Numbers
         public static implicit operator Number(double value)
         {
             string num = value.ToString(CultureInfo.InvariantCulture);
+            return Parse(num, CultureInfo.InvariantCulture);
+        }
+
+        public static implicit operator Number(decimal value)
+        {
+            string num = value.ToString(CultureInfo.InvariantCulture);
+            return Parse(num, CultureInfo.InvariantCulture);
+        }
+
+        public static implicit operator Number(DateTime dateTime)
+        {
+            if (dateTime.Kind != DateTimeKind.Utc)
+                dateTime = dateTime.ToUniversalTime();
+
+            var num = DateFunctions.UtcDateTimeToUnixTime(dateTime).ToString(CultureInfo.InvariantCulture);
             return Parse(num, CultureInfo.InvariantCulture);
         }
 
