@@ -3,13 +3,13 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Numbers;
+using ExpressionEngine.Maths;
 using NUnit.Framework;
 
 namespace ExpressionEngine.Tests.Maths
 {
     [TestFixture]
-    public class TrigonometryTests: TestBase
+    public class TrigonometryTests
     {
         [TestCase(0, 0)]
         [TestCase(45, 0.70710678118654752440084436210485)]
@@ -20,9 +20,9 @@ namespace ExpressionEngine.Tests.Maths
         [TestCase(360, 0)]
         public void TestSin(double input, double expected)
         {
-            NumberMath.AngleMode = AngleMode.Deg;
-            Number result = NumberMath.Sin(input);
-            AreEqual(expected, result, 1E-12);
+            Trigonometry.AngleMode = AngleMode.Deg;
+            double result = Trigonometry.Sin(input);
+            Assert.AreEqual(expected, result, 1E-12);
         }
 
         [TestCase(0, 1)]
@@ -34,9 +34,9 @@ namespace ExpressionEngine.Tests.Maths
         [TestCase(360, 1)]
         public void TestCos(double input, double expected)
         {
-            NumberMath.AngleMode = AngleMode.Deg;
-            Number result = NumberMath.Cos(input);
-            AreEqual(expected, result, 1E-12);
+            Trigonometry.AngleMode = AngleMode.Deg;
+            double result = Trigonometry.Cos(input);
+            Assert.AreEqual(expected, result, 1E-12);
         }
     }
 }

@@ -5,7 +5,6 @@
 
 using ExpressionEngine.Base;
 using ExpressionEngine.Maths;
-using ExpressionEngine.Numbers;
 using System;
 
 namespace ExpressionEngine.BaseExpressions
@@ -48,7 +47,7 @@ namespace ExpressionEngine.BaseExpressions
             return $"({Left} & {Right})";
         }
 
-        protected override Number Evaluate(Number number1, Number number2)
+        protected override double Evaluate(double number1, double number2)
         {
             return BooleanFunctions.Or(number1, number2);
         }

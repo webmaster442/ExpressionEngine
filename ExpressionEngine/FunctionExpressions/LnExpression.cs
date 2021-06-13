@@ -5,7 +5,6 @@
 
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
-using ExpressionEngine.Numbers;
 using System;
 
 namespace ExpressionEngine.FunctionExpressions
@@ -37,9 +36,9 @@ namespace ExpressionEngine.FunctionExpressions
             return $"ln({Child})";
         }
 
-        protected override Number Evaluate(Number number)
+        protected override double Evaluate(double number)
         {
-            return NumberMath.Ln(number);
+            return Math.Log(number);
         }
     }
 }

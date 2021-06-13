@@ -3,16 +3,15 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Numbers;
+using ExpressionEngine.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Numerics;
 
 namespace ExpressionEngine
 {
-    public static class NumberParser
+    public class NumberParser
     {
         private static readonly HashSet<char> NumberTokens = new HashSet<char>
         {
@@ -20,12 +19,12 @@ namespace ExpressionEngine
             'a', 'b', 'c', 'd', 'e', 'f', 'x', 'b', '.', '_', '-', '+'
         };
 
-        public static bool ParseNumber(string number, out INumber d)
+        public static bool ParseNumber(string number, out double d)
         {
             number = number.ToLower().Replace("_", "");
             if (!number.All(c => NumberTokens.Contains(c)))
             {
-                d = new Number(NumberState.NaN);
+                d = double.NaN;
                 return false;
             }
 
@@ -36,39 +35,22 @@ namespace ExpressionEngine
             else if (number.StartsWith("0"))
                 return ParseInt(number[1..], 8, out d);
 
-            bool result = Number.TryParse(number, CultureInfo.InvariantCulture, out Number n);
-            d = n;
-            return result;
+           return double.TryParse(number, NumberStyles.Float, CultureInfo.InvariantCulture, out d);
         }
 
-        private static bool ParseInt(string number, int system, out INumber d)
+        private static bool ParseInt(string number, int system, out double d)
         {
             try
             {
-                BigInteger result = ParseBigInteger(number, system);
-                d = new Number(result);
+                long result = Convert.ToInt64(number, system);
+                d = result;
                 return true;
             }
             catch (Exception)
             {
-                d = new Number(NumberState.NaN);
+                d = double.NaN;
                 return false;
             }
-        }
-
-        private static int ValueOf(char digit)
-        {
-            if (digit >= '0' && digit <= '9')
-                return digit - '0';
-            else if (digit >= 'a' && digit <= 'f')
-                return (digit - 'a') + 10;
-            else
-                return (digit - 'A') + 10;
-        }
-
-        public static BigInteger ParseBigInteger(string value, int baseOfValue)
-        {
-            return value.Aggregate(new BigInteger(), (current, digit) => current * baseOfValue + ValueOf(digit));
         }
     }
 }

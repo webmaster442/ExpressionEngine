@@ -3,44 +3,42 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Numbers;
-
 namespace ExpressionEngine.Maths
 {
     public static class BooleanFunctions
     {
-        public static Number And(Number a, Number b)
+        public static double And(double a, double b)
         {
-            var b1 = a == Number.One;
-            var b2 = b == Number.One;
+            var b1 = a == 1.0;
+            var b2 = b == 1.0;
 
             if (b1 && b2)
-                return Number.One;
+                return 1.0;
             else
-                return Number.Zero;
+                return 0.0;
 
         }
 
-        public static Number Or(Number a, Number b)
+        public static double Or(double a, double b)
         {
-            var b1 = a == Number.One;
-            var b2 = b == Number.One;
+            var b1 = a == 1.0;
+            var b2 = b == 1.0;
 
             if (b1 || b2)
-                return Number.One;
+                return 1.0;
             else
-                return Number.Zero;
+                return 0.0;
         }
 
-        public static Number Not(Number a)
+        public static double Not(double a)
         {
-            var b1 = a == Number.One;
+            var b1 = a == 1.0;
 
             if (!b1)
             {
-                return Number.One;
+                return 1.0;
             }
-            return Number.Zero;
+            return 0.0;
         }
     }
 }

@@ -3,7 +3,6 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Numbers;
 using System;
 using System.Globalization;
 
@@ -13,9 +12,9 @@ namespace ExpressionEngine.BaseExpressions
     {
         public IVariables? Variables { get; }
 
-        public Number Value { get; }
+        public double Value { get; }
 
-        public ConstantExpression(Number value)
+        public ConstantExpression(double value)
         {
             Value = value;
         }
@@ -25,7 +24,7 @@ namespace ExpressionEngine.BaseExpressions
             return new ConstantExpression(0);
         }
 
-        public INumber Evaluate()
+        public double Evaluate()
         {
             return Value;
         }

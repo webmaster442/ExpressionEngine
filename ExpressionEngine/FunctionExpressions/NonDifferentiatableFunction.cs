@@ -5,7 +5,6 @@
 
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
-using ExpressionEngine.Numbers;
 using ExpressionEngine.Properties;
 using System;
 
@@ -13,10 +12,10 @@ namespace ExpressionEngine.FunctionExpressions
 {
     internal class NonDifferentiatableFunction : UnaryExpression
     {
-        private readonly Func<Number, Number> _function;
+        private readonly Func<double, double> _function;
         private readonly string _name;
 
-        public NonDifferentiatableFunction(IExpression? child, Func<Number, Number> function, string name) : base(child)
+        public NonDifferentiatableFunction(IExpression? child, Func<double, double> function, string name) : base(child)
         {
             _function = function;
             _name = name;
@@ -43,7 +42,7 @@ namespace ExpressionEngine.FunctionExpressions
             return $"{_name}({Child})";
         }
 
-        protected override Number Evaluate(Number number)
+        protected override double Evaluate(double number)
         {
             return _function.Invoke(number);
         }

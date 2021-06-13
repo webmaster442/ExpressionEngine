@@ -8,7 +8,6 @@ using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.FunctionExpressions;
 using ExpressionEngine.LogicExpressions;
 using ExpressionEngine.Maths;
-using ExpressionEngine.Numbers;
 using ExpressionEngine.Properties;
 using System;
 using System.Collections.Generic;
@@ -30,15 +29,10 @@ namespace ExpressionEngine
         /// <param name="to">End value</param>
         /// <param name="steps">Number of steps</param>
         /// <returns>Integration result</returns>
-        public static INumber Integrate(this IExpression expression, string var, INumber from, INumber to, int steps = 2048)
+        public static double Integrate(this IExpression expression, string var, double from, double to, int steps = 2048)
         {
-            Number? _from = from as Number;
-            Number? _to = to as Number;
 
-            if (_from == null || _to == null)
-                throw new ExpressionEngineException();
-
-            if (_to < _from)
+            if (to < from)
                 throw new ArgumentException(Resources.IntegrateErrorRange);
 
             if (steps < 2 || (steps % 2 == 1))
@@ -52,15 +46,15 @@ namespace ExpressionEngine
 
             if (trigonometric)
             {
-                switch (NumberMath.AngleMode)
+                switch (Trigonometry.AngleMode)
                 {
                     case AngleMode.Deg:
-                        _from = NumberMath.DegToRad(_from);
-                        _to = NumberMath.DegToRad(_to);
+                        from = DoubleFunctions.DegToRad(from);
+                        to = DoubleFunctions.DegToRad(to);
                         break;
                     case AngleMode.Grad:
-                        _from = NumberMath.DegToGrad(_from);
-                        _to = NumberMath.DegToGrad(_to);
+                        from = DoubleFunctions.DegToGrad(from);
+                        to = DoubleFunctions.DegToGrad(to);
                         break;
                 }
             }
@@ -71,36 +65,36 @@ namespace ExpressionEngine
             if (string.IsNullOrEmpty(var))
                 throw new ArgumentNullException(nameof(var));
 
-            AngleMode old = NumberMath.AngleMode;
-            NumberMath.AngleMode = AngleMode.Rad;
+            AngleMode old = Trigonometry.AngleMode;
+            Trigonometry.AngleMode = AngleMode.Rad;
 
-            Number h = (_to - _from) / steps;
-            Number x = _from + h;
-            Number s = 0.0;
+            double h = (to - from) / steps;
+            double x = from + h;
+            double s = 0.0;
             for (int i=1; i<steps/2; i++)
             {
                 vars[var] = x;
-                Number Fx = (expression.Evaluate() as Number)!;
+                double Fx = expression.Evaluate();
                 vars[var] = x + h;
-                Number Fx2 = (expression.Evaluate() as Number)!;
+                double Fx2 = expression.Evaluate();
 
                 s = s + (2 * Fx) + Fx2;
                 x += 2 * h;
             }
 
             vars[var] = from;
-            Number Fxa = (expression.Evaluate() as Number)!;
+            double Fxa = expression.Evaluate();
             vars[var] = to;
-            Number Fxb = (expression.Evaluate() as Number)!;
+            double Fxb = expression.Evaluate();
 
-            vars[var] = _to - h;
-            Number Fxhb = (expression.Evaluate() as Number)!;
+            vars[var] = to - h;
+            double Fxhb = expression.Evaluate();
 
-            Number result = (h / 3) * ((2 * s) + Fxa + Fxb + (4 * Fxhb));
+            double result = (h / 3) * ((2 * s) + Fxa + Fxb + (4 * Fxhb));
 
-            NumberMath.AngleMode = old;
+            Trigonometry.AngleMode = old;
 
-            return NumberMath.Round(result, 15);
+            return Math.Round(result, 2);
         }
 
         /// <summary>
@@ -176,9 +170,9 @@ namespace ExpressionEngine
                 string pattern = Utilities.GetBinaryValue(i, varNames.Length);
                 for (int j=0; j<varNames.Length; j++)
                 {
-                    vars[varNames[j]] = pattern[j] == '1' ? Number.One : Number.Zero;
+                    vars[varNames[j]] = pattern[j] == '1' ? 1.0 : 0.0;
                 }
-                if ((expression.Evaluate() as Number) == Number.One)
+                if (expression.Evaluate() == 1.0)
                 {
                     yield return i;
                 }

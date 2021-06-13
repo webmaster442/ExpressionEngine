@@ -5,7 +5,6 @@
 
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
-using ExpressionEngine.Numbers;
 using System;
 
 namespace ExpressionEngine.FunctionExpressions
@@ -31,7 +30,7 @@ namespace ExpressionEngine.FunctionExpressions
                 && newRight is ConstantExpression rightConst)
             {
                 // two constants
-                return new ConstantExpression(Evaluate(leftConst.Value, rightConst.Value));
+                return new ConstantExpression(Math.Log(leftConst.Value, rightConst.Value));
             }
             else
             {
@@ -44,9 +43,9 @@ namespace ExpressionEngine.FunctionExpressions
             return $"log({Left}, {Right})";
         }
 
-        protected override Number Evaluate(Number number1, Number number2)
+        protected override double Evaluate(double number1, double number2)
         {
-            return NumberMath.Log(number1, number2);
+            return Math.Log(number1, number2);
         }
     }
 }

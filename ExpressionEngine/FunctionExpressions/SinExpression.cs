@@ -6,7 +6,6 @@
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.Maths;
-using ExpressionEngine.Numbers;
 using System;
 
 namespace ExpressionEngine.FunctionExpressions
@@ -38,9 +37,9 @@ namespace ExpressionEngine.FunctionExpressions
             return $"sin({Child})";
         }
 
-        protected override Number Evaluate(Number number)
+        protected override double Evaluate(double number)
         {
-            return NumberMath.Round(NumberMath.Sin(number), 21);
+            return Math.Round(Trigonometry.Sin(number), 15);
         }
     }
 }

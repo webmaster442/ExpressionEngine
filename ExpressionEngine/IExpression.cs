@@ -18,13 +18,12 @@ namespace ExpressionEngine
         /// Evaluate an expression
         /// </summary>
         /// <returns>Result of expression</returns>
-        INumber Evaluate();
+        double Evaluate();
         /// <summary>
         /// Diferentiate an expression
         /// </summary>
         /// <param name="byVariable">Diferentation variable</param>
         /// <returns>Diferentiated expression</returns>
-        /// 
         IExpression? Differentiate(string byVariable);
         /// <summary>
         /// Simplifies an expresion

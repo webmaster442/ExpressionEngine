@@ -46,7 +46,7 @@ namespace ExpressionEngine.Tests
         //Logarithms
         [TestCase("ln(x)", "(1 / x)")]
         [TestCase("Log(x, e)", "(1 / x)")]
-        [TestCase("Log(x, 4)", "(0.72134752044448171348 * (1 / x))")]
+        [TestCase("Log(x, 4)", "(0.7213475204444817 * (1 / x))")]
         public void TestDerivatives(string expression, string expected)
         {
 

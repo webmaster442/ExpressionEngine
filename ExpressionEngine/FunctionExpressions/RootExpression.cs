@@ -5,7 +5,6 @@
 
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
-using ExpressionEngine.Numbers;
 using ExpressionEngine.Properties;
 using System;
 
@@ -44,7 +43,7 @@ namespace ExpressionEngine.FunctionExpressions
             if (leftConst != null && rightConst != null)
             {
                 // two constants
-                return new ConstantExpression(Evaluate(leftConst.Value, rightConst.Value));
+                return new ConstantExpression(Math.Pow(leftConst.Value, 1 / rightConst.Value));
             }
             if (rightConst != null)
             {
@@ -73,9 +72,9 @@ namespace ExpressionEngine.FunctionExpressions
             return $"Root({Left}, {Right})";
         }
 
-        protected override Number Evaluate(Number number1, Number number2)
+        protected override double Evaluate(double number1, double number2)
         {
-            return NumberMath.Pow(number1, 1 / number2);
+            return Math.Pow(number1, 1 / number2);
         }
     }
 }

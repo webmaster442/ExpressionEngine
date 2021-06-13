@@ -3,13 +3,12 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Numbers;
 using NUnit.Framework;
 
 namespace ExpressionEngine.Tests
 {
     [TestFixture]
-    public class EvaluateTests: TestBase
+    public class EvaluateTests
     {
         private ExpressionParser _sut;
 
@@ -46,6 +45,7 @@ namespace ExpressionEngine.Tests
         [TestCase("ln(100)", 4.6051701859880913680359829093687)]
         [TestCase("log(1024,2)", 10)]
         [TestCase("factorial(5)", 120)]
+        [TestCase("gamma(5)", 24)]
         [TestCase("0&0", 0)]
         [TestCase("0&1", 0)]
         [TestCase("1&0", 0)]
@@ -70,9 +70,9 @@ namespace ExpressionEngine.Tests
         {
             IExpression parsed = _sut.Parse(expression, Mocks.CreateVariableMock());
 
-            Number result = parsed.Evaluate() as Number;
+            double result = parsed.Evaluate();
 
-            AreEqual(expected, result, 1E-6);
+            Assert.AreEqual(expected, result, 1E-6);
         }
 
         [TestCase("1:2")]

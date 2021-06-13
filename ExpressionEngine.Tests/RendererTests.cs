@@ -137,7 +137,7 @@ namespace ExpressionEngine.Tests
         {
             _sut.Run("print test");
 
-            _writerMock.Verify(x => x.WriteLine(It.IsAny<INumber>()), Times.Once);
+            _writerMock.Verify(x => x.WriteLine(It.IsAny<double>()), Times.Once);
         }
 
         [Test]

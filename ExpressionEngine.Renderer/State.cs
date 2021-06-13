@@ -11,22 +11,22 @@ namespace ExpressionEngine.Renderer
 {
     internal class State : IState
     {
-        private Dictionary<string, INumber> _variables;
-        private Dictionary<string, INumber> _contants;
+        private Dictionary<string, double> _variables;
+        private Dictionary<string, double> _contants;
         private Dictionary<string, IExpression> _expressions;
 
         public State()
         {
-            _contants = new Dictionary<string, INumber>
+            _contants = new Dictionary<string, double>
             {
-                { "pi", NumberHelper.Pi },
-                { "e", NumberHelper.E }
+                { "pi", Math.PI },
+                { "e", Math.E }
             };
-            _variables = new Dictionary<string, INumber>();
+            _variables = new Dictionary<string, double>();
             _expressions = new Dictionary<string, IExpression>();
         }
 
-        public INumber this[string variable]
+        public double this[string variable]
         {
             get
             {
@@ -55,7 +55,7 @@ namespace ExpressionEngine.Renderer
 
         public IEnumerable<string> VariableNames => _variables.Keys;
 
-        public INumber Ans
+        public double Ans
         {
             get { return this["ans"]; }
             set { this["ans"] = value; }
@@ -110,7 +110,7 @@ namespace ExpressionEngine.Renderer
             _expressions[variableName] = expression;
         }
 
-        public bool TrySetValue(string variable, INumber value)
+        public bool TrySetValue(string variable, double value)
         {
             if (IsConstant(variable))
             {

@@ -24,7 +24,7 @@ namespace ExpressionEngine.Renderer.Commands
             }
             else
             {
-                INumber number = State[arguments[0]];
+                double number = State[arguments[0]];
                 Writer.WriteLine(number);
             }
         }

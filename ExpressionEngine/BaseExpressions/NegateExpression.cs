@@ -4,7 +4,6 @@
 //-----------------------------------------------------------------------------
 
 using ExpressionEngine.Base;
-using ExpressionEngine.Numbers;
 using System;
 
 namespace ExpressionEngine.BaseExpressions
@@ -36,7 +35,7 @@ namespace ExpressionEngine.BaseExpressions
             return $"(-{Child})";
         }
 
-        protected override Number Evaluate(Number number)
+        protected override double Evaluate(double number)
         {
             return -number;
         }

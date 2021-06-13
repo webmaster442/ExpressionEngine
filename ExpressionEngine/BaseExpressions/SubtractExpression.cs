@@ -4,7 +4,6 @@
 //-----------------------------------------------------------------------------
 
 using ExpressionEngine.Base;
-using ExpressionEngine.Numbers;
 using System;
 
 namespace ExpressionEngine.BaseExpressions
@@ -15,7 +14,7 @@ namespace ExpressionEngine.BaseExpressions
         {
         }
 
-        protected override Number Evaluate(Number number1, Number number2)
+        protected override double Evaluate(double number1, double number2)
         {
             return number1 - number2;
         }

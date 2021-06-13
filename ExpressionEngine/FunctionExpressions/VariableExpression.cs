@@ -4,7 +4,6 @@
 //-----------------------------------------------------------------------------
 
 using ExpressionEngine.BaseExpressions;
-using ExpressionEngine.Numbers;
 using ExpressionEngine.Properties;
 using System;
 using System.Globalization;
@@ -41,7 +40,7 @@ namespace ExpressionEngine.FunctionExpressions
             return new ConstantExpression(0);
         }
 
-        public INumber Evaluate()
+        public double Evaluate()
         {
             if (Variables == null)
                 throw new ExpressionEngineException(Resources.NoVariableValues);
@@ -56,7 +55,7 @@ namespace ExpressionEngine.FunctionExpressions
 
             if (Variables.IsConstant(Identifier))
             {
-                return new ConstantExpression((Variables.GetValue(Identifier) as Number)!);
+                return new ConstantExpression(Variables.GetValue(Identifier));
             }
             return new VariableExpression(Identifier, Variables);
         }

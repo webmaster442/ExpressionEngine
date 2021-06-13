@@ -16,7 +16,7 @@ namespace ExpressionEngine.Renderer.Commands
         public override void Execute(Arguments arguments)
         {
             arguments.GuardArgumentCount(2);
-            if (NumberParser.ParseNumber(arguments[1], out INumber value))
+            if (NumberParser.ParseNumber(arguments[1], out double value))
             {
                 State[arguments[0]] = value;
             }
@@ -26,7 +26,7 @@ namespace ExpressionEngine.Renderer.Commands
             }
             else if (State.IsDefined(arguments[1]))
             {
-                State[arguments[0]] = State[arguments[1]].Clone();
+                State[arguments[0]] = State[arguments[1]];
             }
             else
             {

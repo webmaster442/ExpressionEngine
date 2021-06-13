@@ -6,7 +6,6 @@
 using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.Maths;
-using ExpressionEngine.Numbers;
 using System;
 
 
@@ -39,9 +38,9 @@ namespace ExpressionEngine.FunctionExpressions
             return $"ctg({Child})";
         }
 
-        protected override Number Evaluate(Number number)
+        protected override double Evaluate(double number)
         {
-            return NumberMath.Round(NumberMath.Ctg(number), 21);
+            return Math.Round(Trigonometry.Ctg(number), 15);
         }
     }
 }

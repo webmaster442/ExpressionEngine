@@ -27,13 +27,13 @@ namespace ExpressionEngine.Renderer.Commands
             {
                 expression = ParseExpression(arguments[0]);
             }
-            INumber? result = expression?.Evaluate();
+            double? result = expression?.Evaluate();
             if (result == null)
             {
                 throw new CommandException(Resources.ErrorEvaluate, expression?.ToString() ?? "no expression");
             }
             Writer.WriteLine(result);
-            State.Ans = result;
+            State.Ans = result.Value;
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿//-----------------------------------------------------------------------------
-// (c) 2020 Ruzsinszki Gábor
-// This code is licensed under MIT license (see LICENSE for details)
-//-----------------------------------------------------------------------------
-
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Linq;
 
 namespace ExpressionEngine.Tests

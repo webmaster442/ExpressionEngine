@@ -3,14 +3,14 @@
 // This code is licensed under MIT license (see LICENSE for details)
 //-----------------------------------------------------------------------------
 
-using ExpressionEngine.Numbers;
+using ExpressionEngine.Maths;
 using NUnit.Framework;
 using System.Linq;
 
 namespace ExpressionEngine.Tests
 {
     [TestFixture]
-    public class ExtensionsTests: TestBase
+    public class ExtensionsTests
     {
         [Test]
         public void TestFlatten()
@@ -59,16 +59,13 @@ namespace ExpressionEngine.Tests
         [TestCase("e^x", 0, 5, 147.41)]
         public void TestIntegrate(string expression, double from, double to, double expected)
         {
-            NumberMath.AngleMode = AngleMode.Rad;
+            Trigonometry.AngleMode = AngleMode.Rad;
 
             ExpressionParser parser = new ExpressionParser();
             IExpression expr = parser.Parse(expression, Mocks.CreateVariableMock());
 
-            INumber f = (Number)from;
-            INumber t = (Number)to;
-
-            Number result = expr.Integrate("x", f, t) as Number;
-            AreEqual(expected, result, 1E-2);
+            double result = expr.Integrate("x", from, to);
+            Assert.AreEqual(expected, result, 1E-2);
         }
 
         [TestCase("sin(x)", AngleMode.Rad, 0, 3.14159265359, 2.0)]
@@ -82,16 +79,13 @@ namespace ExpressionEngine.Tests
 
         public void TestTrigonometricIntegrate(string expression, AngleMode mode, double from, double to, double expected)
         {
-            NumberMath.AngleMode = mode;
+            Trigonometry.AngleMode = mode;
 
             ExpressionParser parser = new ExpressionParser();
             IExpression expr = parser.Parse(expression, Mocks.CreateVariableMock());
 
-            INumber f = (Number)from;
-            INumber t = (Number)to;
-
-            Number result = expr.Integrate("x", f, t) as Number;
-            AreEqual(expected, result, 1E-2);
+            double result = expr.Integrate("x", from, to);
+            Assert.AreEqual(expected, result, 1E-2);
         }
 
         [TestCase("a&b", 3)]

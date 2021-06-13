@@ -7,7 +7,7 @@ using ExpressionEngine.Base;
 using ExpressionEngine.BaseExpressions;
 using ExpressionEngine.FunctionExpressions;
 using ExpressionEngine.LogicExpressions;
-using ExpressionEngine.Numbers;
+using ExpressionEngine.Maths;
 using ExpressionEngine.Properties;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,6 @@ namespace ExpressionEngine
 {
     public class ExpressionParser
     {
-
         private Tokenizer? _tokenizer;
         private Token _currentToken;
         private readonly TokenSet FirstMultExp;
@@ -30,8 +29,8 @@ namespace ExpressionEngine
 
         public static AngleMode AngleMode
         {
-            get => NumberMath.AngleMode;
-            set => NumberMath.AngleMode = value;
+            get => Trigonometry.AngleMode;
+            set => Trigonometry.AngleMode = value;
         }
 
         public ExpressionParser()

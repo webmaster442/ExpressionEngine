@@ -11,6 +11,7 @@ namespace ExpressionEngine.Renderer
         void SetExpression(string variableName, IExpression? expression);
         bool IsExpression(string variableName);
         IExpression? GetExpression(string variableName);
-        INumber Ans { get; set; }
+        double Ans { get; set; }
+        bool IsDefined(string name);
     }
 }
